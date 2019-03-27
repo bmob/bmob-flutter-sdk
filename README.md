@@ -38,17 +38,22 @@ https://pub.dartlang.org/packages/data_plugin#-installing-tab-
 # 2、使用
 
 1、初始化
+在runApp中进行一下初始化操作：
 ```
 //SDK初始化，masterkey为管理权限密钥，建议在客户端使用时置空
 static void initMasterKey(appId, apiKey, masterKey);
 ```
-2、注意事项
+2、导入源码
 Dart要求，在使用具体功能代码的时候需要先导入对应代码的所在源文件。
 例如，使用BmobUser前需要导入：
 ```
 import 'package:data_plugin/bmob/table/bmob_user.dart';
 ```
-
+3、发布库
+此SDK插件只用于Bmob数据服务相关的数据操作，与此服务无关的UI以及其他涉及平台功能的操作需要开发者自行编写。Dart允许开发者自己编写相关的UI库以及平台插件，并发布到Dart仓库供所有开发者使用，具体可以参考：
+```
+https://zhuanlan.zhihu.com/p/60136574
+```
 
 ## 2.1、数据类型
 
@@ -692,6 +697,40 @@ void _initInstallation(BuildContext context) {
     DataPlugin.toast(bmobInstallation.toJson().toString());
   }, errorCallback: (BmobError error) {
     print(error.toJson());
+  });
+}
+
+```
+
+
+## 2.12、短信操作
+
+发送短信验证码：
+```
+///发送短信验证码：需要手机号码
+void _sendSms(BuildContext context) {
+  print({'手机号码': _phoneNumber, '验证码': _smsCode});
+  BmobSms bmobSms = BmobSms();
+  bmobSms.template = "";
+  bmobSms.mobilePhoneNumber = _phoneNumber;
+  bmobSms.sendSms(successListener: (BmobSent data) {
+    showSuccess(context, "发送成功:" + data.smsId.toString());
+  }, errorListener: (BmobError error) {
+    print(error.error);
+    showError(context, error.error);
+  });
+}
+```
+验证短信验证码：
+```
+///验证短信验证码：需要手机号码和验证码
+void _verifySmsCode(BuildContext context) {
+  BmobSms bmobSms = BmobSms();
+  bmobSms.mobilePhoneNumber = _phoneNumber;
+  bmobSms.verifySmsCode(_smsCode, successListener: (BmobHandled data) {
+    showSuccess(context, "验证成功："+data.msg);
+  }, errorListener: (BmobError error) {
+    showError(context, error.error);
   });
 }
 
