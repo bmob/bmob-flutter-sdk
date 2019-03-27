@@ -79,6 +79,17 @@ https://zhuanlan.zhihu.com/p/60136574
 
 5、用户类型 BmobUser
 
+继承自BmobObject
+
+|属性|解释|
+|----|----|
+|username|用户名|
+|password|密码
+|email|邮箱|
+|emailVerified|邮箱是否验证|
+|mobilePhoneNumber|手机号码|
+|mobilePhoneNumberVerified|手机号码是否验证|
+
 6、设备类型 BmobInstallation
 
 7、角色类型 BmobRole
