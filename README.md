@@ -35,6 +35,15 @@ https://pub.dartlang.org/packages/data_plugin#-installing-tab-
 ## 1.5、平台
 目前涉及到特定平台信息处理的方法只适配了Android外，其他方法均兼容Android、iOS。
 
+## 1.6、参考
+源码：
+```
+https://github.com/bmob/bmob-flutter-sdk/tree/master/data_plugin
+```
+案例：
+```
+https://github.com/bmob/bmob-flutter-sdk/tree/master/data_demo
+```
 # 2、使用
 
 1、初始化
