@@ -73,9 +73,23 @@ https://zhuanlan.zhihu.com/p/60136574
 
 2、时间类型 BmobDate
 
+|属性|解释|
+|----|----|
+|iso|时间|
+
 3、文件类型 BmobFile
 
+|属性|解释|
+|----|----|
+|url|文件地址|
+|filename|文件名称|
+
 4、位置类型 BmobGeoPoint
+
+|属性|解释|
+|----|----|
+|latitude|纬度|
+|longitude|经度|
 
 5、用户类型 BmobUser
 
@@ -92,8 +106,17 @@ https://zhuanlan.zhihu.com/p/60136574
 
 6、设备类型 BmobInstallation
 
+|属性|解释|
+|----|----|
+|installationId|设备ID|
+
 7、角色类型 BmobRole
 
+|属性|解释|
+|----|----|
+|name|角色名称|
+|roles|子角色|
+|users|角色用户|
 
 ### 2.1.2、自定义数据类型
 
