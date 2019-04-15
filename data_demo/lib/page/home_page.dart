@@ -106,6 +106,15 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.blue[400],
                 child: new Text('数据访问权限',
                     style: new TextStyle(color: Colors.white))),
+
+
+            RaisedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "realtimeRoute");
+                },
+                color: Colors.blue[400],
+                child: new Text('实时数据监听',
+                    style: new TextStyle(color: Colors.white))),
           ],
         ),
       ),

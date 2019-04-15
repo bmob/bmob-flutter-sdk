@@ -137,7 +137,28 @@ class BmobDio {
     }
   }
 
-
+  ///GET请求，带请求路径，带请求参数，带是否取消请求
+  void getByUrl(requestUrl,
+      {data,
+      cancelToken,
+      Function successCallback,
+      Function errorCallback}) async {
+    var headers = options.headers.toString();
+    print('get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
+    try {
+      Response response = await dio.get(
+        requestUrl,
+        data: data,
+        cancelToken: cancelToken,
+      );
+      print(response);
+      print('get请求成功!response：${response.data}');
+      //成功
+      successCallback(response.data);
+    } on DioError catch (e) {
+      handleError(e, errorCallback);
+    }
+  }
 
   ///处理取消-失败-错误信息
   void handleError(e, Function errorCallback) {

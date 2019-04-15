@@ -137,7 +137,7 @@ class BmobQuery<T> {
   }
 
   ///查询多条数据
-  void queryObjects({Function successListener, Function errorListener}) async {
+  Future queryObjects({Function successListener, Function errorListener}) async {
     String tableName = T.toString();
     switch (tableName) {
       case "BmobInstallation":
