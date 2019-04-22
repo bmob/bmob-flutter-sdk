@@ -10,7 +10,7 @@ Flutter官方咨询QQ群：788254534
 依赖配置：
 ```
 dependencies:
-  data_plugin: ^0.0.6
+  data_plugin: ^0.0.7
 ```
 ## 1.2、安装
 安装指令：
@@ -813,4 +813,33 @@ void _listen() {
 |subTableDelete|订阅表删除|
 |subRowUpdate|订阅行更新|
 |subRowDelete|订阅行删除|
+
+## 2.14、排序
+
+正序：
+setOrder("字段名称");
+逆序：
+setOrder("-字段名称");
+
+```
+void _queryOrder(BuildContext context) {
+  BmobQuery<Blog> query = BmobQuery();
+  query.setOrder("createdAt");
+  query.queryObjects(successListener: (List<dynamic> data) {
+    List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+    Navigator.pushNamed(context, "listRoute");
+
+    for (Blog blog in blogs) {
+      if (blog != null) {
+        print(blog.objectId);
+        print(blog.title);
+        print(blog.content);
+      }
+    }
+  }, errorListener: (BmobError error) {
+    print(error.error);
+    showError(context, error.error);
+  });
+}
+```
 

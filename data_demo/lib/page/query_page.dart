@@ -86,6 +86,14 @@ class _QueryPageState extends State<QueryPage> {
                 color: Colors.blue[400],
                 child: new Text('范围包含查询',
                     style: new TextStyle(color: Colors.white))),
+            RaisedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "orderRoute");
+                },
+                color: Colors.blue[400],
+                child: new Text('数据排序',
+                    style: new TextStyle(color: Colors.white))),
+
           ],
         ),
       ),

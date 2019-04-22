@@ -85,6 +85,8 @@ class Page extends State<ListPage> {
                             style: new TextStyle(fontSize: 15.0)),
                         new Text('(${model.objectId})',
                             style: new TextStyle(fontSize: 15.0)),
+                        new Text('(${model.createdAt})',
+                            style: new TextStyle(fontSize: 15.0)),
                       ],
                     ),
                     new Center(

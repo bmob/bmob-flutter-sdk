@@ -15,6 +15,7 @@ import 'page/pointer_page.dart';
 import 'page/acl_page.dart';
 import 'page/geo_point_page.dart';
 import 'page/real_time_page.dart';
+import 'page/order_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
         'aclRoute':(BuildContext context)=>new AclPage(),
         'geoPointRoute':(BuildContext context)=> new GeoPointPage(),
         'realtimeRoute':(BuildContext context)=> new RealTimePage(),
+        'orderRoute':(BuildContext context)=> new OrderPage(),
       },
     );
   }

@@ -15,6 +15,7 @@ part 'bmob_query.g.dart';
 @JsonSerializable()
 class BmobQuery<T> {
   String include;
+  String order;
 
   Map<String, dynamic> where;
 
@@ -57,8 +58,6 @@ class BmobQuery<T> {
     addCondition(key, "\$gte", value);
     return this;
   }
-
-
 
   void addCondition(String key, String condition, Object value) {
     if (condition == null) {
@@ -118,6 +117,12 @@ class BmobQuery<T> {
     return this;
   }
 
+  //按字段排序
+  BmobQuery setOrder(String value) {
+    order = value;
+    return this;
+  }
+
   ///查询单条数据
   void queryObject(objectId,
       {Function successListener, Function errorListener}) async {
@@ -137,7 +142,8 @@ class BmobQuery<T> {
   }
 
   ///查询多条数据
-  Future queryObjects({Function successListener, Function errorListener}) async {
+  Future queryObjects(
+      {Function successListener, Function errorListener}) async {
     String tableName = T.toString();
     switch (tableName) {
       case "BmobInstallation":

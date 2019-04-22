@@ -5,24 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2ee3504-879d-43a1-9247-bf52d1031f95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../data_demo/lib/page/real_time_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/lib/page/real_time_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/bmob/realtime/change.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/bmob/realtime/client.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/bmob/realtime/message.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/bmob/realtime/real_time_data_manager.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/bmob/response/bmob_response.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data_demo/lib/page/order_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example/lib/page/order_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../data_demo/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../data_demo/lib/page/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/lib/page/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_demo/lib/page/list_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/lib/page/list_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_demo/lib/page/query_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/lib/page/query_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../data_demo/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../data_demo/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/example_lib_main_dart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/example_lib_main_dart.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/page/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/page/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/page/list_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/page/list_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/page/query_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/page/query_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/bmob_dio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bmob/bmob_dio.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/bmob/bmob_query.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bmob/bmob_query.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
@@ -37,101 +35,12 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-821557201">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="7" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.2" value="3" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="7" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="dart" value="289" />
-          <entry key="gradle" value="3" />
-          <entry key="java" value="17" />
-          <entry key="xml" value="5" />
-          <entry key="yaml" value="15" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Dart" value="289" />
-          <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="17" />
-          <entry key="XML" value="5" />
-          <entry key="YAML" value="15" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="dart" value="11582" />
-          <entry key="java" value="228" />
-          <entry key="xml" value="7" />
-          <entry key="yaml" value="20" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Dart" value="11582" />
-          <entry key="JAVA" value="228" />
-          <entry key="XML" value="7" />
-          <entry key="YAML" value="20" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="312142494">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="6" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.2" value="2" />
-          <entry key="project.open.time.4" value="2" />
-          <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="8" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="dart" value="151" />
-          <entry key="java" value="9" />
-          <entry key="yaml" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Dart" value="151" />
-          <entry key="JAVA" value="9" />
-          <entry key="YAML" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="dart" value="4530" />
-          <entry key="yaml" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Dart" value="4530" />
-          <entry key="YAML" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/bmob/bmob_dio.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1007">
+            <state relative-caret-position="892">
               <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
@@ -141,13 +50,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/lib/page/real_time_page.dart">
+        <entry file="file://$PROJECT_DIR$/lib/bmob/bmob_query.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="281">
+              <caret line="119" column="9" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -155,17 +61,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pubspec.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="42" column="3" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
+            <state relative-caret-position="665">
+              <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/lib/page/order_page.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="708">
+              <caret line="54" column="27" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/lib/page/list_page.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="812">
+              <caret line="94" column="51" selection-start-line="94" selection-start-column="51" selection-end-line="94" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="803">
+              <caret line="57" column="68" selection-start-line="57" selection-start-column="68" selection-end-line="58" selection-end-column="62" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -176,8 +103,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/lib/page/home_page.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="98" column="51" selection-start-line="98" selection-start-column="51" selection-end-line="98" selection-end-column="51" />
+            <state relative-caret-position="1009">
+              <caret line="101" column="5" selection-start-line="101" selection-start-column="5" selection-end-line="108" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/example/lib/page/query_page.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="547">
+              <caret line="93" column="39" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -185,7 +124,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/bmob/realtime/real_time_data_manager.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
+            <state relative-caret-position="418">
               <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -199,36 +138,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="152">
               <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/bmob/realtime/change.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/bmob/realtime/change.g.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="59" selection-start-line="6" selection-start-column="59" selection-end-line="6" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -265,6 +174,7 @@
       <find>json.</find>
       <find>get请求</find>
       <find>print</find>
+      <find>order</find>
     </findStrings>
     <replaceStrings>
       <replace>BmobFile</replace>
@@ -282,9 +192,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/example/lib/page/other_page.dart" />
         <option value="$PROJECT_DIR$/example/lib/bean/user.dart" />
-        <option value="$PROJECT_DIR$/example/lib/page/query_page.dart" />
         <option value="$PROJECT_DIR$/lib/bmob/bmob_relation_manager.dart" />
         <option value="$PROJECT_DIR$/lib/bmob/bmob_acl_manager.dart" />
         <option value="$PROJECT_DIR$/lib/bmob/type/bmob_acl.dart" />
@@ -302,7 +210,6 @@
         <option value="$PROJECT_DIR$/lib/bmob/type/bmob_pointer.dart" />
         <option value="$PROJECT_DIR$/example/lib/page/acl_page.dart" />
         <option value="$PROJECT_DIR$/example/lib/page/login_page.dart" />
-        <option value="$PROJECT_DIR$/example/lib/page/list_page.dart" />
         <option value="$PROJECT_DIR$/example/lib/page/geo_point_page.dart" />
         <option value="$PROJECT_DIR$/lib/bmob/type/bmob_geo_point.dart" />
         <option value="$PROJECT_DIR$/lib/bmob/type/bmob_date.dart" />
@@ -321,7 +228,6 @@
         <option value="$PROJECT_DIR$/example/lib/page/time_page.dart" />
         <option value="$PROJECT_DIR$/example/lib/bean/blog.dart" />
         <option value="$PROJECT_DIR$/example/lib/page/register_page.dart" />
-        <option value="$PROJECT_DIR$/lib/bmob/bmob_query.dart" />
         <option value="$PROJECT_DIR$/lib/bmob/bmob_dio.dart" />
         <option value="$PROJECT_DIR$/example/lib/page/home_page.dart" />
         <option value="$PROJECT_DIR$/lib/bmob/response/bmob_response.dart" />
@@ -331,12 +237,16 @@
         <option value="$PROJECT_DIR$/example/lib/page/real_time_page.dart" />
         <option value="$PROJECT_DIR$/lib/bmob/realtime/real_time_data_manager.dart" />
         <option value="$PROJECT_DIR$/lib/bmob/realtime/client.dart" />
-        <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/lib/bmob/bmob_query.dart" />
         <option value="$PROJECT_DIR$/example/lib/main.dart" />
+        <option value="$PROJECT_DIR$/example/lib/page/query_page.dart" />
+        <option value="$PROJECT_DIR$/example/lib/page/order_page.dart" />
+        <option value="$PROJECT_DIR$/example/lib/page/list_page.dart" />
+        <option value="$PROJECT_DIR$/pubspec.yaml" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-552" />
     <option name="y" value="-1417" />
     <option name="width" value="2560" />
@@ -429,28 +339,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="data_plugin" type="58d84e3e:PackageViewProjectNode" />
-              <item name="data_plugin_android" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="58d84e3e:PackageViewProjectNode" />
-              <item name="data_plugin_android" type="616d4139:PackageViewModuleNode" />
-              <item name="cn.bmob.data_plugin" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="58d84e3e:PackageViewProjectNode" />
-              <item name="data_plugin_android" type="616d4139:PackageViewModuleNode" />
-              <item name="cn.bmob.data_plugin" type="1f31426a:PackageElementNode" />
-              <item name="util" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -538,145 +426,26 @@
               <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
               <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
               <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="wrapper" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
               <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="data_plugin_example" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
               <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="bean" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
               <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
               <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="bmob" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="bmob" type="462c0819:PsiDirectoryNode" />
-              <item name="realtime" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="bmob" type="462c0819:PsiDirectoryNode" />
-              <item name="response" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="bmob" type="462c0819:PsiDirectoryNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="bmob" type="462c0819:PsiDirectoryNode" />
-              <item name="type" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
@@ -686,7 +455,28 @@
           </expand>
           <select />
         </subPane>
-        <option name="show-excluded-files" value="false" />
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="data_plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="data_plugin_android" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="data_plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="data_plugin_android" type="616d4139:PackageViewModuleNode" />
+              <item name="cn.bmob.data_plugin" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="data_plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="data_plugin_android" type="616d4139:PackageViewModuleNode" />
+              <item name="cn.bmob.data_plugin" type="1f31426a:PackageElementNode" />
+              <item name="util" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
       </pane>
     </panes>
   </component>
@@ -698,18 +488,18 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/example/lib" />
-      <recent name="$PROJECT_DIR$/android/src/main/java/cn/bmob/data_plugin/util" />
-      <recent name="$PROJECT_DIR$/lib/utils" />
-      <recent name="$PROJECT_DIR$/lib/bmob" />
-      <recent name="$PROJECT_DIR$/example/lib/bean" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/bmob/type" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.bmob.data_plugin.util" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib/bmob/type" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/example/lib/page" />
+      <recent name="$PROJECT_DIR$/example/lib" />
+      <recent name="$PROJECT_DIR$/android/src/main/java/cn/bmob/data_plugin/util" />
+      <recent name="$PROJECT_DIR$/lib/utils" />
+      <recent name="$PROJECT_DIR$/lib/bmob" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -750,7 +540,8 @@
     <frame x="-552" y="-1417" width="2560" height="1417" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23351866" />
+      <window_info id="Resources Explorer" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23351866" />
       <window_info id="Designer" order="1" />
       <window_info id="Build Variants" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -763,14 +554,14 @@
       <window_info anchor="bottom" id="DB Execution Console" order="0" />
       <window_info anchor="bottom" id="Tail" order="1" />
       <window_info anchor="bottom" id="Dart Analysis" order="2" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49483716" weight="0.21" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49444002" weight="0.21" />
       <window_info anchor="bottom" id="Android Profiler" order="4" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5079428" side_tool="true" visible="true" weight="0.5030769" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="6" sideWeight="0.49205717" visible="true" weight="0.5030769" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50556" side_tool="true" visible="true" weight="0.18769231" />
+      <window_info anchor="bottom" id="Logcat" order="6" sideWeight="0.4912629" weight="0.2653846" />
       <window_info anchor="bottom" id="Flutter Performance" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49483716" weight="0.18769231" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4992057" weight="0.29" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49444002" visible="true" weight="0.18769231" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4988086" weight="0.29" />
       <window_info anchor="bottom" id="TODO" order="11" />
       <window_info anchor="bottom" id="Debug" order="12" />
       <window_info anchor="bottom" id="Find" order="13" />
@@ -816,9 +607,6 @@
       <window_info anchor="right" id="Theme Preview" order="6" />
     </layout-to-restore>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -836,38 +624,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/example/lib/page/installation_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1330">
-          <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/page/geo_point_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/example/lib/page/file_page.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4598">
           <caret line="254" column="55" selection-start-line="254" selection-start-column="55" selection-end-line="254" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/page/list_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/bmob/bmob_query.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="50" column="37" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1120,36 +880,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3211">
           <caret line="180" column="15" selection-start-line="180" selection-start-column="15" selection-end-line="180" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/bmob/bmob_dio.dart">
+    <entry file="file://$PROJECT_DIR$/example/lib/page/real_time_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1007">
-          <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+        <state relative-caret-position="703">
+          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#0#22#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/bmob/realtime/real_time_data_manager.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/bmob/realtime/message.g.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -1177,34 +917,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+    <entry file="file://$PROJECT_DIR$/lib/bmob/realtime/real_time_data_manager.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="42" column="3" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
+        <state relative-caret-position="418">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/bmob/realtime/message.g.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/bmob/bmob_dio.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="892">
+          <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/bmob/bmob_query.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="119" column="9" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/example/lib/page/home_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="98" column="51" selection-start-line="98" selection-start-column="51" selection-end-line="98" selection-end-column="51" />
+        <state relative-caret-position="1009">
+          <caret line="101" column="5" selection-start-line="101" selection-start-column="5" selection-end-line="108" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/page/real_time_page.dart">
+    <entry file="file://$PROJECT_DIR$/example/lib/page/list_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+        <state relative-caret-position="812">
+          <caret line="94" column="51" selection-start-line="94" selection-start-column="51" selection-end-line="94" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/lib/page/order_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="708">
+          <caret line="54" column="27" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="803">
+          <caret line="57" column="68" selection-start-line="57" selection-start-column="68" selection-end-line="58" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/lib/page/query_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="93" column="39" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
