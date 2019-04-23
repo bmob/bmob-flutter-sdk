@@ -4,14 +4,20 @@ import 'package:data_plugin/bmob/bmob_query.dart';
 import 'package:data_plugin/bmob/response/bmob_error.dart';
 import 'package:data_plugin/utils/dialog_util.dart';
 import '../bean/blog.dart';
+class OrderPage extends StatefulWidget{
 
-class OrderPage extends StatefulWidget {
+
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return _OrderPageState();
   }
+
+
+
 }
+
 
 class _OrderPageState extends State<OrderPage> {
   @override
@@ -31,6 +37,7 @@ class _OrderPageState extends State<OrderPage> {
                 color: Colors.blue[400],
                 child: new Text('排序查询',
                     style: new TextStyle(color: Colors.white))),
+
           ],
         ),
       ),
@@ -40,6 +47,8 @@ class _OrderPageState extends State<OrderPage> {
   void _queryOrder(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.setOrder("createdAt");
+    query.setLimit(10);
+    query.setSkip(10);
     query.queryObjects(successListener: (List<dynamic> data) {
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
       Navigator.pushNamed(context, "listRoute");

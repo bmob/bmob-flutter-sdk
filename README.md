@@ -10,7 +10,7 @@ Flutter官方咨询QQ群：788254534
 依赖配置：
 ```
 dependencies:
-  data_plugin: ^0.0.7
+  data_plugin: ^0.0.8
 ```
 ## 1.2、安装
 安装指令：
@@ -834,6 +834,48 @@ void _queryOrder(BuildContext context) {
         print(blog.objectId);
         print(blog.title);
         print(blog.content);
+      }
+    }
+  }, errorListener: (BmobError error) {
+    print(error.error);
+    showError(context, error.error);
+  });
+}
+```
+
+## 2.15、分页
+
+设置返回条数：
+setLimit(int value);
+
+设置忽略条数：
+setSkip(int value);
+
+```
+//查询多条数据
+void _queryList(BuildContext context) {
+  BmobQuery<Blog> query = BmobQuery();
+  query.setInclude("author");
+  query.setLimit(10);
+  query.setSkip(10);
+  query.queryObjects(successListener: (List<dynamic> data) {
+    List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+
+    setState(() {
+      _items = blogs;
+    });
+    int index = 0;
+    for (Blog blog in blogs) {
+      index++;
+      if (blog != null) {
+        print(index);
+        print(blog.objectId);
+        print(blog.title);
+        print(blog.content);
+        if (blog.author != null) {
+          print(blog.author.objectId);
+          print(blog.author.username);
+        }
       }
     }
   }, errorListener: (BmobError error) {

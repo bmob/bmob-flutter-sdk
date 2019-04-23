@@ -25,22 +25,27 @@ class Page extends State<ListPage> {
   @override
   void initState() {
     // TODO: implement initState
-    _queryInclude(context);
+    _queryList(context);
     super.initState();
   }
 
   //查询多条数据
-  void _queryInclude(BuildContext context) {
+  void _queryList(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.setInclude("author");
+    query.setLimit(10);
+    query.setSkip(10);
     query.queryObjects(successListener: (List<dynamic> data) {
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
 
       setState(() {
         _items = blogs;
       });
+      int index = 0;
       for (Blog blog in blogs) {
+        index++;
         if (blog != null) {
+          print(index);
           print(blog.objectId);
           print(blog.title);
           print(blog.content);
@@ -69,9 +74,9 @@ class Page extends State<ListPage> {
   }
 
   Widget itemView(BuildContext context, int index) {
+    print("item $index");
     Blog model = this._items[index];
     //设置分割线
-    if (index.isOdd) return new Divider(height: 2.0);
     return new Container(
         child: new Padding(
             padding: const EdgeInsets.all(8.0),
@@ -91,9 +96,11 @@ class Page extends State<ListPage> {
                     ),
                     new Center(
                       heightFactor: 6.0,
-                      child: new Text("${model.content}",
+                      child: new Text("${model.content}\n第$index条数据",
                           style: new TextStyle(fontSize: 17.0)),
-                    )
+
+                    ),
+                    new Divider(height: 2.0),
                   ],
                 ))));
   }

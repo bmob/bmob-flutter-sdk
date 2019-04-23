@@ -63,7 +63,7 @@ packages:
       name: data_plugin
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.7"
+    version: "0.0.8"
   dio:
     dependency: transitive
     description:

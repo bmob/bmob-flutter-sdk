@@ -15,6 +15,8 @@ part 'bmob_query.g.dart';
 @JsonSerializable()
 class BmobQuery<T> {
   String include;
+  int limit;
+  int skip;
   String order;
 
   Map<String, dynamic> where;
@@ -123,6 +125,19 @@ class BmobQuery<T> {
     return this;
   }
 
+
+  //返回条数
+  BmobQuery setLimit(int value){
+    limit =value;
+    return this;
+  }
+
+
+  //忽略条数
+  BmobQuery setSkip(int value){
+    skip = value;
+    return this;
+  }
   ///查询单条数据
   void queryObject(objectId,
       {Function successListener, Function errorListener}) async {

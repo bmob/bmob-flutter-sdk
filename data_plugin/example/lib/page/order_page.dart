@@ -47,6 +47,8 @@ class _OrderPageState extends State<OrderPage> {
   void _queryOrder(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.setOrder("createdAt");
+    query.setLimit(10);
+    query.setSkip(10);
     query.queryObjects(successListener: (List<dynamic> data) {
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
       Navigator.pushNamed(context, "listRoute");
