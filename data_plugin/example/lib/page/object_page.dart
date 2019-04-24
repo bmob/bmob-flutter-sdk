@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 /**
  * home page
  */
@@ -44,6 +46,7 @@ class _ObjectPageState extends State<ObjectPage> {
               RaisedButton(
                   onPressed: () {
                     _querySingle(context);
+                    _querySingleFuture(context);
                   },
                   color: Colors.blue[400],
                   child: new Text('查询一条数据',
@@ -62,7 +65,6 @@ class _ObjectPageState extends State<ObjectPage> {
                   color: Colors.blue[400],
                   child: new Text('删除一条数据',
                       style: new TextStyle(color: Colors.white))),
-
               RaisedButton(
                   onPressed: () {
                     _deleteFieldValue(context);
@@ -70,8 +72,6 @@ class _ObjectPageState extends State<ObjectPage> {
                   color: Colors.blue[400],
                   child: new Text('删除某条数据某个字段的值',
                       style: new TextStyle(color: Colors.white))),
-
-
               RaisedButton(
                   onPressed: () {
                     _queryMulti(context);
@@ -79,7 +79,6 @@ class _ObjectPageState extends State<ObjectPage> {
                   color: Colors.blue[400],
                   child: new Text('查询多条数据',
                       style: new TextStyle(color: Colors.white))),
-
               RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, 'queryRoute');
@@ -87,7 +86,6 @@ class _ObjectPageState extends State<ObjectPage> {
                   color: Colors.blue[400],
                   child: new Text('其他查询操作',
                       style: new TextStyle(color: Colors.white))),
-
             ],
           ),
         ),
@@ -129,6 +127,27 @@ class _ObjectPageState extends State<ObjectPage> {
       }, errorListener: (BmobError error) {
         print(error.error);
         showError(context, error.error);
+      });
+    } else {
+      showError(context, "请先新增一条数据");
+    }
+  }
+
+  void _querySingleFuture(BuildContext context) {
+    if (currentObjectId != null) {
+      BmobQuery<Blog> bmobQuery = BmobQuery();
+      bmobQuery.setInclude("author");
+      bmobQuery.queryObjectFuture(currentObjectId).then((dynamic data) {
+        Blog blog = Blog.fromJson(data);
+        print(blog.title);
+        showSuccess(context,
+            "查询一条数据成功：${blog.title} - ${blog.content} - ${blog.author.username}");
+      }).catchError((e) {
+
+        print(BmobError.convert(e).error);
+
+      }).whenComplete(() {
+        print("查询结束");
       });
     } else {
       showError(context, "请先新增一条数据");
@@ -178,7 +197,6 @@ class _ObjectPageState extends State<ObjectPage> {
     query.queryObjects(successListener: (List<dynamic> data) {
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
 
-
       Navigator.pushNamed(context, "listRoute");
 
       for (Blog blog in blogs) {
@@ -194,13 +212,12 @@ class _ObjectPageState extends State<ObjectPage> {
     });
   }
 
-
   ///删除一个字段的值
   void _deleteFieldValue(BuildContext context) {
     if (currentObjectId != null) {
       Blog blog = Blog();
       blog.objectId = currentObjectId;
-      blog.deleteFieldValue("content",successListener: (BmobUpdated data) {
+      blog.deleteFieldValue("content", successListener: (BmobUpdated data) {
         print(data.updatedAt);
         showSuccess(context, "删除发布内容成功：${data.updatedAt}");
       }, errorListener: (BmobError error) {
@@ -211,5 +228,4 @@ class _ObjectPageState extends State<ObjectPage> {
       showError(context, "请先新增一条数据");
     }
   }
-
 }

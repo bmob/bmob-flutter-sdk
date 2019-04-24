@@ -1,4 +1,5 @@
 import 'package:data_plugin/bmob/bmob_dio.dart';
+import 'package:dio/dio.dart';
 
 import 'dart:convert';
 
@@ -155,6 +156,20 @@ class BmobQuery<T> {
       errorListener(error);
     });
   }
+
+
+
+  Future queryObjectFuture(objectId) async {
+    String tableName = T.toString();
+    switch (tableName) {
+      case "BmobInstallation":
+        tableName = "_Installation";
+        break;
+    }
+    return BmobDio.getInstance().getFuture(Bmob.BMOB_API_CLASSES + tableName + Bmob.BMOB_API_SLASH + objectId, data: toJson());
+  }
+
+
 
   ///查询多条数据
   Future queryObjects(

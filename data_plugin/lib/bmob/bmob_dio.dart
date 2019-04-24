@@ -70,6 +70,19 @@ class BmobDio {
     }
   }
 
+  ///GET请求
+  Future getFuture(path, {data, cancelToken}) async {
+    var requestUrl = options.baseUrl + path;
+    var headers = options.headers.toString();
+    print('get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
+    Response response = await dio.get(
+      requestUrl,
+      data: data,
+      cancelToken: cancelToken,
+    );
+    return response.data;
+  }
+
   ///POST请求，带后半部分请求路径，带请求参数，带是否取消请求
   void post(path,
       {data,

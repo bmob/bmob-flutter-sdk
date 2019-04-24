@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 //此处与类名一致，由指令自动生成代码
@@ -18,4 +19,35 @@ class BmobError extends Error {
   Map<String, dynamic> toJson() => _$BmobErrorToJson(this);
 
   String toString() => "BmobError [$code]:" + error;
+
+  //转化DioError错误为BmobError类型
+  static BmobError convert(e) {
+    DioError dioError = e;
+
+    BmobError bmobError;
+    print(dioError.request);
+    print(dioError.message);
+    print(dioError.response);
+    print(dioError.type);
+
+    switch (dioError.type) {
+      case DioErrorType.DEFAULT:
+        bmobError = BmobError(9015, dioError.message);
+        break;
+      case DioErrorType.CANCEL:
+        bmobError = BmobError(9015, dioError.message);
+        break;
+      case DioErrorType.RECEIVE_TIMEOUT:
+        bmobError = BmobError(9015, dioError.message);
+        break;
+      case DioErrorType.RESPONSE:
+        bmobError =
+            BmobError(dioError.response.data['code'], dioError.response.data['error']);
+        break;
+      case DioErrorType.CONNECT_TIMEOUT:
+        bmobError = BmobError(9015, dioError.message);
+        break;
+    }
+    return bmobError;
+  }
 }
