@@ -29,7 +29,7 @@ class BmobUser extends BmobObject {
   Map<String, dynamic> toJson() => _$BmobUserToJson(this);
 
   ///用户账号密码注册
-  void register({Function successListener, Function errorListener}) async {
+  Future<BmobRegistered> register() async {
     Map<String, dynamic> map = toJson();
     Map<String, dynamic> data = new Map();
     //去除由服务器生成的字段值
@@ -46,17 +46,13 @@ class BmobUser extends BmobObject {
     //Map转String
     String params = json.encode(data);
     //发送请求
-    BmobDio.getInstance().post(Bmob.BMOB_API_USERS, data: params,
-        successCallback: (data) {
-      BmobRegistered bmobRegistered = BmobRegistered.fromJson(data);
-      BmobDio.getInstance().setSessionToken(bmobRegistered.sessionToken);
-      successListener(bmobRegistered);
-    }, errorCallback: (error) {
-      errorListener(error);
-    });
+    Map responseData = await BmobDio.getInstance().post(Bmob.BMOB_API_USERS, data: params);
+    BmobRegistered bmobRegistered = BmobRegistered.fromJson(responseData);
+    BmobDio.getInstance().setSessionToken(bmobRegistered.sessionToken);
+    return bmobRegistered;
   }
 
-  void  login({Function successListener, Function errorListener}) async {
+  Future<BmobUser> login() async {
     Map<String, dynamic> map = toJson();
     Map<String, dynamic> data = new Map();
     //去除由服务器生成的字段值
@@ -72,15 +68,11 @@ class BmobUser extends BmobObject {
     });
     //Map转String
     //发送请求
-    BmobDio.getInstance().get(Bmob.BMOB_API_LOGIN + getUrlParams(data),
-        successCallback: (data) {
-      BmobUser bmobUser = BmobUser.fromJson(data);
-      BmobDio.getInstance().setSessionToken(bmobUser.sessionToken);
-      successListener(bmobUser);
-      print(data);
-    }, errorCallback: (error) {
-      errorListener(error);
-    });
+    Map result = await BmobDio.getInstance()
+        .get(Bmob.BMOB_API_LOGIN + getUrlParams(data));
+    BmobUser bmobUser = BmobUser.fromJson(result);
+    BmobDio.getInstance().setSessionToken(bmobUser.sessionToken);
+    return bmobUser;
   }
 
   ///获取在url中的请求参数

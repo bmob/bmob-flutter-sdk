@@ -1,8 +1,3 @@
-import 'package:dio/dio.dart';
-
-/**
- * home page
- */
 import 'package:flutter/material.dart';
 import 'package:data_plugin/bmob/table/bmob_user.dart';
 import 'package:data_plugin/bmob/response/bmob_error.dart';
@@ -46,7 +41,6 @@ class _ObjectPageState extends State<ObjectPage> {
               RaisedButton(
                   onPressed: () {
                     _querySingle(context);
-                    _querySingleFuture(context);
                   },
                   color: Colors.blue[400],
                   child: new Text('查询一条数据',
@@ -94,7 +88,7 @@ class _ObjectPageState extends State<ObjectPage> {
   }
 
   ///保存一条数据
-  void _saveSingle(BuildContext context) {
+  _saveSingle(BuildContext context) {
     BmobUser bmobUser = BmobUser();
     bmobUser.objectId = "7c7fd3afe1";
     Blog blog = Blog();
@@ -102,89 +96,27 @@ class _ObjectPageState extends State<ObjectPage> {
     blog.content = "博客内容";
     blog.author = bmobUser;
     blog.like = 77;
-    blog.save(successListener: (BmobSaved data) {
-      String message = "创建一条数据成功：${data.objectId} - ${data.createdAt}";
-      currentObjectId = data.objectId;
-      print(message);
+    blog.save().then((BmobSaved bmobSaved) {
+      String message =
+          "创建一条数据成功：${bmobSaved.objectId} - ${bmobSaved.createdAt}";
+      currentObjectId = bmobSaved.objectId;
       showSuccess(context, message);
-    }, errorListener: (BmobError bmobError) {
-      String message = "创建一条数据失败：${bmobError.error}";
-      print(message);
-      showError(context, message);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 
   ///查询一条数据
-  void _querySingle(BuildContext context) {
+  _querySingle(BuildContext context) {
     if (currentObjectId != null) {
       BmobQuery<Blog> bmobQuery = BmobQuery();
       bmobQuery.setInclude("author");
-      bmobQuery.queryObject(currentObjectId, successListener: (dynamic data) {
+      bmobQuery.queryObject(currentObjectId).then((data) {
         Blog blog = Blog.fromJson(data);
-        print(blog.title);
-        showSuccess(context,
-            "查询一条数据成功：${blog.title} - ${blog.content} - ${blog.author.username}");
-      }, errorListener: (BmobError error) {
-        print(error.error);
-        showError(context, error.error);
-      });
-    } else {
-      showError(context, "请先新增一条数据");
-    }
-  }
-
-  void _querySingleFuture(BuildContext context) {
-    if (currentObjectId != null) {
-      BmobQuery<Blog> bmobQuery = BmobQuery();
-      bmobQuery.setInclude("author");
-      bmobQuery.queryObjectFuture(currentObjectId).then((dynamic data) {
-        Blog blog = Blog.fromJson(data);
-        print(blog.title);
         showSuccess(context,
             "查询一条数据成功：${blog.title} - ${blog.content} - ${blog.author.username}");
       }).catchError((e) {
-
-        print(BmobError.convert(e).error);
-
-      }).whenComplete(() {
-        print("查询结束");
-      });
-    } else {
-      showError(context, "请先新增一条数据");
-    }
-  }
-
-  ///删除一条数据
-  void _deleteSingle(BuildContext context) {
-    if (currentObjectId != null) {
-      Blog blog = Blog();
-      blog.objectId = currentObjectId;
-      blog.delete(successListener: (BmobHandled data) {
-        currentObjectId = null;
-        print(data.msg);
-        showSuccess(context, "删除一条数据成功：${data.msg}");
-      }, errorListener: (BmobError error) {
-        print(error);
-        showError(context, "删除一条数据失败：${error.error}");
-      });
-    } else {
-      showError(context, "请先新增一条数据");
-    }
-  }
-
-  ///修改一条数据
-  void _updateSingle(BuildContext context) {
-    if (currentObjectId != null) {
-      Blog blog = Blog();
-      blog.objectId = currentObjectId;
-      blog.title = "修改一条数据";
-      blog.content = "修改一条数据";
-      blog.update(successListener: (BmobUpdated data) {
-        print(data.updatedAt);
-        showSuccess(context, "修改一条数据成功：${data.updatedAt}");
-      }, errorListener: (BmobError error) {
-        print(error);
-        showError(context, "修改一条数据失败：${error.error}");
+        showError(context, BmobError.convert(e).error);
       });
     } else {
       showError(context, "请先新增一条数据");
@@ -192,13 +124,13 @@ class _ObjectPageState extends State<ObjectPage> {
   }
 
   ///查询多条数据
-  void _queryMulti(BuildContext context) {
+  _queryMulti(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
-    query.queryObjects(successListener: (List<dynamic> data) {
+    query.setLimit(5);
+    query.queryObjects().then((List<dynamic> data) {
+      print(data);
+      showSuccess(context, data.toString());
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
-
-      Navigator.pushNamed(context, "listRoute");
-
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -206,23 +138,53 @@ class _ObjectPageState extends State<ObjectPage> {
           print(blog.content);
         }
       }
-    }, errorListener: (BmobError error) {
-      print(error.error);
-      showError(context, error.error);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 
-  ///删除一个字段的值
-  void _deleteFieldValue(BuildContext context) {
+  ///删除一条数据
+  _deleteSingle(BuildContext context) {
     if (currentObjectId != null) {
       Blog blog = Blog();
       blog.objectId = currentObjectId;
-      blog.deleteFieldValue("content", successListener: (BmobUpdated data) {
-        print(data.updatedAt);
-        showSuccess(context, "删除发布内容成功：${data.updatedAt}");
-      }, errorListener: (BmobError error) {
-        print(error);
-        showError(context, "删除发布内容失败：${error.error}");
+      blog.delete().then((BmobHandled bmobHandled) {
+        currentObjectId = null;
+        showSuccess(context, "删除一条数据成功：${bmobHandled.msg}");
+      }).catchError((e) {
+        showError(context, BmobError.convert(e).error);
+      });
+    } else {
+      showError(context, "请先新增一条数据");
+    }
+  }
+
+  ///修改一条数据
+  _updateSingle(BuildContext context) {
+    if (currentObjectId != null) {
+      Blog blog = Blog();
+      blog.objectId = currentObjectId;
+      blog.title = "修改一条数据";
+      blog.content = "修改一条数据";
+      blog.update().then((BmobUpdated bmobUpdated) {
+        showSuccess(context, "修改一条数据成功：${bmobUpdated.updatedAt}");
+      }).catchError((e) {
+        showError(context, BmobError.convert(e).error);
+      });
+    } else {
+      showError(context, "请先新增一条数据");
+    }
+  }
+
+  ///删除一个字段的值
+  _deleteFieldValue(BuildContext context) {
+    if (currentObjectId != null) {
+      Blog blog = Blog();
+      blog.objectId = currentObjectId;
+      blog.deleteFieldValue("content").then((BmobUpdated bmobUpdated) {
+        showSuccess(context, "删除发布内容成功：${bmobUpdated.updatedAt}");
+      }).catchError((e) {
+        showError(context, "删除发布内容失败" + BmobError.convert(e).error);
       });
     } else {
       showError(context, "请先新增一条数据");

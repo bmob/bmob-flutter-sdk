@@ -43,13 +43,8 @@ class Client {
   /// await关键字必须在async函数内部使用。
   /// 调用async函数必须使用await关键字。
   /// Future最主要的功能就是提供了链式调用。
-  void getServerConfiguration({successListener, errorListener}) async {
-    BmobDio.getInstance().getByUrl(DEFAULT_REAL_TIME_DATA_HOST_HTTP,
-        successCallback: (data) {
-      successListener(data);
-    }, errorCallback: (error) {
-      errorListener(error);
-    });
+  Future<dynamic> getServerConfiguration() async {
+    return BmobDio.getInstance().getByUrl(DEFAULT_REAL_TIME_DATA_HOST_HTTP);
   }
 
   WebSocket webSocket;
@@ -60,7 +55,10 @@ class Client {
       disconnectedCallback,
       dataChangedCallback,
       errorCallback}) async {
-    getServerConfiguration(successListener: (data) {
+
+
+
+    getServerConfiguration().then((data){
       /**
        * 规则：冒号分割
        */
@@ -105,9 +103,11 @@ class Client {
           errorCallback(error);
         });
       }
-    }, errorListener: (error) {
-      errorCallback(error);
+    }).catchError((e){
+      errorCallback(e);
     });
+
+
   }
 
   /// 开始连接
@@ -184,10 +184,10 @@ class Client {
               }
               i++;
             }
-
+            ///5:::{"name":"server_pub","args":["{\"appKey\":\"12784168944a56ae41c4575686b7b332\",\"tableName\":\"Blog\",\"objectId\":\"\",\"action\":\"updateTable\",\"data\":{\"author\":\"7c7fd3afe1\",\"content\":\"博客内容\",\"createdAt\":\"2019-04-26 15:55:12\",\"like\":77,\"objectId\":\"8913e0b65f\",\"title\":\"博客标题\",\"updatedAt\":\"2019-04-26 15:55:12\"}}"]}
             Map<String, dynamic> map = json.decode(data);
             Message message = Message.fromJson(map);
-
+            ///{"appKey":"12784168944a56ae41c4575686b7b332","tableName":"Blog","objectId":"","action":"updateTable","data":{"author":"7c7fd3afe1","content":"博客内容","createdAt":"2019-04-26 15:55:12","like":77,"objectId":"8913e0b65f","title":"博客标题","updatedAt":"2019-04-26 15:55:12"}}
             ///服务端发送消息给客户端，数据变化
             if (message.name.isNotEmpty && message.name == "server_pub") {
               String arg = message.args[0];

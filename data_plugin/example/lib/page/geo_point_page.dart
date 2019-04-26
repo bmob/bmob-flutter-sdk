@@ -1,3 +1,4 @@
+import 'package:data_plugin/utils/dialog_util.dart';
 import 'package:flutter/material.dart';
 import 'package:data_plugin/bmob/type/bmob_geo_point.dart';
 import '../bean/blog.dart';
@@ -40,19 +41,19 @@ class _GeoPointPageState extends State<GeoPointPage> {
     );
   }
 
-  void _addGeoPoint() {
+  ///添加地理位置信息
+  _addGeoPoint() {
     Blog blog = Blog();
     BmobGeoPoint bmobGeoPoint = BmobGeoPoint();
     bmobGeoPoint.latitude = 12.4445;
     bmobGeoPoint.longitude = 124.122;
-
     blog.addr = bmobGeoPoint;
-    blog.save(successListener: (BmobSaved bmobSaved) {
-      print(bmobSaved.objectId);
-      DataPlugin.toast(bmobSaved.objectId);
-    }, errorListener: (BmobError bmobError) {
-      print(bmobError.toString());
-      DataPlugin.toast(bmobError.toString());
+    blog.save().then((BmobSaved bmobSaved) {
+      String message =
+          "创建一条数据成功：${bmobSaved.objectId} - ${bmobSaved.createdAt}";
+      showSuccess(context, message);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 }

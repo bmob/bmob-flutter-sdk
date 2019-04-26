@@ -66,97 +66,79 @@ abstract class BmobObject {
   Map getParams();
 
   ///新增一条数据
-  void save({Function successListener, Function errorListener}) async {
+  Future<BmobSaved> save() async {
     Map<String, dynamic> map = getParams();
-    print(map.toString());
     String params = getParamsJsonFromParamsMap(map);
-
+    print(params);
     String tableName = BmobUtils.getTableName(this);
     switch (tableName) {
       case "BmobInstallation":
         tableName = "_Installation";
         break;
     }
-    BmobDio.getInstance().post(Bmob.BMOB_API_CLASSES + tableName, data: params,
-        successCallback: (data) {
-      BmobSaved bmobSaved = BmobSaved.fromJson(data);
-      successListener(bmobSaved);
-    }, errorCallback: (error) {
-      errorListener(error);
-    });
+    Map responseData = await BmobDio.getInstance()
+        .post(Bmob.BMOB_API_CLASSES + tableName, data: params);
+    BmobSaved bmobSaved = BmobSaved.fromJson(responseData);
+    return bmobSaved;
   }
 
   ///修改一条数据
-  void update({Function successListener, Function errorListener}) async {
+  Future<BmobUpdated> update() async {
     Map<String, dynamic> map = getParams();
     String objectId = map[Bmob.BMOB_PROPERTY_OBJECT_ID];
     if (objectId.isEmpty || objectId == null) {
       BmobError bmobError =
           new BmobError(Bmob.BMOB_ERROR_CODE_LOCAL, Bmob.BMOB_ERROR_OBJECT_ID);
-      errorListener(bmobError);
+      throw bmobError;
     } else {
       String params = getParamsJsonFromParamsMap(map);
+      print(params);
       String tableName = BmobUtils.getTableName(this);
-      new BmobDio().put(
+      Map responseData = await BmobDio.getInstance().put(
           Bmob.BMOB_API_CLASSES + tableName + Bmob.BMOB_API_SLASH + objectId,
-          data: params, successCallback: (data) {
-        BmobUpdated bmobUpdated = BmobUpdated.fromJson(data);
-        successListener(bmobUpdated);
-      }, errorCallback: (error) {
-        errorListener(error);
-      });
+          data: params);
+      BmobUpdated bmobUpdated = BmobUpdated.fromJson(responseData);
+      return bmobUpdated;
     }
   }
 
   ///删除一条数据
-  void delete({Function successListener, Function errorListener}) async {
+  Future<BmobHandled> delete() async {
     Map<String, dynamic> map = getParams();
     String objectId = map[Bmob.BMOB_PROPERTY_OBJECT_ID];
     if (objectId.isEmpty || objectId == null) {
       BmobError bmobError =
           new BmobError(Bmob.BMOB_ERROR_CODE_LOCAL, Bmob.BMOB_ERROR_OBJECT_ID);
-      errorListener(bmobError);
+      throw bmobError;
     } else {
       String tableName = BmobUtils.getTableName(this);
-      new BmobDio().delete(
-          Bmob.BMOB_API_CLASSES + tableName + Bmob.BMOB_API_SLASH + objectId,
-          successCallback: (data) {
-        BmobHandled bmobHandled = BmobHandled.fromJson(data);
-        successListener(bmobHandled);
-      }, errorCallback: (error) {
-        errorListener(error);
-      });
+      Map responseData = await BmobDio.getInstance().delete(
+          Bmob.BMOB_API_CLASSES + tableName + Bmob.BMOB_API_SLASH + objectId);
+      BmobHandled bmobHandled = BmobHandled.fromJson(responseData);
+      return bmobHandled;
     }
   }
 
-  //删除某条数据的某个字段的值
-  void deleteFieldValue(String fieldName,
-      {Function successListener, Function errorListener}) async {
+  ///删除某条数据的某个字段的值
+  Future<BmobUpdated> deleteFieldValue(String fieldName) async {
     Map<String, dynamic> map = getParams();
     String objectId = map[Bmob.BMOB_PROPERTY_OBJECT_ID];
     if (objectId.isEmpty || objectId == null) {
       BmobError bmobError =
           new BmobError(Bmob.BMOB_ERROR_CODE_LOCAL, Bmob.BMOB_ERROR_OBJECT_ID);
-      errorListener(bmobError);
+      throw bmobError;
     } else {
       String tableName = BmobUtils.getTableName(this);
-
       Map<String, String> delete = Map();
       delete['__op'] = 'Delete';
-
       Map<String, dynamic> params = Map();
       params[fieldName] = delete;
       String body = json.encode(params);
-      print(body);
-
-      new BmobDio().put(
+      Map responseData = await BmobDio.getInstance().put(
           Bmob.BMOB_API_CLASSES + tableName + Bmob.BMOB_API_SLASH + objectId,
-          data: "$body", successCallback: (data) {
-        BmobUpdated bmobUpdated = BmobUpdated.fromJson(data);
-        successListener(bmobUpdated);
-      }, errorCallback: (error) {
-        errorListener(error);
-      });
+          data: "$body");
+      BmobUpdated bmobUpdated = BmobUpdated.fromJson(responseData);
+      return bmobUpdated;
     }
   }
 
@@ -194,9 +176,9 @@ abstract class BmobObject {
         } else if (value is BmobFile) {
           BmobFile bmobFile = value;
           Map map = bmobFile.toJson();
-          map["group"]=map["cdn"];
+          map["group"] = map["cdn"];
           map.remove("cdn");
-          map["__type"]="File";
+          map["__type"] = "File";
           data[key] = map;
         } else if (value is BmobRelation) {
           BmobRelation bmobRelation = value;

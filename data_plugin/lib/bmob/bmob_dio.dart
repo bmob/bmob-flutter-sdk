@@ -1,7 +1,5 @@
-import 'dart:io';
 import 'package:dio/dio.dart';
 import 'bmob.dart';
-import 'package:data_plugin/bmob/response/bmob_error.dart';
 
 class BmobDio {
   ///网络请求框架
@@ -46,153 +44,68 @@ class BmobDio {
     return instance;
   }
 
-  ///GET请求，带后半部分请求路径，带请求参数，带是否取消请求
-  void get(path,
-      {data,
-      cancelToken,
-      Function successCallback,
-      Function errorCallback}) async {
-    var requestUrl = options.baseUrl + path;
-    var headers = options.headers.toString();
-    print('get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
-    try {
-      Response response = await dio.get(
-        requestUrl,
-        data: data,
-        cancelToken: cancelToken,
-      );
-      print(response);
-      print('get请求成功!response：${response.data}');
-      //成功
-      successCallback(response.data);
-    } on DioError catch (e) {
-      handleError(e, errorCallback);
-    }
-  }
-
   ///GET请求
-  Future getFuture(path, {data, cancelToken}) async {
+  Future<dynamic> get(path, {data, cancelToken}) async {
     var requestUrl = options.baseUrl + path;
     var headers = options.headers.toString();
-    print('get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
+    print('Get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
     Response response = await dio.get(
       requestUrl,
       data: data,
       cancelToken: cancelToken,
     );
+    print('Get请求结果：' + response.toString());
     return response.data;
   }
 
-  ///POST请求，带后半部分请求路径，带请求参数，带是否取消请求
-  void post(path,
-      {data,
-      cancelToken,
-      Function successCallback,
-      Function errorCallback}) async {
+  ///POST请求
+  Future<dynamic> post(path, {data, cancelToken}) async {
     var requestUrl = options.baseUrl + path;
     var headers = options.headers.toString();
-    print('post请求启动! url：$requestUrl ,body: $data ,headers:$headers');
-    try {
-      Response response = await dio.post(
-        requestUrl,
-        data: data,
-        cancelToken: cancelToken,
-      );
-      print(response);
-      print('post请求成功!response.data：${response.data}');
-
-      //成功
-      successCallback(response.data);
-    } on DioError catch (e) {
-      handleError(e, errorCallback);
-    }
+    print('Post请求启动! url：$requestUrl ,body: $data ,headers:$headers');
+    Response response = await dio.post(
+      requestUrl,
+      data: data,
+      cancelToken: cancelToken,
+    );
+    print('Post请求结果：' + response.toString());
+    return response.data;
   }
 
-  ///delete请求，带后半部分请求路径，带请求参数，带是否取消请求
-  void delete(path,
-      {data,
-      cancelToken,
-      Function successCallback,
-      Function errorCallback}) async {
+  ///Delete请求
+  Future<dynamic> delete(
+    path, {
+    data,
+    cancelToken,
+  }) async {
     var requestUrl = options.baseUrl + path;
-    print('delete请求启动! url：$requestUrl ,body: $data');
-    try {
-      Response response =
-          await dio.delete(requestUrl, data: data, cancelToken: cancelToken);
-      print(response);
-      print('delete请求成功!response.data：${response.data}');
-
-      //成功
-
-      successCallback(response.data);
-    } on DioError catch (e) {
-      handleError(e, errorCallback);
-    }
+    print('Delete请求启动! url：$requestUrl ,body: $data');
+    Response response =
+        await dio.delete(requestUrl, data: data, cancelToken: cancelToken);
+    print('Delete请求结果：' + response.toString());
+    return response.data;
   }
 
-  ///put请求，带后半部分请求路径，带请求参数，带是否取消请求
-  void put(path,
-      {data,
-      cancelToken,
-      Function successCallback,
-      Function errorCallback}) async {
+  ///Put请求
+  Future<dynamic> put(path, {data, cancelToken}) async {
     var requestUrl = options.baseUrl + path;
-    print('put请求启动! url：$requestUrl ,body: $data');
-    try {
-      Response response =
-          await dio.put(requestUrl, data: data, cancelToken: cancelToken);
-      print(response);
-      print('put请求成功!response.data：${response.data}');
-      //成功
-      successCallback(response.data);
-    } on DioError catch (e) {
-      handleError(e, errorCallback);
-    }
+    print('Put请求启动! url：$requestUrl ,body: $data');
+    Response response =
+        await dio.put(requestUrl, data: data, cancelToken: cancelToken);
+    print('Put请求结果：' + response.toString());
+    return response.data;
   }
 
-  ///GET请求，带请求路径，带请求参数，带是否取消请求
-  void getByUrl(requestUrl,
-      {data,
-      cancelToken,
-      Function successCallback,
-      Function errorCallback}) async {
+  ///GET请求，自带请求路径
+  Future<dynamic> getByUrl(requestUrl, {data, cancelToken}) async {
     var headers = options.headers.toString();
-    print('get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
-    try {
-      Response response = await dio.get(
-        requestUrl,
-        data: data,
-        cancelToken: cancelToken,
-      );
-      print(response);
-      print('get请求成功!response：${response.data}');
-      //成功
-      successCallback(response.data);
-    } on DioError catch (e) {
-      handleError(e, errorCallback);
-    }
-  }
-
-  ///处理取消-失败-错误信息
-  void handleError(e, Function errorCallback) {
-    //取消
-    if (CancelToken.isCancel(e)) {
-      print('请求取消：' + e.message);
-      BmobError bmobError = BmobError(1001, e.message);
-      errorCallback(bmobError);
-    } else {
-      //失败
-      if (e.response != null) {
-        print('请求失败!e.response.data：${e.response.data.toString()}');
-        BmobError bmobError =
-            BmobError(e.response.data['code'], e.response.data['error']);
-        errorCallback(bmobError);
-      } else {
-        //出错
-        print('请求出错：' + e.message);
-        BmobError bmobError = BmobError(1001, e.message);
-        errorCallback(bmobError);
-      }
-    }
+    print('Get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
+    Response response = await dio.get(
+      requestUrl,
+      data: data,
+      cancelToken: cancelToken,
+    );
+    print('Get请求结果：' + response.toString());
+    return response.data;
   }
 }

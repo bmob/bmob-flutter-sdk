@@ -29,13 +29,13 @@ class Page extends State<ListPage> {
     super.initState();
   }
 
-  //查询多条数据
+  ///查询多条数据
   void _queryList(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.setInclude("author");
     query.setLimit(10);
     query.setSkip(10);
-    query.queryObjects(successListener: (List<dynamic> data) {
+    query.queryObjects().then((List<dynamic> data) {
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
 
       setState(() {
@@ -55,9 +55,8 @@ class Page extends State<ListPage> {
           }
         }
       }
-    }, errorListener: (BmobError error) {
-      print(error.error);
-      showError(context, error.error);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 
@@ -98,7 +97,6 @@ class Page extends State<ListPage> {
                       heightFactor: 6.0,
                       child: new Text("${model.content}\n第$index条数据",
                           style: new TextStyle(fontSize: 17.0)),
-
                     ),
                     new Divider(height: 2.0),
                   ],

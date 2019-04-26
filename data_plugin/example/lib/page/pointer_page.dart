@@ -1,3 +1,4 @@
+import 'package:data_plugin/bmob/bmob.dart';
 import 'package:flutter/material.dart';
 
 import '../bean/blog.dart';
@@ -76,43 +77,40 @@ class _PointerPageState extends State<PointerPage> {
 
   var currentObjectId;
 
-  //添加关联关系
-  void _addPointer() {
+  ///添加关联关系
+  _addPointer() {
     Blog blog = Blog();
     User user = User();
     user.objectId = "4760e7a143";
     blog.author = user;
     blog.title = "添加关联关系";
     blog.content = "添加帖子对应的作者";
-    blog.save(successListener: (BmobSaved bmobSaved) {
+    blog.save().then((BmobSaved bmobSaved) {
       currentObjectId = bmobSaved.objectId;
       print(bmobSaved.objectId);
       DataPlugin.toast("添加成功：\n${bmobSaved.objectId}\n${bmobSaved.createdAt}");
-    }, errorListener: (BmobError bmobError) {
-      print(bmobError);
-      DataPlugin.toast(bmobError.toString());
+    }).catchError((e) {
+      DataPlugin.toast(BmobError.convert(e).error);
     });
   }
 
-  //解除关联关系
-  void _deletePointer() {
+  ///解除关联关系
+  _deletePointer() {
     if (currentObjectId == null) {
       DataPlugin.toast("请先添加关联关系");
       return;
     }
     Blog blog = Blog();
     blog.objectId = currentObjectId;
-    blog.deleteFieldValue("author", successListener: (BmobUpdated bmobUpdate) {
-      print(bmobUpdate.updatedAt);
-      DataPlugin.toast(bmobUpdate.updatedAt);
-    }, errorListener: (BmobError bmobError) {
-      print(bmobError.toString());
-      DataPlugin.toast(bmobError.toString());
+    blog.deleteFieldValue("author").then((BmobUpdated bmobUpdated) {
+      DataPlugin.toast(bmobUpdated.updatedAt);
+    }).catchError((e) {
+      DataPlugin.toast(BmobError.convert(e).error);
     });
   }
 
-  //修改关联关系
-  void _modifyPointer() {
+  ///修改关联关系
+  _modifyPointer() {
     if (currentObjectId == null) {
       DataPlugin.toast("请先添加关联关系");
       return;
@@ -122,21 +120,20 @@ class _PointerPageState extends State<PointerPage> {
     User user = User();
     user.objectId = "358f092cb1";
     blog.author = user;
-    blog.update(successListener: (BmobUpdated bmobUpdated) {
-      print(bmobUpdated.updatedAt);
+    blog.update().then((BmobUpdated bmobUpdated) {
       DataPlugin.toast(bmobUpdated.updatedAt);
-    }, errorListener: (BmobError bmobError) {
-      print(bmobError.toString());
-      DataPlugin.toast(bmobError.toString());
+    }).catchError((e) {
+      DataPlugin.toast(BmobError.convert(e).error);
     });
   }
 
-  //查询关联数据
-  void _queryPointer() {
+  ///查询关联数据
+  _queryPointer() {
     BmobQuery<Blog> query = BmobQuery();
     query.setInclude("author");
-    query.queryObjects(successListener: (List<dynamic> data) {
+    query.queryObjects().then((data) {
       DataPlugin.toast("查询成功${data.length}");
+
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -149,11 +146,8 @@ class _PointerPageState extends State<PointerPage> {
           }
         }
       }
-    }, errorListener: (BmobError error) {
-      print(error.error);
-      DataPlugin.toast(error.error);
+    }).catchError((e) {
+      DataPlugin.toast(BmobError.convert(e).error);
     });
   }
-
-
 }

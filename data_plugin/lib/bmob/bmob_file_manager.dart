@@ -7,19 +7,18 @@ import 'package:data_plugin/bmob/type/bmob_file.dart';
 import 'package:data_plugin/bmob/response/bmob_error.dart';
 
 class BmobFileManager {
+  ///文件上传
   ///method:POST
   ///body:文本或者二进制流
   ///Content-Type:不同类型文件使用不同的值
-  static void upload(File file, {successListener, errorListener}) async {
+  static Future<BmobFile> upload(File file) async {
     String allPath = file.path;
     int indexSlash = allPath.lastIndexOf("/");
     if (file == null) {
-      errorListener(BmobError(9016, "The file is null."));
-      return;
+      throw BmobError(9016, "The file is null.");
     }
     if (indexSlash == -1) {
-      errorListener(BmobError(9016, "The file's path is available."));
-      return;
+      throw BmobError(9016, "The file's path is available.");
     }
     String fileName = allPath.substring(indexSlash, allPath.length);
     int indexPoint = fileName.indexOf(".");
@@ -27,8 +26,7 @@ class BmobFileManager {
     bool two = fileName.contains(".");
     bool hasSuffix = one && two;
     if (!hasSuffix) {
-      errorListener(BmobError(9016, "The file has no suffix."));
-      return;
+      throw BmobError(9016, "The file has no suffix.");
     }
 
     String path = "${Bmob.BMOB_API_FILE_VERSION}${Bmob.BMOB_API_FILE}$fileName";
@@ -36,41 +34,32 @@ class BmobFileManager {
     //获取所上传文件的二进制流
     List<int> bytes = await file.readAsBytes();
 
-    BmobDio.getInstance().post(path, data: bytes, successCallback: (data) {
-      BmobFile bmobFile = BmobFile.fromJson(data);
-      successListener(bmobFile);
-    }, errorCallback: (error) {
-      errorListener(error);
-    });
+    Map responseData = await BmobDio.getInstance().post(path, data: bytes);
+    BmobFile bmobFile = BmobFile.fromJson(responseData);
+    return bmobFile;
   }
 
+  ///文件删除
   ///method:delete
   ///http://bmob-cdn-18925.b0.upaiyun.com/2019/03/25/f425482f73e646a6a425d746764c3b6c.jpg
-  static void delete(String url,
-      {Function successListener, Function errorListener}) {
+  static Future<BmobHandled> delete(String url) async {
     if (url == null || url.isEmpty) {
-      errorListener("The url is null or empty.");
-      return;
+      throw BmobError(9015, "The url is null or empty.");
     }
 
     String domain = "upaiyun.com";
     int indexDomain = url.indexOf(domain);
-    print(indexDomain);
     if (indexDomain == -1) {
-      errorListener("The url is not a upaiyun's url.");
-      return;
+      throw BmobError(9015, "The url is not a upaiyun's url.");
     }
     int indexHead = indexDomain + domain.length;
     int indexTail = url.length;
     String fileUrl = url.substring(indexHead, indexTail);
-    String path =
-        "${Bmob.BMOB_API_FILE_VERSION}${Bmob.BMOB_API_FILE}/upyun$fileUrl";
+    String path = "${Bmob.BMOB_API_FILE_VERSION}${Bmob.BMOB_API_FILE}/upyun$fileUrl";
 
-    BmobDio.getInstance().delete(path, successCallback: (data) {
-      BmobHandled bmobHandled = BmobHandled.fromJson(data);
-      successListener(bmobHandled);
-    }, errorCallback: (BmobError error) {
-      errorListener(error);
-    });
+    Map responseData = await BmobDio.getInstance().delete(path);
+    BmobHandled bmobHandled = BmobHandled.fromJson(responseData);
+
+    return bmobHandled;
   }
 }

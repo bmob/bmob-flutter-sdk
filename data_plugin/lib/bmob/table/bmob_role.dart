@@ -23,10 +23,7 @@ class BmobRole extends BmobObject {
   Map<String, dynamic> roles;
   Map<String, dynamic> users;
 
-  BmobRole() {
-    roles = Map();
-    users = Map();
-  }
+  BmobRole();
 
   @override
   Map getParams() {
@@ -34,11 +31,13 @@ class BmobRole extends BmobObject {
     return toJson(this);
   }
 
+  ///设置角色
   void setRoles(BmobRelation bmobRelation) {
-    roles =bmobRelation.toJson();
+    roles = bmobRelation.toJson();
   }
 
+  ///设置用户
   void setUsers(BmobRelation bmobRelation) {
-    roles =bmobRelation.toJson();
+    users = bmobRelation.toJson();
   }
 }

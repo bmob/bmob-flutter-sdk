@@ -4,26 +4,17 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'change.g.dart';
 
-
-
-
-
 @JsonSerializable()
 class Change {
-    factory Change.fromJson(Map<String, dynamic> json) => _$ChangeFromJson(json);
+  factory Change.fromJson(Map<String, dynamic> json) => _$ChangeFromJson(json);
 
-     Map<String, dynamic> toJson() => _$ChangeToJson(this);
-
+  Map<String, dynamic> toJson() => _$ChangeToJson(this);
 
   String appKey;
   String tableName;
   String objectId;
   String action;
-  var data;
+  Map<String, dynamic> data;
 
   Change();
-
-
-
-
 }

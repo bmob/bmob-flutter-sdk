@@ -1,4 +1,5 @@
 import 'package:data_plugin/bmob/bmob_dio.dart';
+import 'package:data_plugin/bmob/response/bmob_results.dart';
 import 'package:dio/dio.dart';
 
 import 'dart:convert';
@@ -126,54 +127,33 @@ class BmobQuery<T> {
     return this;
   }
 
-
   //返回条数
-  BmobQuery setLimit(int value){
-    limit =value;
+  BmobQuery setLimit(int value) {
+    limit = value;
     return this;
   }
 
-
   //忽略条数
-  BmobQuery setSkip(int value){
+  BmobQuery setSkip(int value) {
     skip = value;
     return this;
   }
+
   ///查询单条数据
-  void queryObject(objectId,
-      {Function successListener, Function errorListener}) async {
+  Future<dynamic> queryObject(objectId) async {
     String tableName = T.toString();
     switch (tableName) {
       case "BmobInstallation":
         tableName = "_Installation";
         break;
     }
-    BmobDio.getInstance().get(
+    return BmobDio.getInstance().get(
         Bmob.BMOB_API_CLASSES + tableName + Bmob.BMOB_API_SLASH + objectId,
-        data: toJson(), successCallback: (data) {
-      successListener(data);
-    }, errorCallback: (error) {
-      errorListener(error);
-    });
+        data: getParams());
   }
-
-
-
-  Future queryObjectFuture(objectId) async {
-    String tableName = T.toString();
-    switch (tableName) {
-      case "BmobInstallation":
-        tableName = "_Installation";
-        break;
-    }
-    return BmobDio.getInstance().getFuture(Bmob.BMOB_API_CLASSES + tableName + Bmob.BMOB_API_SLASH + objectId, data: toJson());
-  }
-
-
 
   ///查询多条数据
-  Future queryObjects(
-      {Function successListener, Function errorListener}) async {
+  Future<List<dynamic>> queryObjects() async {
     String tableName = T.toString();
     switch (tableName) {
       case "BmobInstallation":
@@ -184,19 +164,28 @@ class BmobQuery<T> {
     if (where.isNotEmpty) {
       url = url + "?where=" + json.encode(where);
     }
-    print(url);
-    BmobDio.getInstance().get(url, data: toJson(), successCallback: (data) {
-      var results = data[Bmob.BMOB_KEY_RESULTS];
-      successListener(results);
-    }, errorCallback: (error) {
-      errorListener(error);
-    });
+    Map map = await BmobDio.getInstance().get(url, data: getParams());
+    BmobResults bmobResults = BmobResults.fromJson(map);
+    print(bmobResults.results);
+    return bmobResults.results;
   }
 
-  //此处与类名一致，由指令自动生成代码
+  ///此处与类名一致，由指令自动生成代码
   factory BmobQuery.fromJson(Map<String, dynamic> json) =>
       _$BmobQueryFromJson(json);
 
-  //此处与类名一致，由指令自动生成代码
+  ///此处与类名一致，由指令自动生成代码
   Map<String, dynamic> toJson() => _$BmobQueryToJson(this);
+
+  ///获取请求参数
+  Map getParams() {
+    Map map = toJson();
+    Map params = toJson();
+    map.forEach((k, v) {
+      if (v == null) {
+        params.remove(k);
+      }
+    });
+    return params;
+  }
 }

@@ -12,7 +12,7 @@ Change _$ChangeFromJson(Map<String, dynamic> json) {
     ..tableName = json['tableName'] as String
     ..objectId = json['objectId'] as String
     ..action = json['action'] as String
-    ..data = json['data'];
+    ..data = json['data'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$ChangeToJson(Change instance) => <String, dynamic>{
