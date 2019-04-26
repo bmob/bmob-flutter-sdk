@@ -14,7 +14,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  String _email, _password;
+  String _username, _password;
   bool _isObscure = true;
   Color _eyeColor;
   List _loginMethod = [
@@ -91,22 +91,22 @@ class _RegisterPageState extends State<RegisterPage> {
       alignment: MainAxisAlignment.center,
       children: _loginMethod
           .map((item) => Builder(
-        builder: (context) {
-          return IconButton(
-              icon: Icon(item['icon'],
-                  color: Theme.of(context).iconTheme.color),
-              onPressed: () {
-                //TODO : 第三方登录方法
-                Scaffold.of(context).showSnackBar(new SnackBar(
-                  content: new Text("${item['title']}登录"),
-                  action: new SnackBarAction(
-                    label: "取消",
-                    onPressed: () {},
-                  ),
-                ));
-              });
-        },
-      ))
+                builder: (context) {
+                  return IconButton(
+                      icon: Icon(item['icon'],
+                          color: Theme.of(context).iconTheme.color),
+                      onPressed: () {
+                        //TODO : 第三方登录方法
+                        Scaffold.of(context).showSnackBar(new SnackBar(
+                          content: new Text("${item['title']}登录"),
+                          action: new SnackBarAction(
+                            label: "取消",
+                            onPressed: () {},
+                          ),
+                        ));
+                      });
+                },
+              ))
           .toList(),
     );
   }
@@ -133,11 +133,11 @@ class _RegisterPageState extends State<RegisterPage> {
           color: Colors.black,
           onPressed: () {
 //            if (_formKey.currentState.validate()) {
-              ///只有输入的内容符合要求通过才会到达此处
-              _formKey.currentState.save();
-              //TODO 执行登录方法
-              print('email:$_email , assword:$_password');
-              _login();
+            ///只有输入的内容符合要求通过才会到达此处
+            _formKey.currentState.save();
+            //TODO 执行登录方法
+            print('username:$_username , password:$_password');
+            _register();
 //            }
           },
           shape: StadiumBorder(side: BorderSide()),
@@ -196,14 +196,7 @@ class _RegisterPageState extends State<RegisterPage> {
       decoration: InputDecoration(
         labelText: 'Username',
       ),
-//      validator: (String value) {
-//        var emailReg = RegExp(
-//            r"[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?");
-//        if (!emailReg.hasMatch(value)) {
-//          return '请输入正确的邮箱地址';
-//        }
-//      },
-      onSaved: (String value) => _email = value,
+      onSaved: (String value) => _username = value,
     );
   }
 
@@ -231,19 +224,15 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void _login() {
-    print({'手机号': _email, '密码': _password});
+  ///用户名密码注册
+  _register() {
     BmobUser bmobUserRegister = BmobUser();
-    bmobUserRegister.username = _email;
+    bmobUserRegister.username = _username;
     bmobUserRegister.password = _password;
-    bmobUserRegister.register(successListener: (BmobRegistered data) {
-      String message = "用户注册成功：" + data.objectId;
-      print(message);
-      showResult(context, "success", message);
-    }, errorListener: (BmobError bmobError) {
-      String message = "用户注册失败：" + bmobError.error;
-      print(message);
-      showResult(context, "error", message);
+    bmobUserRegister.register().then((BmobRegistered data) {
+      showSuccess(context, data.objectId);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 }

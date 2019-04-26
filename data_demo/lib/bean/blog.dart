@@ -10,11 +10,8 @@ import 'package:data_plugin/bmob/type/bmob_file.dart';
 part 'blog.g.dart';
 
 
-
 @JsonSerializable()
 class Blog extends BmobObject{
-
-
 
   //博客标题
   String title;
@@ -22,22 +19,10 @@ class Blog extends BmobObject{
   String content;
   //博客作者
   BmobUser author;
-
   int like;
-
-
   BmobGeoPoint addr;
-
-
   BmobDate time;
-
-
-
   BmobFile pic;
-
-
-
-
   Blog();
 
   //此处与类名一致，由指令自动生成代码

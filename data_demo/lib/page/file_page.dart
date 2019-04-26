@@ -66,7 +66,7 @@ class _FilePageState extends State<FilePage> {
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
-          title: const Text('文件操作'),
+          title: const Text('File Picker example app'),
         ),
         body: new Center(
             child: new Padding(
@@ -75,72 +75,6 @@ class _FilePageState extends State<FilePage> {
             child: new Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-//                new Padding(
-//                  padding: const EdgeInsets.only(top: 20.0),
-//                  child: new DropdownButton(
-//                      hint: new Text('LOAD PATH FROM'),
-//                      value: _pickingType,
-//                      items: <DropdownMenuItem>[
-//                        new DropdownMenuItem(
-//                          child: new Text('FROM AUDIO'),
-//                          value: FileType.AUDIO,
-//                        ),
-//                        new DropdownMenuItem(
-//                          child: new Text('FROM IMAGE'),
-//                          value: FileType.IMAGE,
-//                        ),
-//                        new DropdownMenuItem(
-//                          child: new Text('FROM VIDEO'),
-//                          value: FileType.VIDEO,
-//                        ),
-//                        new DropdownMenuItem(
-//                          child: new Text('FROM ANY'),
-//                          value: FileType.ANY,
-//                        ),
-//                        new DropdownMenuItem(
-//                          child: new Text('CUSTOM FORMAT'),
-//                          value: FileType.CUSTOM,
-//                        ),
-//                      ],
-//                      onChanged: (value) => setState(() {
-//                            _pickingType = value;
-//                            if (_pickingType != FileType.CUSTOM) {
-//                              _controller.text = _extension = '';
-//                            }
-//                          })),
-//                ),
-//                    ConstrainedBox(
-//                      constraints: BoxConstraints.tightFor(width: 100.0),
-//                      child: _pickingType == FileType.CUSTOM
-//                          ? new TextFormField(
-//                        maxLength: 15,
-//                        autovalidate: true,
-//                        controller: _controller,
-//                        decoration:
-//                        InputDecoration(labelText: 'File extension'),
-//                        keyboardType: TextInputType.text,
-//                        textCapitalization: TextCapitalization.none,
-//                        validator: (value) {
-//                          RegExp reg = new RegExp(r'[^a-zA-Z0-9]');
-//                          if (reg.hasMatch(value)) {
-//                            _hasValidMime = false;
-//                            return 'Invalid format';
-//                          }
-//                          _hasValidMime = true;
-//                        },
-//                      )
-//                          : new Container(),
-//                    ),
-//                    new ConstrainedBox(
-//                      constraints: BoxConstraints.tightFor(width: 200.0),
-//                      child: new SwitchListTile.adaptive(
-//                        title: new Text('Pick multiple files',
-//                            textAlign: TextAlign.right),
-//                        onChanged: (bool value) =>
-//                            setState(() => _multiPick = value),
-//                        value: _multiPick,
-//                      ),
-//                    ),
                 new Padding(
                   padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                   child: new RaisedButton(
@@ -244,46 +178,43 @@ class _FilePageState extends State<FilePage> {
     );
   }
 
-  //上传文件，上传文件涉及到android的文件访问权限，调用此方法前需要开发者们先适配好应用在各个android版本的权限管理。
-  void _uploadFile(String path) {
-    if(path==null){
+  ///上传文件，上传文件涉及到android的文件访问权限，调用此方法前需要开发者们先适配好应用在各个android版本的权限管理。
+  _uploadFile(String path) {
+    if (path == null) {
       DataPlugin.toast("请先选择文件");
       return;
     }
     DataPlugin.toast("上传中，请稍候……");
     File file = new File(path);
-    BmobFileManager.upload(file, successListener: (BmobFile bmobFile) {
+    BmobFileManager.upload(file).then((BmobFile bmobFile) {
       _bmobFile = bmobFile;
       _url = bmobFile.url;
       print("${bmobFile.cdn}\n${bmobFile.url}\n${bmobFile.filename}");
       DataPlugin.toast(
           "上传成功：${bmobFile.cdn}\n${bmobFile.url}\n${bmobFile.filename}");
-    }, errorListener: (BmobError bmobError) {
-      print(bmobError.toString());
-      DataPlugin.toast(bmobError.toString());
+    }).catchError((e) {
+      DataPlugin.toast(BmobError.convert(e).error);
     });
   }
 
-  //添加文件到表中
-  void _addFile(BmobFile bmobFile) {
-    if(bmobFile==null){
+  ///添加文件到表中
+  _addFile(BmobFile bmobFile) {
+    if (bmobFile == null) {
       DataPlugin.toast("请先上传文件");
       return;
     }
     Blog blog = Blog();
     blog.pic = bmobFile;
-    blog.save(successListener: (BmobSaved bmobSaved) {
-      print(bmobSaved.objectId);
-      DataPlugin.toast("添加成功："+bmobSaved.objectId);
-    }, errorListener: (BmobError bmobError) {
-      print(bmobError.toString());
-      DataPlugin.toast(bmobError.toString());
+    blog.save().then((BmobSaved bmobSaved) {
+      DataPlugin.toast("添加成功：" + bmobSaved.objectId);
+    }).catchError((e) {
+      DataPlugin.toast(BmobError.convert(e).error);
     });
   }
 
-  //下载文件，直接使用dio下载，下载文件涉及到android的文件访问权限，调用此方法前需要开发者们先适配好应用在各个android版本的权限管理。
-  void _downloadFile(String url, String path) async {
-    if(url==null){
+  ///下载文件，直接使用dio下载，下载文件涉及到android的文件访问权限，调用此方法前需要开发者们先适配好应用在各个android版本的权限管理。
+  _downloadFile(String url, String path) async {
+    if (url == null) {
       DataPlugin.toast("请先上传文件");
       return;
     }
@@ -291,22 +222,19 @@ class _FilePageState extends State<FilePage> {
     Response<dynamic> response = await dio.download(url, path);
     print(response.toString());
     print(response.data);
-
     DataPlugin.toast("下载结束");
   }
 
-  //删除文件
-  void _deleteFile(String url) {
-    if(url==null){
+  ///删除文件
+  _deleteFile(String url) {
+    if (url == null) {
       DataPlugin.toast("请先上传文件");
       return;
     }
-    BmobFileManager.delete(url, successListener: (BmobHandled bmobHandled) {
-      print(bmobHandled.msg);
-      DataPlugin.toast("删除成功："+bmobHandled.msg);
-    }, errorListener: (BmobError bmobError) {
-      print(bmobError.toString());
-      DataPlugin.toast(bmobError.toString());
+    BmobFileManager.delete(url).then((BmobHandled bmobHandled) {
+      DataPlugin.toast("删除成功：" + bmobHandled.msg);
+    }).catchError((e) {
+      DataPlugin.toast(BmobError.convert(e).error);
     });
   }
 }

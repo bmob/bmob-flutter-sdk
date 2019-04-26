@@ -10,7 +10,7 @@ Flutter官方咨询QQ群：788254534
 依赖配置：
 ```
 dependencies:
-  data_plugin: ^0.0.8
+  data_plugin: ^0.0.9
 ```
 ## 1.2、安装
 安装指令：
@@ -136,6 +136,17 @@ https://zhuanlan.zhihu.com/p/60136574
 ```
 https://zhuanlan.zhihu.com/p/59932453
 ```
+### 2.1.3、错误类型
+|属性|解释|
+|----|----|
+|code|错误代码|
+|error|错误信息|
+
+获取错误信息
+```
+BmobError bmobError = BmobError.convert(e);
+```
+
 
 ## 2.2、增删改查一条数据
 
@@ -783,22 +794,38 @@ _verifySmsCode(BuildContext context) {
 
 ```
 ///数据监听
-void _listen() {
-  RealTimeDataManager.getInstance().listen(
-      onConnected: (Client client) {
-        print("监听数据连接成功，开始订阅消息！");
-        client.subTableUpdate("Blog");
-      },
-      onDisconnected: () {
-        print("监听数据断开连接");
-      },
-      onDataChanged: (Change data) {
-        Blog blog = Blog.fromJson(data.data);
-        print("监听到数据变化："+blog.toJson().toString());
-      },
-      onError: (error) {
-        print("监听数据发送错误："+error.toString());
-      });
+_listen() {
+  RealTimeDataManager.getInstance().listen(onConnected: (Client client) {
+    showSuccess(context, "监听数据连接成功，开始订阅消息！");
+    client.subTableUpdate("Blog");
+  }, onDisconnected: () {
+    showError(context, "监听数据断开连接");
+  }, onDataChanged: (Change data) {
+    ///注意：此处返回的data.data类型与Blog类型不一致，需要使用map来获取具体属性值而不是使用Blog
+    Map map = data.data;
+    showSuccess(context, "监听到数据变化：" + map.toString());
+  }, onError: (error) {
+    showError(context, error.toString());
+  });
+}
+
+///改编数据
+_change(context) {
+  ///保存一条数据
+  BmobUser bmobUser = BmobUser();
+  bmobUser.objectId = "7c7fd3afe1";
+  Blog blog = Blog();
+  blog.title = "博客标题";
+  blog.content = "博客内容";
+  blog.author = bmobUser;
+  blog.like = 77;
+  blog.save().then((BmobSaved bmobSaved) {
+    String message =
+        "创建一条数据成功：${bmobSaved.objectId} - ${bmobSaved.createdAt}";
+    showSuccess(context, message);
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
 }
 ```
 

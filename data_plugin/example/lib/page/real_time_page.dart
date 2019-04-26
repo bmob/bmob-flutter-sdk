@@ -50,7 +50,7 @@ class _RealTimeState extends State<RealTimePage> {
   }
 
   ///数据监听
-  void _listen() {
+  _listen() {
     RealTimeDataManager.getInstance().listen(onConnected: (Client client) {
       showSuccess(context, "监听数据连接成功，开始订阅消息！");
       client.subTableUpdate("Blog");
@@ -65,7 +65,8 @@ class _RealTimeState extends State<RealTimePage> {
     });
   }
 
-  void _change(context) {
+  ///改编数据
+  _change(context) {
     ///保存一条数据
     BmobUser bmobUser = BmobUser();
     bmobUser.objectId = "7c7fd3afe1";

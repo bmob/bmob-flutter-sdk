@@ -93,19 +93,19 @@ class _QueryPageState extends State<QueryPage> {
                 color: Colors.blue[400],
                 child: new Text('数据排序',
                     style: new TextStyle(color: Colors.white))),
-
           ],
         ),
       ),
     );
   }
 
-  //查询关联关系
-  void _queryInclude(BuildContext context) {
+  ///查询关联关系
+  _queryInclude(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.setInclude("author");
-    query.queryObjects(successListener: (List<dynamic> data) {
+    query.queryObjects().then((data) {
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      showSuccess(context, data.toString());
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -117,17 +117,17 @@ class _QueryPageState extends State<QueryPage> {
           }
         }
       }
-    }, errorListener: (BmobError error) {
-      print(error.error);
-      showError(context, error.error);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 
-  //等于条件查询
+  ///等于条件查询
   void _queryWhereEqual(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.addWhereEqualTo("title", "博客标题");
-    query.queryObjects(successListener: (List<dynamic> data) {
+    query.queryObjects().then((data) {
+      showSuccess(context, data.toString());
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -136,17 +136,17 @@ class _QueryPageState extends State<QueryPage> {
           print(blog.content);
         }
       }
-    }, errorListener: (BmobError error) {
-      print(error.error);
-      showError(context, error.error);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 
-  //不等条件查询
+  ///不等条件查询
   void _queryWhereNotEqual(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.addWhereNotEqualTo("title", "博客标题");
-    query.queryObjects(successListener: (List<dynamic> data) {
+    query.queryObjects().then((data) {
+      showSuccess(context, data.toString());
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -155,16 +155,17 @@ class _QueryPageState extends State<QueryPage> {
           print(blog.content);
         }
       }
-    }, errorListener: (BmobError error) {
-      print(error.error);
-      showError(context, error.error);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 
-  void _queryWhereLess(BuildContext context) {
+  ///小于查询
+  _queryWhereLess(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.addWhereLessThan("like", 80);
-    query.queryObjects(successListener: (List<dynamic> data) {
+    query.queryObjects().then((data) {
+      showSuccess(context, data.toString());
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -173,16 +174,17 @@ class _QueryPageState extends State<QueryPage> {
           print(blog.content);
         }
       }
-    }, errorListener: (BmobError error) {
-      print(error.error);
-      showError(context, error.error);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 
-  void _queryWhereLessEqual(BuildContext context) {
+  ///小于等于查询
+  _queryWhereLessEqual(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.addWhereLessThanOrEqualTo("like", 77);
-    query.queryObjects(successListener: (List<dynamic> data) {
+    query.queryObjects().then((data) {
+      showSuccess(context, data.toString());
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -191,16 +193,17 @@ class _QueryPageState extends State<QueryPage> {
           print(blog.content);
         }
       }
-    }, errorListener: (BmobError error) {
-      print(error.error);
-      showError(context, error.error);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 
-  void _queryWhereLarge(BuildContext context) {
+  ///大于查询
+  _queryWhereLarge(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.addWhereGreaterThan("like", 70);
-    query.queryObjects(successListener: (List<dynamic> data) {
+    query.queryObjects().then((data) {
+      showSuccess(context, data.toString());
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -209,16 +212,17 @@ class _QueryPageState extends State<QueryPage> {
           print(blog.content);
         }
       }
-    }, errorListener: (BmobError error) {
-      print(error.error);
-      showError(context, error.error);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 
-  void _queryWhereLargeEqual(BuildContext context) {
+  ///大于等于查询
+  _queryWhereLargeEqual(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.addWhereGreaterThanOrEqualTo("like", 77);
-    query.queryObjects(successListener: (List<dynamic> data) {
+    query.queryObjects().then((data) {
+      showSuccess(context, data.toString());
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -227,15 +231,14 @@ class _QueryPageState extends State<QueryPage> {
           print(blog.content);
         }
       }
-    }, errorListener: (BmobError error) {
-      print(error.error);
-      showError(context, error.error);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 
-  void _queryWhereArrayContain(BuildContext context) {
+  ///数组包含查询
+  _queryWhereArrayContain(BuildContext context) {}
 
-  }
-
-  void _queryWhereContainIn(BuildContext context) {}
+  ///数组包含查询
+  _queryWhereContainIn(BuildContext context) {}
 }

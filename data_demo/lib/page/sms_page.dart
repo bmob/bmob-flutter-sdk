@@ -93,6 +93,11 @@ class _SmsPageState extends State<SmsPage> {
         labelText: '手机号码',
       ),
       onSaved: (String value) => _phoneNumber = value,
+      validator: (String value) {
+        if (value.isEmpty) {
+          return '请输入密码';
+        }
+      },
     );
   }
 
@@ -121,27 +126,25 @@ class _SmsPageState extends State<SmsPage> {
   }
 
   ///发送短信验证码：需要手机号码
-  void _sendSms(BuildContext context) {
-    print({'手机号码': _phoneNumber, '验证码': _smsCode});
+  _sendSms(BuildContext context) {
     BmobSms bmobSms = BmobSms();
     bmobSms.template = "";
     bmobSms.mobilePhoneNumber = _phoneNumber;
-    bmobSms.sendSms(successListener: (BmobSent data) {
-      showSuccess(context, "发送成功:" + data.smsId.toString());
-    }, errorListener: (BmobError error) {
-      print(error.error);
-      showError(context, error.error);
+    bmobSms.sendSms().then((BmobSent bmobSent) {
+      showSuccess(context, "发送成功:" + bmobSent.smsId.toString());
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 
   ///验证短信验证码：需要手机号码和验证码
-  void _verifySmsCode(BuildContext context) {
+  _verifySmsCode(BuildContext context) {
     BmobSms bmobSms = BmobSms();
     bmobSms.mobilePhoneNumber = _phoneNumber;
-    bmobSms.verifySmsCode(_smsCode, successListener: (BmobHandled data) {
-      showSuccess(context, "验证成功："+data.msg);
-    }, errorListener: (BmobError error) {
-      showError(context, error.error);
+    bmobSms.verifySmsCode(_smsCode).then((BmobHandled bmobHandled) {
+      showSuccess(context, "验证成功：" + bmobHandled.msg);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 }

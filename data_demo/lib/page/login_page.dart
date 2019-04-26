@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:data_plugin/bmob/table/bmob_user.dart';
 import 'package:data_plugin/bmob/response/bmob_error.dart';
 import 'package:data_plugin/utils/dialog_util.dart';
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -132,11 +133,11 @@ class _LoginPageState extends State<LoginPage> {
           color: Colors.black,
           onPressed: () {
 //            if (_formKey.currentState.validate()) {
-              ///只有输入的内容符合要求通过才会到达此处
-              _formKey.currentState.save();
-              //TODO 执行登录方法
-              print('email:$_email , assword:$_password');
-              _login(context);
+            ///只有输入的内容符合要求通过才会到达此处
+            _formKey.currentState.save();
+            //TODO 执行登录方法
+            print('email:$_email , assword:$_password');
+            _login(context);
 //            }
           },
           shape: StadiumBorder(side: BorderSide()),
@@ -230,17 +231,15 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _login(BuildContext context) {
-    print({'邮箱': _email, '密码': _password});
+  ///用户名和密码登录
+  _login(BuildContext context) {
     BmobUser bmobUserRegister = BmobUser();
     bmobUserRegister.username = _email;
     bmobUserRegister.password = _password;
-    bmobUserRegister.login(successListener: (BmobUser data) {
-      print("用户登录成功：" + data.username);
-
-      showSuccess(context, "登录成功："+data.username);
-    }, errorListener: (BmobError bmobError) {
-      print("用户登录失败：" + bmobError.error);
+    bmobUserRegister.login().then((BmobUser bmobUser) {
+      showSuccess(context, bmobUser.getObjectId() + "\n" + bmobUser.username);
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 }

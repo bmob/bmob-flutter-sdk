@@ -1,3 +1,5 @@
+import 'package:data_plugin/utils/dialog_util.dart';
+
 /**
  * home page
  */
@@ -5,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:data_plugin/bmob/bmob_installation_manager.dart';
 import 'package:data_plugin/bmob/table/bmob_installation.dart';
 import 'package:data_plugin/bmob/response/bmob_error.dart';
-import 'package:data_plugin/data_plugin.dart';
 
 class InstallationPage extends StatefulWidget {
   InstallationPage({Key key, this.title}) : super(key: key);
@@ -64,21 +65,18 @@ class _InstallationPageState extends State<InstallationPage> {
     );
   }
 
-  //获取设备ID，与原生交互
-  Future _getInstallationId(BuildContext context) async {
+  ///获取设备ID
+  _getInstallationId(BuildContext context) async {
     String installationId = await BmobInstallationManager.getInstallationId();
-    print(installationId);
-    DataPlugin.toast(installationId);
+    showSuccess(context, installationId);
   }
 
-  //初始化设备，与原生交互
-  void _initInstallation(BuildContext context) {
-    BmobInstallationManager.init(
-        successCallback: (BmobInstallation bmobInstallation) {
-      print(bmobInstallation.toJson());
-      DataPlugin.toast(bmobInstallation.toJson().toString());
-    }, errorCallback: (BmobError error) {
-      print(error.toJson());
+  ///初始化设备
+  _initInstallation(BuildContext context) {
+    BmobInstallationManager.init().then((BmobInstallation bmobInstallation) {
+      showSuccess(context, bmobInstallation.toJson().toString());
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
     });
   }
 }
