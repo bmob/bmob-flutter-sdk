@@ -6,7 +6,6 @@ import 'package:data_plugin/bmob/table/bmob_object.dart';
 
 import 'package:data_plugin/bmob/type/bmob_relation.dart';
 
-import 'dart:convert';
 
 import 'package:data_plugin/bmob/type/bmob_pointer.dart';
 

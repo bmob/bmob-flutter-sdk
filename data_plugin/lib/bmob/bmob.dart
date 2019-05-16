@@ -24,6 +24,17 @@ class Bmob {
   static const String BMOB_API_FILE_VERSION = "/2";
   static const String BMOB_API_CLASSES = BMOB_API_VERSION + "/classes/";
   static const String BMOB_API_USERS = BMOB_API_VERSION + "/users";
+
+  static const String BMOB_API_REQUEST_PASSWORD_RESET = BMOB_API_VERSION + "/requestPasswordReset";
+
+  static const String BMOB_API_REQUEST_PASSWORD_BY_SMS_CODE = BMOB_API_VERSION + "/resetPasswordBySmsCode";
+
+
+  static const String BMOB_API_REQUEST_UPDATE_USER_PASSWORD = BMOB_API_VERSION + "/updateUserPassword";
+
+
+
+
   static const String BMOB_API_LOGIN = BMOB_API_VERSION + "/login";
   static const String BMOB_API_SLASH = "/";
   static const String BMOB_API_SEND_SMS_CODE = BMOB_API_VERSION + "/requestSmsCode";

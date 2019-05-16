@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:data_plugin/bmob/bmob_query.dart';
 import 'package:data_plugin/bmob/response/bmob_error.dart';
 import 'package:data_plugin/utils/dialog_util.dart';
-import '../bean/blog.dart';
+import '../../bean/blog.dart';
 
 class QueryPage extends StatefulWidget {
   @override
@@ -93,6 +93,22 @@ class _QueryPageState extends State<QueryPage> {
                 color: Colors.blue[400],
                 child: new Text('数据排序',
                     style: new TextStyle(color: Colors.white))),
+
+
+
+            RaisedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "statisticsQQueryRoute");
+                },
+                color: Colors.blue[400],
+                child: new Text('统计查询',
+                    style: new TextStyle(color: Colors.white))),
+
+
+
+
+
+
           ],
         ),
       ),

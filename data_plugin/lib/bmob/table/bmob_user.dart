@@ -1,3 +1,5 @@
+import 'package:data_plugin/bmob/response/bmob_handled.dart';
+
 import 'bmob_object.dart';
 import 'package:data_plugin/bmob/bmob_dio.dart';
 import 'dart:convert';
@@ -46,12 +48,14 @@ class BmobUser extends BmobObject {
     //Map转String
     String params = json.encode(data);
     //发送请求
-    Map responseData = await BmobDio.getInstance().post(Bmob.BMOB_API_USERS, data: params);
+    Map responseData =
+        await BmobDio.getInstance().post(Bmob.BMOB_API_USERS, data: params);
     BmobRegistered bmobRegistered = BmobRegistered.fromJson(responseData);
     BmobDio.getInstance().setSessionToken(bmobRegistered.sessionToken);
     return bmobRegistered;
   }
 
+  ///账号密码登录
   Future<BmobUser> login() async {
     Map<String, dynamic> map = toJson();
     Map<String, dynamic> data = new Map();
@@ -73,6 +77,114 @@ class BmobUser extends BmobObject {
     BmobUser bmobUser = BmobUser.fromJson(result);
     BmobDio.getInstance().setSessionToken(bmobUser.sessionToken);
     return bmobUser;
+  }
+
+  ///手机短信验证码登录
+  Future<BmobUser> loginBySms(String smsCode) async {
+    Map<String, dynamic> map = toJson();
+    Map<String, dynamic> data = new Map();
+    data["smsCode"] = smsCode;
+    //去除由服务器生成的字段值
+    map.remove("objectId");
+    map.remove("createdAt");
+    map.remove("updatedAt");
+    map.remove("sessionToken");
+    //去除空值
+    map.forEach((key, value) {
+      if (value != null) {
+        data[key] = value;
+      }
+    });
+    //Map转String
+    //发送请求
+    Map result = await BmobDio.getInstance()
+        .post(Bmob.BMOB_API_USERS, data: getParamsJsonFromParamsMap(data));
+    print(result);
+    BmobUser bmobUser = BmobUser.fromJson(result);
+    BmobDio.getInstance().setSessionToken(bmobUser.sessionToken);
+    return bmobUser;
+  }
+
+  ///发送邮箱重置密码的请求
+  Future<BmobHandled> requestPasswordResetByEmail() async {
+    Map<String, dynamic> map = toJson();
+    Map<String, dynamic> data = new Map();
+    //去除由服务器生成的字段值
+    map.remove("objectId");
+    map.remove("createdAt");
+    map.remove("updatedAt");
+    map.remove("sessionToken");
+    //去除空值
+    map.forEach((key, value) {
+      if (value != null) {
+        data[key] = value;
+      }
+    });
+    //Map转String
+    //发送请求
+    Map result = await BmobDio.getInstance().post(
+        Bmob.BMOB_API_REQUEST_PASSWORD_RESET,
+        data: getParamsJsonFromParamsMap(data));
+    print(result);
+    BmobHandled bmobHandled = BmobHandled.fromJson(result);
+    return bmobHandled;
+  }
+
+  ///短信重置密码
+  Future<BmobHandled> requestPasswordResetBySmsCode(String smsCode) async {
+    Map<String, dynamic> map = toJson();
+    Map<String, dynamic> data = new Map();
+    //去除由服务器生成的字段值
+    map.remove("objectId");
+    map.remove("createdAt");
+    map.remove("updatedAt");
+    map.remove("sessionToken");
+    //去除空值
+    map.forEach((key, value) {
+      if (value != null) {
+        data[key] = value;
+      }
+    });
+    //Map转String
+    //发送请求
+    Map result = await BmobDio.getInstance().put(
+        Bmob.BMOB_API_REQUEST_PASSWORD_BY_SMS_CODE +
+            Bmob.BMOB_API_SLASH +
+            smsCode,
+        data: getParamsJsonFromParamsMap(data));
+    print(result);
+    BmobHandled bmobHandled = BmobHandled.fromJson(result);
+    return bmobHandled;
+  }
+
+  ///旧密码重置密码
+  Future<BmobHandled> updateUserPassword(String oldPassword,String  newPassword) async {
+    Map<String, dynamic> map = toJson();
+    Map<String, dynamic> data = new Map();
+
+
+    data["oldPassword"]=oldPassword;
+    data["newPassword"]=newPassword;
+    //去除由服务器生成的字段值
+    map.remove("objectId");
+    map.remove("createdAt");
+    map.remove("updatedAt");
+    map.remove("sessionToken");
+    //去除空值
+    map.forEach((key, value) {
+      if (value != null) {
+        data[key] = value;
+      }
+    });
+    //Map转String
+    //发送请求
+    Map result = await BmobDio.getInstance().put(
+        Bmob.BMOB_API_REQUEST_UPDATE_USER_PASSWORD +
+            objectId,
+        data: getParamsJsonFromParamsMap(data));
+    print(result);
+    BmobHandled bmobHandled = BmobHandled.fromJson(result);
+    return bmobHandled;
   }
 
   ///获取在url中的请求参数

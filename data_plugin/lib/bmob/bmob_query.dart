@@ -23,8 +23,19 @@ class BmobQuery<T> {
 
   Map<String, dynamic> where;
 
+  Map<String, dynamic> having;
+
+  /// 统计查询
+  String groupby;
+  String sum;
+  String average;
+  String max;
+  String min;
+  bool groupcount;
+
   BmobQuery() {
     where = Map();
+    having = Map();
   }
 
   //添加等于条件查询
@@ -61,6 +72,77 @@ class BmobQuery<T> {
   BmobQuery addWhereGreaterThanOrEqualTo(String key, Object value) {
     addCondition(key, "\$gte", value);
     return this;
+  }
+
+  ///是否返回统计的记录个数
+  BmobQuery hasGroupCount(bool has) {
+    this.groupcount = has;
+    return this;
+  }
+
+  ///分组 多个分组的列名
+  BmobQuery groupByKeys(String keys) {
+    this.groupby = keys;
+    return this;
+  }
+
+  ///求和  多个求和的列名
+  BmobQuery sumKeys(String keys) {
+    this.sum = keys;
+    return this;
+  }
+
+  ///求均值 多个求平均值的列名
+  BmobQuery averageKeys(String keys) {
+    this.average = keys;
+    return this;
+  }
+
+  ///求最大值 多个求最大值的列名
+  BmobQuery maxKeys(String keys) {
+    this.max = keys;
+    return this;
+  }
+
+  ///求最小值 多个求最小值的列名
+  BmobQuery minKeys(String keys) {
+    this.min = keys;
+    return this;
+  }
+
+  ///添加分组过滤条件
+  BmobQuery havingFilter(Map<String, dynamic> having) {
+    this.having = having;
+    return this;
+  }
+
+  String addStatistics(String key, Object value) {
+    if (value == null) {
+      return "";
+    }
+    String params = "";
+    if (value is String) {
+      String str = value;
+      params = key + "=" + str + "&";
+    }else if(value is Map){
+      Map map = value;
+      if(map.isNotEmpty){
+        params = key+"="+json.encode(map)+"&";
+      }
+    }
+    return params;
+  }
+
+  String getStatistics() {
+    String statistics = "";
+    statistics+=addStatistics("sum", this.sum);
+    statistics+=addStatistics("max", this.max);
+    statistics+=addStatistics("min", this.min);
+    statistics+=addStatistics("average", this.average);
+    statistics+=addStatistics("groupby", this.groupby);
+    statistics+=addStatistics("having", this.having);
+    statistics+=addStatistics("groupcount", this.groupcount);
+    return statistics;
   }
 
   void addCondition(String key, String condition, Object value) {
@@ -161,9 +243,11 @@ class BmobQuery<T> {
         break;
     }
     String url = Bmob.BMOB_API_CLASSES + tableName;
+    url=url + "?";
     if (where.isNotEmpty) {
-      url = url + "?where=" + json.encode(where);
+      url = url + "where=" + json.encode(where);
     }
+    url=url+getStatistics();
     Map map = await BmobDio.getInstance().get(url, data: getParams());
     BmobResults bmobResults = BmobResults.fromJson(map);
     print(bmobResults.results);

@@ -1,3 +1,8 @@
+import 'package:data_plugin/bmob/response/bmob_error.dart';
+import 'package:data_plugin/bmob/response/bmob_handled.dart';
+import 'package:data_plugin/bmob/table/bmob_user.dart';
+import 'package:data_plugin/utils/dialog_util.dart';
+
 /**
  * home page
  */
@@ -45,15 +50,39 @@ class _UserPageState extends State<UserPage> {
                   Navigator.pushNamed(context, "loginRoute");
                 },
                 color: Colors.blue[400],
-                child: new Text('登录', style: new TextStyle(color: Colors.white))),
-
+                child:
+                    new Text('登录', style: new TextStyle(color: Colors.white))),
             RaisedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "registerRoute");
                 },
                 color: Colors.blue[400],
-                child: new Text('注册', style: new TextStyle(color: Colors.white))),
+                child:
+                    new Text('注册', style: new TextStyle(color: Colors.white))),
+            RaisedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "smsLoginRoute");
+                },
+                color: Colors.blue[400],
+                child: new Text('手机验证码登录',
+                    style: new TextStyle(color: Colors.white))),
+            RaisedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "emailResetRoute");
+                },
+                color: Colors.blue[400],
+                child: new Text('发送重置密码邮箱',
+                    style: new TextStyle(color: Colors.white))),
+            RaisedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "smsResetRoute");
+                },
+                color: Colors.blue[400],
+                child: new Text('短信重置密码',
+                    style: new TextStyle(color: Colors.white))),
+
           ],
+
         ),
       ),
     );

@@ -613,6 +613,74 @@ _register() {
   });
 }
 ```
+手机短信验证码登录：
+```
+///发送短信验证码：需要手机号码
+_sendSms(BuildContext context) {
+  BmobSms bmobSms = BmobSms();
+  bmobSms.template = "";
+  bmobSms.mobilePhoneNumber = _phoneNumber;
+  bmobSms.sendSms().then((BmobSent bmobSent) {
+    showSuccess(context, "发送成功:" + bmobSent.smsId.toString());
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+```
+///手机号码+短信验证码登录
+_loginBySms(BuildContext context) {
+  BmobUser bmobUserRegister = BmobUser();
+  bmobUserRegister.mobilePhoneNumber = _phoneNumber;
+  bmobUserRegister.loginBySms(_smsCode).then((BmobUser bmobUser) {
+    showSuccess(context, "登录成功："+bmobUser.getObjectId() + "\n" + bmobUser.username);
+  }).catchError((e) {
+    print(e);
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+手机短信验证码重置密码：
+```
+///发送短信验证码：需要手机号码
+_sendSms(BuildContext context) {
+  BmobSms bmobSms = BmobSms();
+  bmobSms.template = "";
+  bmobSms.mobilePhoneNumber = _phoneNumber;
+  bmobSms.sendSms().then((BmobSent bmobSent) {
+    showSuccess(context, "发送成功:" + bmobSent.smsId.toString());
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+```
+///手机号码+短信验证码重置密码
+_resetBySms(BuildContext context) {
+  BmobUser bmobUser = BmobUser();
+  bmobUser.mobilePhoneNumber = _phoneNumber;
+  bmobUser
+      .requestPasswordResetBySmsCode(_smsCode)
+      .then((BmobHandled bmobHandled) {})
+      .catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+邮箱重置密码：
+```
+///发送重置密码邮件到邮箱，然后在邮件中重置密码，最后在应用中重新登录
+_sendEmail(BuildContext context) {
+  BmobUser bmobUser = BmobUser();
+  bmobUser.email = _email;
+  bmobUser
+      .requestPasswordResetByEmail()
+      .then((BmobHandled bmobHandled) {})
+      .catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
 ## 2.9、角色操作
 添加角色：
 ```
@@ -907,5 +975,187 @@ void _queryList(BuildContext context) {
     showError(context, BmobError.convert(e).error);
   });
 }
+```
+
+## 2.16 统计查询
+
+分组操作，返回某些列的数值：
+```
+///分组操作，返回某些列的数值
+void _queryGroupBy(BuildContext context) {
+  BmobQuery<Blog> query = BmobQuery();
+  query.groupByKeys("title,content,like");
+  query.queryObjects().then((data) {
+    List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+    showSuccess(context, data.toString());
+    for (Blog blog in blogs) {
+      if (blog != null) {
+        print(blog.objectId);
+        print(blog.title);
+        print(blog.content);
+        if (blog.author != null) {
+          print(blog.author.objectId);
+          print(blog.author.username);
+        }
+      }
+    }
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+返回每个分组的总记录：
+```
+///返回每个分组的总记录
+void _queryGroupCount(BuildContext context) {
+  BmobQuery<Blog> query = BmobQuery();
+  query.hasGroupCount(true);
+  query.groupByKeys("title,content,like");
+  query.queryObjects().then((data) {
+    List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+    showSuccess(context, data.toString());
+    for (Blog blog in blogs) {
+      if (blog != null) {
+        print(blog.objectId);
+        print(blog.title);
+        print(blog.content);
+        if (blog.author != null) {
+          print(blog.author.objectId);
+          print(blog.author.username);
+        }
+      }
+    }
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+统计某些列的和：
+```
+///统计某些列的和
+void _querySum(BuildContext context) {
+  BmobQuery<Blog> query = BmobQuery();
+  query.sumKeys("like");
+  query.queryObjects().then((data) {
+    List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+    showSuccess(context, data.toString());
+    for (Blog blog in blogs) {
+      if (blog != null) {
+        print(blog.objectId);
+        print(blog.title);
+        print(blog.content);
+        if (blog.author != null) {
+          print(blog.author.objectId);
+          print(blog.author.username);
+        }
+      }
+    }
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+统计某些列的平均值：
+```
+///统计某些列的平均值
+void _queryAverage(BuildContext context) {
+  BmobQuery<Blog> query = BmobQuery();
+  query.averageKeys("like");
+  query.queryObjects().then((data) {
+    List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+    showSuccess(context, data.toString());
+    for (Blog blog in blogs) {
+      if (blog != null) {
+        print(blog.objectId);
+        print(blog.title);
+        print(blog.content);
+        if (blog.author != null) {
+          print(blog.author.objectId);
+          print(blog.author.username);
+        }
+      }
+    }
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+统计某些列的最大值：
+```
+///统计某些列的最大值
+void _queryMax(BuildContext context) {
+  BmobQuery<Blog> query = BmobQuery();
+  query.maxKeys("like");
+  query.queryObjects().then((data) {
+    List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+    showSuccess(context, data.toString());
+    for (Blog blog in blogs) {
+      if (blog != null) {
+        print(blog.objectId);
+        print(blog.title);
+        print(blog.content);
+        if (blog.author != null) {
+          print(blog.author.objectId);
+          print(blog.author.username);
+        }
+      }
+    }
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+统计某些列的最小值：
+```
+///统计某些列的最小值
+void _queryMin(BuildContext context) {
+  BmobQuery<Blog> query = BmobQuery();
+  query.minKeys("like");
+  query.queryObjects().then((data) {
+    List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+    showSuccess(context, data.toString());
+    for (Blog blog in blogs) {
+      if (blog != null) {
+        print(blog.objectId);
+        print(blog.title);
+        print(blog.content);
+        if (blog.author != null) {
+          print(blog.author.objectId);
+          print(blog.author.username);
+        }
+      }
+    }
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+添加过滤条件：
+```
+///添加过滤条件
+void _queryHaving(BuildContext context) {
+  BmobQuery<Blog> query = BmobQuery();
+  Map<String,dynamic> filter = Map();
+  filter["title"]="博客标题";
+  query.havingFilter(filter);
+  query.queryObjects().then((data) {
+    List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+    showSuccess(context, data.toString());
+    for (Blog blog in blogs) {
+      if (blog != null) {
+        print(blog.objectId);
+        print(blog.title);
+        print(blog.content);
+        if (blog.author != null) {
+          print(blog.author.objectId);
+          print(blog.author.username);
+        }
+      }
+    }
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+
 ```
 

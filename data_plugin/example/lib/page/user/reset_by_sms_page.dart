@@ -1,3 +1,6 @@
+import 'package:data_plugin/bmob/response/bmob_handled.dart';
+import 'package:data_plugin/bmob/table/bmob_user.dart';
+
 /**
  * login page
  */
@@ -6,14 +9,13 @@ import 'package:data_plugin/bmob/bmob_sms.dart';
 import 'package:data_plugin/bmob/response/bmob_error.dart';
 import 'package:data_plugin/utils/dialog_util.dart';
 import 'package:data_plugin/bmob/response/bmob_sent.dart';
-import 'package:data_plugin/bmob/response/bmob_handled.dart';
 
-class SmsPage extends StatefulWidget {
+class SmsResetPage extends StatefulWidget {
   @override
-  _SmsPageState createState() => _SmsPageState();
+  _SmsResetPageState createState() => _SmsResetPageState();
 }
 
-class _SmsPageState extends State<SmsPage> {
+class _SmsResetPageState extends State<SmsResetPage> {
   final _formKey = GlobalKey<FormState>();
   String _phoneNumber, _smsCode;
 
@@ -48,18 +50,15 @@ class _SmsPageState extends State<SmsPage> {
         width: 270.0,
         child: RaisedButton(
           child: Text(
-            '验证',
+            '短信验证重置密码',
             style: Theme.of(context).primaryTextTheme.headline,
           ),
           color: Colors.black,
           onPressed: () {
-            if (_formKey.currentState.validate()) {
-              ///只有输入的内容符合要求通过才会到达此处
-              _formKey.currentState.save();
-              //TODO 执行登录方法
-              print('phone number:$_phoneNumber , sms code:$_smsCode');
-              _verifySmsCode(context);
-            }
+            _formKey.currentState.save();
+            //TODO 执行登录方法
+            print('phone number:$_phoneNumber , sms code:$_smsCode');
+            _resetBySms(context);
           },
           shape: StadiumBorder(side: BorderSide()),
         ),
@@ -82,10 +81,7 @@ class _SmsPageState extends State<SmsPage> {
                 Icons.send,
               ),
               onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  ///只有输入的内容符合要求通过才会到达此处
-                  _formKey.currentState.save();
-                }
+                _formKey.currentState.save();
                 _sendSms(context);
               })),
     );
@@ -123,7 +119,7 @@ class _SmsPageState extends State<SmsPage> {
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        'Send SMS',
+        'Login By Sms',
         style: TextStyle(fontSize: 42.0),
       ),
     );
@@ -141,13 +137,14 @@ class _SmsPageState extends State<SmsPage> {
     });
   }
 
-  ///验证短信验证码：需要手机号码和验证码
-  _verifySmsCode(BuildContext context) {
-    BmobSms bmobSms = BmobSms();
-    bmobSms.mobilePhoneNumber = _phoneNumber;
-    bmobSms.verifySmsCode(_smsCode).then((BmobHandled bmobHandled) {
-      showSuccess(context, "验证成功：" + bmobHandled.msg);
-    }).catchError((e) {
+  ///手机号码+短信验证码重置密码
+  _resetBySms(BuildContext context) {
+    BmobUser bmobUser = BmobUser();
+    bmobUser.mobilePhoneNumber = _phoneNumber;
+    bmobUser
+        .requestPasswordResetBySmsCode(_smsCode)
+        .then((BmobHandled bmobHandled) {})
+        .catchError((e) {
       showError(context, BmobError.convert(e).error);
     });
   }
