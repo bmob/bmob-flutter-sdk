@@ -5,41 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2ee3504-879d-43a1-9247-bf52d1031f95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example/lib/page/query/query_statistics_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/lib/page/user/login_by_sms_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/lib/page/user/reset_by_email_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/lib/page/user/reset_by_sms_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/lib/page/user/user_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/zhangchaozhou.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/zhangchaozhou.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data_demo/lib/page/query/query_statistics_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data_demo/lib/page/user/login_by_sms_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data_demo/lib/page/user/reset_by_email_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data_demo/lib/page/user/reset_by_sms_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_demo/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_demo/lib/page/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/lib/page/user/login_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_demo/lib/page/query_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/lib/page/query/query_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_demo/lib/page/register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/lib/page/user/register_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_demo/lib/page/sms_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/lib/page/sms_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_demo/lib/page/user_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/lib/page/user/user_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_demo/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../data_demo/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/bean/user.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/page/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/page/user/login_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/page/query_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/page/query/query_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/page/register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/page/user/register_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/page/sms_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/page/sms_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/page/user_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/bmob.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bmob/bmob.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/bmob_query.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bmob/bmob_query.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/bmob_query.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/bmob_sms.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/realtime/change.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/realtime/message.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/response/bmob_error.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/response/bmob_handled.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/response/bmob_pointer.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/response/bmob_registered.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/response/bmob_results.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/response/bmob_saved.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/response/bmob_sent.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/response/bmob_updated.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/response/server_time.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/table/bmob_installation.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/table/bmob_role.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bmob/table/bmob_role.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/table/bmob_role.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/table/bmob_user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bmob/table/bmob_user.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bmob/table/bmob_user.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -122,15 +100,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/bmob/bmob_query.g.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/lib/page/user/reset_by_sms_page.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="781">
@@ -142,11 +111,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/lib/page/query/query_statistics_page.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="339">
               <caret line="109" column="7" selection-start-line="109" selection-start-column="7" selection-end-line="109" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -255,7 +233,6 @@
         <option value="$PROJECT_DIR$/lib/bmob/bmob_file_manager.dart" />
         <option value="$PROJECT_DIR$/lib/bmob/bmob_installation_manager.dart" />
         <option value="$PROJECT_DIR$/lib/bmob/response/bmob_error.dart" />
-        <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/example/lib/page/real_time_page.dart" />
         <option value="$PROJECT_DIR$/example/lib/page/sms_page.dart" />
         <option value="$PROJECT_DIR$/example/lib/page/login_page.dart" />
@@ -273,6 +250,7 @@
         <option value="$PROJECT_DIR$/lib/bmob/table/bmob_role.dart" />
         <option value="$PROJECT_DIR$/example/lib/bean/blog.dart" />
         <option value="$PROJECT_DIR$/example/lib/page/query/query_statistics_page.dart" />
+        <option value="$PROJECT_DIR$/pubspec.yaml" />
       </list>
     </option>
   </component>
@@ -409,11 +387,6 @@
               <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
               <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
               <item name="query" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data_plugin" type="b2602c69:ProjectViewProjectNode" />
@@ -576,7 +549,7 @@
     <frame x="-552" y="-1417" width="2560" height="1417" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.4205719" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.4205719" />
       <window_info id="Designer" order="1" />
       <window_info id="Build Variants" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -590,13 +563,13 @@
       <window_info anchor="bottom" id="DB Execution Console" order="0" />
       <window_info anchor="bottom" id="Tail" order="1" />
       <window_info anchor="bottom" id="Dart Analysis" order="2" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.48689437" visible="true" weight="0.42692307" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48689437" weight="0.19461538" />
       <window_info anchor="bottom" id="Android Profiler" order="4" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.51310563" side_tool="true" visible="true" weight="0.42692307" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5127085" side_tool="true" visible="true" weight="0.34076923" />
       <window_info anchor="bottom" id="Logcat" order="6" sideWeight="0.48451152" weight="0.22076923" />
       <window_info anchor="bottom" id="Flutter Performance" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.48768863" weight="0.34076923" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4872915" visible="true" weight="0.34076923" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4980143" weight="0.29" />
       <window_info anchor="bottom" id="TODO" order="11" />
       <window_info anchor="bottom" id="Debug" order="12" sideWeight="0.4940429" weight="0.36307693" />
@@ -763,13 +736,6 @@
           <folding>
             <element signature="e#0#61#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="42" column="3" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -1050,6 +1016,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
           <caret line="109" column="7" selection-start-line="109" selection-start-column="7" selection-end-line="109" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
         </state>
       </provider>
     </entry>

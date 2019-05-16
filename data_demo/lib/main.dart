@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:data_plugin/bmob/bmob.dart';
-import 'page/login_page.dart';
 import 'page/home_page.dart';
-import 'page/register_page.dart';
-import 'page/user_page.dart';
 import 'page/object_page.dart';
+import 'page/query/query_page.dart';
+import 'page/query/query_statistics_page.dart';
 import 'page/sms_page.dart';
 import 'page/installation_page.dart';
 import 'page/list_page.dart';
 import 'page/file_page.dart';
 import 'page/time_page.dart';
-import 'page/query_page.dart';
 import 'page/pointer_page.dart';
 import 'page/acl_page.dart';
 import 'page/geo_point_page.dart';
 import 'page/real_time_page.dart';
 import 'page/order_page.dart';
+import 'page/user/login_by_sms_page.dart';
+import 'page/user/login_page.dart';
+import 'page/user/register_page.dart';
+import 'page/user/reset_by_email_page.dart';
+import 'page/user/reset_by_sms_page.dart';
+import 'page/user/user_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,6 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Bmob.initMasterKey("12784168944a56ae41c4575686b7b332",
         "9e8ffb8e0945092d1a6b3562741ae564", "0db392c02287a18bf05592d6d5221a6e");
+
 
     return MaterialApp(
       title: 'Flutter Bmob',
@@ -57,6 +62,10 @@ class MyApp extends StatelessWidget {
         'geoPointRoute':(BuildContext context)=> new GeoPointPage(),
         'realtimeRoute':(BuildContext context)=> new RealTimePage(),
         'orderRoute':(BuildContext context)=> new OrderPage(),
+        'smsLoginRoute':(BuildContext context)=> new SmsLoginPage(),
+        'smsResetRoute':(BuildContext context)=> new SmsResetPage(),
+        'emailResetRoute':(BuildContext context)=> new EmailResetPage(),
+        'statisticsQQueryRoute':(BuildContext context)=> new QueryStatisticsPage(),
       },
     );
   }
