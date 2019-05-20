@@ -1,5 +1,7 @@
 import 'package:data_plugin/bmob/bmob_dio.dart';
 import 'package:data_plugin/bmob/response/bmob_results.dart';
+import 'package:data_plugin/bmob/table/bmob_installation.dart';
+import 'package:data_plugin/bmob/table/bmob_role.dart';
 import 'package:dio/dio.dart';
 
 import 'dart:convert';
@@ -112,15 +114,15 @@ class BmobQuery<T> {
   }
 
   ///获取数据个数
-  Future<int> queryCount() async{
+  Future<int> queryCount() async {
     this.count = 1;
     this.limit = 0;
 
     String tableName = T.toString();
-    switch (tableName) {
-      case "BmobInstallation":
-        tableName = "_Installation";
-        break;
+    if (T.runtimeType is BmobUser) {
+      tableName = "_User";
+    } else if (T.runtimeType is BmobInstallation) {
+      tableName = "_Installation";
     }
     String url = Bmob.BMOB_API_CLASSES + tableName;
     url = url + "?";
@@ -247,11 +249,12 @@ class BmobQuery<T> {
   ///查询单条数据
   Future<dynamic> queryObject(objectId) async {
     String tableName = T.toString();
-    switch (tableName) {
-      case "BmobInstallation":
-        tableName = "_Installation";
-        break;
+    if (T.runtimeType is BmobUser) {
+      tableName = "_User";
+    } else if (T.runtimeType is BmobInstallation) {
+      tableName = "_Installation";
     }
+
     return BmobDio.getInstance().get(
         Bmob.BMOB_API_CLASSES + tableName + Bmob.BMOB_API_SLASH + objectId,
         data: getParams());
@@ -260,10 +263,11 @@ class BmobQuery<T> {
   ///查询多条数据
   Future<List<dynamic>> queryObjects() async {
     String tableName = T.toString();
-    switch (tableName) {
-      case "BmobInstallation":
-        tableName = "_Installation";
-        break;
+
+    if (T is BmobUser) {
+      tableName = "_User";
+    } else if (T.runtimeType is BmobInstallation) {
+      tableName = "_Installation";
     }
     String url = Bmob.BMOB_API_CLASSES + tableName;
     url = url + "?";

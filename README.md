@@ -10,7 +10,7 @@ Flutter官方咨询QQ群：788254534
 依赖配置：
 ```
 dependencies:
-  data_plugin: ^0.0.11
+  data_plugin: ^0.0.12
 ```
 ## 1.2、安装
 安装指令：

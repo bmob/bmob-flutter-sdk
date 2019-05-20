@@ -207,11 +207,6 @@ class BmobUser extends BmobObject {
     // TODO: implement getJson
     Map<String, dynamic> map = toJson();
     Map<String, dynamic> data = new Map();
-    //去除由服务器生成的字段值
-    map.remove("objectId");
-    map.remove("createdAt");
-    map.remove("updatedAt");
-    map.remove("sessionToken");
     //去除空值
     map.forEach((key, value) {
       if (value != null) {

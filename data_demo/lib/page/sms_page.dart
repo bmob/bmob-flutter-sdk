@@ -53,13 +53,10 @@ class _SmsPageState extends State<SmsPage> {
           ),
           color: Colors.black,
           onPressed: () {
-            if (_formKey.currentState.validate()) {
-              ///只有输入的内容符合要求通过才会到达此处
-              _formKey.currentState.save();
-              //TODO 执行登录方法
-              print('phone number:$_phoneNumber , sms code:$_smsCode');
-              _verifySmsCode(context);
-            }
+            _formKey.currentState.save();
+            //TODO 执行登录方法
+            print('phone number:$_phoneNumber , sms code:$_smsCode');
+            _verifySmsCode(context);
           },
           shape: StadiumBorder(side: BorderSide()),
         ),
@@ -82,10 +79,7 @@ class _SmsPageState extends State<SmsPage> {
                 Icons.send,
               ),
               onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  ///只有输入的内容符合要求通过才会到达此处
-                  _formKey.currentState.save();
-                }
+                _formKey.currentState.save();
                 _sendSms(context);
               })),
     );

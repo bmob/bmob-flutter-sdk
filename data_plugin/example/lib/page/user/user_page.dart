@@ -1,5 +1,7 @@
+import 'package:data_plugin/bmob/bmob_query.dart';
 import 'package:data_plugin/bmob/response/bmob_error.dart';
 import 'package:data_plugin/bmob/response/bmob_handled.dart';
+import 'package:data_plugin/bmob/response/bmob_updated.dart';
 import 'package:data_plugin/bmob/table/bmob_user.dart';
 import 'package:data_plugin/utils/dialog_util.dart';
 
@@ -7,6 +9,8 @@ import 'package:data_plugin/utils/dialog_util.dart';
  * home page
  */
 import 'package:flutter/material.dart';
+
+import '../../bean/user.dart';
 
 class UserPage extends StatefulWidget {
   UserPage({Key key, this.title}) : super(key: key);
@@ -80,9 +84,46 @@ class _UserPageState extends State<UserPage> {
                 color: Colors.blue[400],
                 child: new Text('短信重置密码',
                     style: new TextStyle(color: Colors.white))),
+            RaisedButton(
+                onPressed: () {
+                  BmobQuery<User> query = BmobQuery();
+                  query.queryObjects().then((data) {
+                    showSuccess(context, data.toString());
+                    List<User> users =
+                    data.map((i) => User.fromJson(i)).toList();
+                    for (User user in users) {
+                      if (user != null) {
+                        print(user.objectId);
+                      }
+                    }
+                  }).catchError((e) {
+                    showError(context, BmobError.convert(e).error);
+                  });
+                },
+                color: Colors.blue[400],
+                child: new Text('查询用户',
+                    style: new TextStyle(color: Colors.white))),
+
+
+            RaisedButton(
+                onPressed: () {
+                  User user = User();
+                  user.objectId="VDCr000U";
+                  user.username="123123";
+                  user.update().then((BmobUpdated updatedAt){
+
+                    showSuccess(context, updatedAt.toJson().toString());
+                  }).catchError((e){
+
+                    showError(context, BmobError.convert(e).error);
+                  });
+                },
+                color: Colors.blue[400],
+                child: new Text('更新用户',
+                    style: new TextStyle(color: Colors.white))),
+
 
           ],
-
         ),
       ),
     );
