@@ -12,6 +12,7 @@ BmobQuery<T> _$BmobQueryFromJson<T>(Map<String, dynamic> json) {
     ..limit = json['limit'] as int
     ..skip = json['skip'] as int
     ..order = json['order'] as String
+    ..count = json['count'] as int
     ..where = json['where'] as Map<String, dynamic>
     ..having = json['having'] as Map<String, dynamic>
     ..groupby = json['groupby'] as String
@@ -28,6 +29,7 @@ Map<String, dynamic> _$BmobQueryToJson<T>(BmobQuery<T> instance) =>
       'limit': instance.limit,
       'skip': instance.skip,
       'order': instance.order,
+      'count': instance.count,
       'where': instance.where,
       'having': instance.having,
       'groupby': instance.groupby,

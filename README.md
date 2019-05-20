@@ -10,7 +10,7 @@ Flutter官方咨询QQ群：788254534
 依赖配置：
 ```
 dependencies:
-  data_plugin: ^0.0.10
+  data_plugin: ^0.0.11
 ```
 ## 1.2、安装
 安装指令：
@@ -1157,5 +1157,19 @@ void _queryHaving(BuildContext context) {
   });
 }
 
+```
+
+## 个数查询
+
+```
+///查询数据个数
+void _queryCount(BuildContext context) {
+  BmobQuery<Blog> query = BmobQuery();
+  query.queryCount().then((int count) {
+    showSuccess(context, "个数： $count");
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
 ```
 

@@ -20,6 +20,7 @@ class BmobQuery<T> {
   int limit;
   int skip;
   String order;
+  int count;
 
   Map<String, dynamic> where;
 
@@ -110,6 +111,28 @@ class BmobQuery<T> {
     return this;
   }
 
+  ///获取数据个数
+  Future<int> queryCount() async{
+    this.count = 1;
+    this.limit = 0;
+
+    String tableName = T.toString();
+    switch (tableName) {
+      case "BmobInstallation":
+        tableName = "_Installation";
+        break;
+    }
+    String url = Bmob.BMOB_API_CLASSES + tableName;
+    url = url + "?";
+    if (where.isNotEmpty) {
+      url = url + "where=" + json.encode(where);
+    }
+    Map map = await BmobDio.getInstance().get(url, data: getParams());
+    print(map);
+    BmobResults bmobResults = BmobResults.fromJson(map);
+    return bmobResults.count;
+  }
+
   ///添加分组过滤条件
   BmobQuery havingFilter(Map<String, dynamic> having) {
     this.having = having;
@@ -124,10 +147,10 @@ class BmobQuery<T> {
     if (value is String) {
       String str = value;
       params = key + "=" + str + "&";
-    }else if(value is Map){
+    } else if (value is Map) {
       Map map = value;
-      if(map.isNotEmpty){
-        params = key+"="+json.encode(map)+"&";
+      if (map.isNotEmpty) {
+        params = key + "=" + json.encode(map) + "&";
       }
     }
     return params;
@@ -135,13 +158,13 @@ class BmobQuery<T> {
 
   String getStatistics() {
     String statistics = "";
-    statistics+=addStatistics("sum", this.sum);
-    statistics+=addStatistics("max", this.max);
-    statistics+=addStatistics("min", this.min);
-    statistics+=addStatistics("average", this.average);
-    statistics+=addStatistics("groupby", this.groupby);
-    statistics+=addStatistics("having", this.having);
-    statistics+=addStatistics("groupcount", this.groupcount);
+    statistics += addStatistics("sum", this.sum);
+    statistics += addStatistics("max", this.max);
+    statistics += addStatistics("min", this.min);
+    statistics += addStatistics("average", this.average);
+    statistics += addStatistics("groupby", this.groupby);
+    statistics += addStatistics("having", this.having);
+    statistics += addStatistics("groupcount", this.groupcount);
     return statistics;
   }
 
@@ -243,11 +266,11 @@ class BmobQuery<T> {
         break;
     }
     String url = Bmob.BMOB_API_CLASSES + tableName;
-    url=url + "?";
+    url = url + "?";
     if (where.isNotEmpty) {
       url = url + "where=" + json.encode(where);
     }
-    url=url+getStatistics();
+    url = url + getStatistics();
     Map map = await BmobDio.getInstance().get(url, data: getParams());
     BmobResults bmobResults = BmobResults.fromJson(map);
     print(bmobResults.results);

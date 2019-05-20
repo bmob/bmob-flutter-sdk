@@ -93,9 +93,6 @@ class _QueryPageState extends State<QueryPage> {
                 color: Colors.blue[400],
                 child: new Text('数据排序',
                     style: new TextStyle(color: Colors.white))),
-
-
-
             RaisedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "statisticsQQueryRoute");
@@ -103,12 +100,13 @@ class _QueryPageState extends State<QueryPage> {
                 color: Colors.blue[400],
                 child: new Text('统计查询',
                     style: new TextStyle(color: Colors.white))),
-
-
-
-
-
-
+            RaisedButton(
+                onPressed: () {
+                  _queryCount(context);
+                },
+                color: Colors.blue[400],
+                child: new Text('查询个数',
+                    style: new TextStyle(color: Colors.white))),
           ],
         ),
       ),
@@ -257,4 +255,14 @@ class _QueryPageState extends State<QueryPage> {
 
   ///数组包含查询
   _queryWhereContainIn(BuildContext context) {}
+
+  ///查询数据个数
+  void _queryCount(BuildContext context) {
+    BmobQuery<Blog> query = BmobQuery();
+    query.queryCount().then((int count) {
+      showSuccess(context, "个数： $count");
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
+    });
+  }
 }
