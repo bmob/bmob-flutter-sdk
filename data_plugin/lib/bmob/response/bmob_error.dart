@@ -45,6 +45,9 @@ class BmobError extends Error {
         case DioErrorType.CONNECT_TIMEOUT:
           bmobError = BmobError(9015, dioError.message);
           break;
+        case DioErrorType.SEND_TIMEOUT:
+          // TODO: Handle this case.
+          break;
       }
     } else {
       bmobError = BmobError(9015, e.toString());
