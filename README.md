@@ -1,3 +1,5 @@
+#本fork将Dio版本升级到2.1.7并做了相应修改
+
 # bmob-flutter-sdk
 Bmob Flutter SDK
 
