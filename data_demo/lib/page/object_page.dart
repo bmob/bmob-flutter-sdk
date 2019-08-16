@@ -124,18 +124,35 @@ class _ObjectPageState extends State<ObjectPage> {
   }
 
   ///查询多条数据
+//  _queryMulti(BuildContext context) {
+//    BmobQuery<Blog> query = BmobQuery();
+//    query.setLimit(5);
+//    query.queryObjects().then((List<dynamic> data) {
+//      print(data);
+//      showSuccess(context, data.toString());
+//      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+//      for (Blog blog in blogs) {
+//        if (blog != null) {
+//          print(blog.objectId);
+//          print(blog.title);
+//          print(blog.content);
+//        }
+//      }
+//    }).catchError((e) {
+//      showError(context, BmobError.convert(e).error);
+//    });
+//  }
   _queryMulti(BuildContext context) {
-    BmobQuery<Blog> query = BmobQuery();
+    BmobQuery<BmobUser> query = BmobQuery();
     query.setLimit(5);
     query.queryObjects().then((List<dynamic> data) {
       print(data);
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
-      for (Blog blog in blogs) {
+      List<BmobUser> blogs = data.map((i) => BmobUser.fromJson(i)).toList();
+      for (BmobUser blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
-          print(blog.title);
-          print(blog.content);
+          print(blog.username);
         }
       }
     }).catchError((e) {

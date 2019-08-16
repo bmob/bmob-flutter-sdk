@@ -29,6 +29,9 @@ class BmobError extends Error {
     } else if (e is DioError) {
       DioError dioError = e;
       switch (dioError.type) {
+        case DioErrorType.SEND_TIMEOUT:
+          bmobError = BmobError(9015, dioError.message);
+          break;
         case DioErrorType.DEFAULT:
           bmobError = BmobError(9015, dioError.message);
           break;

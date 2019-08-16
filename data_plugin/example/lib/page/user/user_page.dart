@@ -87,7 +87,7 @@ class _UserPageState extends State<UserPage> {
             RaisedButton(
                 onPressed: () {
                   BmobQuery<User> query = BmobQuery();
-                  query.queryObjects().then((data) {
+                  query.queryUsers().then((data) {
                     showSuccess(context, data.toString());
                     List<User> users =
                     data.map((i) => User.fromJson(i)).toList();

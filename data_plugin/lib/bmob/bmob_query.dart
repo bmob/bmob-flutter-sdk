@@ -24,6 +24,8 @@ class BmobQuery<T> {
   String order;
   int count;
 
+  String c;
+
   Map<String, dynamic> where;
 
   Map<String, dynamic> having;
@@ -245,30 +247,58 @@ class BmobQuery<T> {
     skip = value;
     return this;
   }
+  ///查询单条数据
+  Future<dynamic> queryUser(objectId) async {
+    return queryObjectByTableName(objectId, "_User");
+  }
+
+  ///查询单条数据
+  Future<dynamic> queryInstallation(objectId) async {
+    return queryObjectByTableName(objectId, "_Installation");
+  }
 
   ///查询单条数据
   Future<dynamic> queryObject(objectId) async {
     String tableName = T.toString();
-    if (T.runtimeType is BmobUser) {
-      tableName = "_User";
-    } else if (T.runtimeType is BmobInstallation) {
-      tableName = "_Installation";
-    }
+    return queryObjectByTableName(objectId, tableName);
+  }
 
+  ///查询单条数据
+  Future<dynamic> queryObjectByTableName(objectId,String tableName) async {
+//    String tableName = T.toString();
+//    if (T.runtimeType is BmobUser) {
+//      tableName = "_User";
+//    } else if (T.runtimeType is BmobInstallation) {
+//      tableName = "_Installation";
+//    }
     return BmobDio.getInstance().get(
         Bmob.BMOB_API_CLASSES + tableName + Bmob.BMOB_API_SLASH + objectId,
         data: getParams());
   }
 
   ///查询多条数据
+  Future<List<dynamic>> queryUsers() async {
+    return queryObjectsByTableName("_User");
+  }
+
+  ///查询多条数据
+  Future<List<dynamic>> queryInstallations() async {
+    return queryObjectsByTableName("_Installation");
+  }
+
+  ///查询多条数据
   Future<List<dynamic>> queryObjects() async {
     String tableName = T.toString();
-
-    if (T is BmobUser) {
-      tableName = "_User";
-    } else if (T.runtimeType is BmobInstallation) {
-      tableName = "_Installation";
-    }
+    return queryObjectsByTableName(tableName);
+  }
+  ///查询多条数据
+  Future<List<dynamic>> queryObjectsByTableName(String tableName) async {
+//    String tableName = T.toString();
+//    if (T.runtimeType is BmobUser) {
+//      tableName = "_User";
+//    } else if (T.runtimeType is BmobInstallation) {
+//      tableName = "_Installation";
+//    }
     String url = Bmob.BMOB_API_CLASSES + tableName;
     url = url + "?";
     if (where.isNotEmpty) {
@@ -280,7 +310,6 @@ class BmobQuery<T> {
     print(bmobResults.results);
     return bmobResults.results;
   }
-
   ///此处与类名一致，由指令自动生成代码
   factory BmobQuery.fromJson(Map<String, dynamic> json) =>
       _$BmobQueryFromJson(json);

@@ -6,7 +6,7 @@ class BmobDio {
   Dio dio;
 
   ///网络请求元素
-  Options options;
+  BaseOptions options;
 
   ///单例
   static BmobDio instance;
@@ -17,7 +17,7 @@ class BmobDio {
 
   ///无参构造方法
   BmobDio() {
-    options = new Options(
+    options = new BaseOptions(
       //基地址
       baseUrl: Bmob.bmobHost,
       //连接服务器的超时时间，单位是毫秒。
@@ -51,9 +51,13 @@ class BmobDio {
     print('Get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
     Response response = await dio.get(
       requestUrl,
-      data: data,
+      queryParameters: data,
       cancelToken: cancelToken,
     );
+
+
+
+
     print('Get请求结果：' + response.toString());
     return response.data;
   }
@@ -102,7 +106,7 @@ class BmobDio {
     print('Get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
     Response response = await dio.get(
       requestUrl,
-      data: data,
+      queryParameters: data,
       cancelToken: cancelToken,
     );
     print('Get请求结果：' + response.toString());

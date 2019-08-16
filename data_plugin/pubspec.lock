@@ -119,7 +119,7 @@ packages:
       name: cookie_jar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.8"
+    version: "1.0.1"
   crypto:
     dependency: transitive
     description:
@@ -147,7 +147,7 @@ packages:
       name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.17"
+    version: "2.1.13"
   fixnum:
     dependency: transitive
     description:

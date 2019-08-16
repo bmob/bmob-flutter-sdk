@@ -18,7 +18,7 @@ class BmobInstallationManager {
     BmobQuery<BmobInstallation> bmobQuery = BmobQuery();
     bmobQuery.addWhereEqualTo("installationId", installationId);
 
-    List<dynamic> responseData = await bmobQuery.queryObjects();
+    List<dynamic> responseData = await bmobQuery.queryInstallations();
     List<BmobInstallation> installations =
         responseData.map((i) => BmobInstallation.fromJson(i)).toList();
 

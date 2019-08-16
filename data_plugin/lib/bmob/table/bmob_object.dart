@@ -14,6 +14,12 @@ import 'package:data_plugin/bmob/type/bmob_relation.dart';
 
 ///Bmob对象基本类型
 abstract class BmobObject {
+
+
+
+
+
+
   //创建时间
   String createdAt;
 
