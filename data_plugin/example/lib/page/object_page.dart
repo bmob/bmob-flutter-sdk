@@ -123,6 +123,8 @@ class _ObjectPageState extends State<ObjectPage> {
     }
   }
 
+
+
   ///查询多条数据
 //  _queryMulti(BuildContext context) {
 //    BmobQuery<Blog> query = BmobQuery();

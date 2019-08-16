@@ -90,7 +90,7 @@ class _UserPageState extends State<UserPage> {
                   query.queryUsers().then((data) {
                     showSuccess(context, data.toString());
                     List<User> users =
-                    data.map((i) => User.fromJson(i)).toList();
+                        data.map((i) => User.fromJson(i)).toList();
                     for (User user in users) {
                       if (user != null) {
                         print(user.objectId);
@@ -101,28 +101,34 @@ class _UserPageState extends State<UserPage> {
                   });
                 },
                 color: Colors.blue[400],
-                child: new Text('查询用户',
+                child: new Text('查询多个用户',
                     style: new TextStyle(color: Colors.white))),
-
-
+            RaisedButton(
+                onPressed: () {
+                  BmobQuery<User> query = BmobQuery();
+                  query.queryUser("8e64dd60d2").then((data) {
+                    showSuccess(context, User.fromJson(data).username);
+                  }).catchError((e) {
+                    showError(context, BmobError.convert(e).error);
+                  });
+                },
+                color: Colors.blue[400],
+                child: new Text('查询单个用户',
+                    style: new TextStyle(color: Colors.white))),
             RaisedButton(
                 onPressed: () {
                   User user = User();
-                  user.objectId="VDCr000U";
-                  user.username="123123";
-                  user.update().then((BmobUpdated updatedAt){
-
+                  user.objectId = "8e64dd60d2";
+                  user.username = "123123";
+                  user.update().then((BmobUpdated updatedAt) {
                     showSuccess(context, updatedAt.toJson().toString());
-                  }).catchError((e){
-
+                  }).catchError((e) {
                     showError(context, BmobError.convert(e).error);
                   });
                 },
                 color: Colors.blue[400],
                 child: new Text('更新用户',
                     style: new TextStyle(color: Colors.white))),
-
-
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:data_plugin/bmob/bmob_query.dart';
 import 'package:data_plugin/utils/dialog_util.dart';
 
 /**
@@ -58,6 +59,38 @@ class _InstallationPageState extends State<InstallationPage> {
                 },
                 color: Colors.blue[400],
                 child: new Text('初始化设备',
+                    style: new TextStyle(color: Colors.white))),
+            RaisedButton(
+                onPressed: () {
+                  BmobQuery<BmobInstallation> query = BmobQuery();
+                  query.queryInstallations().then((data) {
+                    showSuccess(context, data.toString());
+                    List<BmobInstallation> installations =
+                    data.map((i) => BmobInstallation.fromJson(i)).toList();
+                    for (BmobInstallation installation in installations) {
+                      if (installation != null) {
+                        print(installation.installationId);
+                        print(installation.objectId);
+                      }
+                    }
+                  }).catchError((e) {
+                    showError(context, BmobError.convert(e).error);
+                  });
+                },
+                color: Colors.blue[400],
+                child: new Text('查询多个设备',
+                    style: new TextStyle(color: Colors.white))),
+            RaisedButton(
+                onPressed: () {
+                  BmobQuery<BmobInstallation> query = BmobQuery();
+                  query.queryInstallation("3795adbcad").then((data) {
+                    showSuccess(context, BmobInstallation.fromJson(data).installationId);
+                  }).catchError((e) {
+                    showError(context, BmobError.convert(e).error);
+                  });
+                },
+                color: Colors.blue[400],
+                child: new Text('查询单个设备',
                     style: new TextStyle(color: Colors.white))),
           ],
         ),

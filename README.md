@@ -1173,3 +1173,63 @@ void _queryCount(BuildContext context) {
 }
 ```
 
+
+## 查询用户
+
+查询单个用户
+```
+BmobQuery<User> query = BmobQuery();
+query.queryUser("8e64dd60d2").then((data) {
+  showSuccess(context, User.fromJson(data).username);
+}).catchError((e) {
+  showError(context, BmobError.convert(e).error);
+});
+
+```
+查询多个用户
+```
+BmobQuery<User> query = BmobQuery();
+query.queryUsers().then((data) {
+  showSuccess(context, data.toString());
+  List<User> users =
+      data.map((i) => User.fromJson(i)).toList();
+  for (User user in users) {
+    if (user != null) {
+      print(user.objectId);
+    }
+  }
+}).catchError((e) {
+  showError(context, BmobError.convert(e).error);
+});
+```
+## 查询设备
+
+查询单个设备
+```
+BmobQuery<BmobInstallation> query = BmobQuery();
+query.queryInstallation("3795adbcad").then((data) {
+  showSuccess(context, BmobInstallation.fromJson(data).installationId);
+}).catchError((e) {
+  showError(context, BmobError.convert(e).error);
+});
+
+```
+查询多个设备
+```
+BmobQuery<BmobInstallation> query = BmobQuery();
+query.queryInstallations().then((data) {
+  showSuccess(context, data.toString());
+  List<BmobInstallation> installations =
+  data.map((i) => BmobInstallation.fromJson(i)).toList();
+  for (BmobInstallation installation in installations) {
+    if (installation != null) {
+      print(installation.installationId);
+      print(installation.objectId);
+    }
+  }
+}).catchError((e) {
+  showError(context, BmobError.convert(e).error);
+});
+
+```
+
