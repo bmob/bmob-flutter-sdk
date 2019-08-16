@@ -12,6 +12,9 @@ Flutter官方咨询QQ群：788254534
 dependencies:
   data_plugin: ^0.0.12
 ```
+```
+由于暂时无法科学上网，请v0.0.13版本SDK直接使用Github源码。
+```
 ## 1.2、安装
 安装指令：
 ```
