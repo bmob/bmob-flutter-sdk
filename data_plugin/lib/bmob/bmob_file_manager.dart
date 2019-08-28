@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'bmob_dio.dart';
 import 'bmob.dart';
 import 'package:data_plugin/bmob/response/bmob_handled.dart';
@@ -31,10 +32,9 @@ class BmobFileManager {
 
     String path = "${Bmob.BMOB_API_FILE_VERSION}${Bmob.BMOB_API_FILE}$fileName";
 
-    //获取所上传文件的二进制流
-    List<int> bytes = await file.readAsBytes();
 
-    Map responseData = await BmobDio.getInstance().post(path, data: bytes);
+    //获取所上传文件的二进制流
+    Map responseData = await BmobDio.getInstance().upload(path, data: file.readAsBytes());
     BmobFile bmobFile = BmobFile.fromJson(responseData);
     return bmobFile;
   }

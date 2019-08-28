@@ -30,6 +30,9 @@ class MyApp extends StatelessWidget {
     Bmob.initMasterKey("12784168944a56ae41c4575686b7b332",
         "9e8ffb8e0945092d1a6b3562741ae564", "0db392c02287a18bf05592d6d5221a6e");
 
+
+//    Bmob.init("4a2cc51afeddb54cdfcf679178b75dfd",
+//        "0e03d1a29af7f60b8cfd4dc8593f477c");
 //
 //    Bmob.initMasterKey("f5e404ad0c5ca581de5bc93e34c3bc22",
 //        "63b0380308dfbf689e45b32a879fb9d2","3bb061fa0019203f06fcfcf184a5fdab");

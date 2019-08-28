@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'bmob.dart';
 
@@ -61,6 +63,22 @@ class BmobDio {
     print('Get请求结果：' + response.toString());
     return response.data;
   }
+
+
+  ///POST请求
+  Future<dynamic> upload(path, {Future<List<int>> data, cancelToken}) async {
+    var requestUrl = options.baseUrl + path;
+    var headers = options.headers.toString();
+    print('Post请求启动! url：$requestUrl ,body: $data ,headers:$headers');
+    Response response = await dio.post(
+      requestUrl,
+      data: Stream.fromFuture(data),
+      cancelToken: cancelToken,
+    );
+    print('Post请求结果：' + response.toString());
+    return response.data;
+  }
+
 
   ///POST请求
   Future<dynamic> post(path, {data, cancelToken}) async {
