@@ -79,6 +79,28 @@ class BmobQuery<T> {
     return this;
   }
 
+  BmobQuery addWhereContains(String key, Object value) {
+    String regex = "\\Q"+value+"\\E";
+    addWhereMatches(key, regex);
+    return this;
+  }
+
+  void addWhereMatches(String key, String regex) {
+    addCondition(key, "\$regex", regex);
+  }
+
+
+  BmobQuery addWhereExists(String key) {
+    addCondition(key, "\$exists", true);
+    return this;
+  }
+  BmobQuery addWhereDoesNotExists(String key) {
+    addCondition(key, "\$exists", false);
+    return this;
+  }
+
+
+
   ///是否返回统计的记录个数
   BmobQuery hasGroupCount(bool has) {
     this.groupcount = has;
@@ -247,6 +269,7 @@ class BmobQuery<T> {
     skip = value;
     return this;
   }
+
   ///查询单条数据
   Future<dynamic> queryUser(objectId) async {
     return queryObjectByTableName(objectId, "_User");
@@ -264,7 +287,7 @@ class BmobQuery<T> {
   }
 
   ///查询单条数据
-  Future<dynamic> queryObjectByTableName(objectId,String tableName) async {
+  Future<dynamic> queryObjectByTableName(objectId, String tableName) async {
 //    String tableName = T.toString();
 //    if (T.runtimeType is BmobUser) {
 //      tableName = "_User";
@@ -291,6 +314,7 @@ class BmobQuery<T> {
     String tableName = T.toString();
     return queryObjectsByTableName(tableName);
   }
+
   ///查询多条数据
   Future<List<dynamic>> queryObjectsByTableName(String tableName) async {
 //    String tableName = T.toString();
@@ -310,6 +334,7 @@ class BmobQuery<T> {
     print(bmobResults.results);
     return bmobResults.results;
   }
+
   ///此处与类名一致，由指令自动生成代码
   factory BmobQuery.fromJson(Map<String, dynamic> json) =>
       _$BmobQueryFromJson(json);

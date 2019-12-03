@@ -65,8 +65,9 @@ class Bmob {
   }
 
   //SDK初始化，包含master key，允许操作其他用户
-  static void initMasterKey(appId, apiKey, masterKey) {
+  static void initMasterKey(appHost,appId, apiKey, masterKey) {
     init(appId, apiKey);
     bmobMasterKey = masterKey;
+    bmobHost = appHost;
   }
 }
