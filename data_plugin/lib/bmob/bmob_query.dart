@@ -79,6 +79,29 @@ class BmobQuery<T> {
     return this;
   }
 
+
+  //复合查询条件or
+  BmobQuery or(List<BmobQuery<T>> queries){
+    List<Map<String, dynamic>> list = List();
+    for(BmobQuery<T> bmobQuery in queries){
+      list.add(bmobQuery.where);
+    }
+    addCondition("\$or", null,list);
+    return this;
+  }
+
+
+  //复合查询条件and
+  BmobQuery and(List<BmobQuery<T>> queries) {
+    List<Map<String, dynamic>> list = List();
+    for(BmobQuery<T> bmobQuery in queries){
+      list.add(bmobQuery.where);
+    }
+    addCondition("\$and", null, list);
+    return this;
+  }
+
+
   BmobQuery addWhereContains(String key, Object value) {
     String regex = "\\Q"+value+"\\E";
     addWhereMatches(key, regex);

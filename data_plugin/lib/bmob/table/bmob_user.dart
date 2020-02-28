@@ -5,7 +5,7 @@ import 'package:data_plugin/bmob/bmob_dio.dart';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:data_plugin/bmob/response/bmob_registered.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:data_plugin/bmob/bmob.dart';
 
 //此处与类名一致，由指令自动生成代码
@@ -75,6 +75,11 @@ class BmobUser extends BmobObject {
     Map result = await BmobDio.getInstance()
         .get(Bmob.BMOB_API_LOGIN + getUrlParams(data));
     BmobUser bmobUser = BmobUser.fromJson(result);
+    // obtain shared preferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("user", result.toString());
+    print(result.toString());
+
     BmobDio.getInstance().setSessionToken(bmobUser.sessionToken);
     return bmobUser;
   }

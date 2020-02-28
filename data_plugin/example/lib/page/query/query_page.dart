@@ -1,3 +1,4 @@
+import 'package:data_plugin/bmob/table/bmob_user.dart';
 import 'package:flutter/material.dart';
 import 'package:data_plugin/bmob/bmob_query.dart';
 import 'package:data_plugin/bmob/response/bmob_error.dart';
@@ -131,6 +132,24 @@ class _QueryPageState extends State<QueryPage> {
                         color: Colors.blue[400],
                         child: new Text('查询个数',
                             style: new TextStyle(color: Colors.white))),
+
+                    RaisedButton(
+                        onPressed: () {
+                          _queryOr(context);
+                        },
+                        color: Colors.blue[400],
+                        child: new Text('复合查询：或查询',
+                            style: new TextStyle(color: Colors.white))),
+
+
+                    RaisedButton(
+                        onPressed: () {
+                          _queryAnd(context);
+                        },
+                        color: Colors.blue[400],
+                        child: new Text('复合查询：与查询',
+                            style: new TextStyle(color: Colors.white))),
+
                   ],
                 ),
               ),
@@ -233,6 +252,9 @@ class _QueryPageState extends State<QueryPage> {
   _queryInclude(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
     query.setInclude("author");
+    BmobUser author = BmobUser();
+    author.objectId = "objectId";
+    query.addWhereEqualTo("author", author);
     query.queryObjects().then((data) {
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
       showSuccess(context, data.toString());
@@ -255,6 +277,7 @@ class _QueryPageState extends State<QueryPage> {
   ///等于条件查询
   void _queryWhereEqual(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
+
     query.addWhereEqualTo("title", "博客标题");
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
@@ -435,6 +458,62 @@ class _QueryPageState extends State<QueryPage> {
     BmobQuery<Blog> query = BmobQuery();
     query.queryCount().then((int count) {
       showSuccess(context, "个数： $count");
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
+    });
+  }
+
+
+  void _queryOr(BuildContext context){
+    BmobQuery<Blog> query1 = BmobQuery();
+    query1.addWhereEqualTo("content", "内容");
+
+    BmobQuery<Blog> query2 = BmobQuery();
+    query2.addWhereEqualTo("title", "标题");
+
+    BmobQuery<Blog> query = BmobQuery();
+    List<BmobQuery<Blog>> list = new List();
+    list.add(query1);
+    list.add(query2);
+    query.or(list);
+    query.queryObjects().then((data) {
+      showSuccess(context, data.toString());
+      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      for (Blog blog in blogs) {
+        if (blog != null) {
+          print(blog.objectId);
+          print(blog.title);
+          print(blog.content);
+        }
+      }
+    }).catchError((e) {
+      showError(context, BmobError.convert(e).error);
+    });
+  }
+
+
+  void _queryAnd(BuildContext context){
+    BmobQuery<Blog> query1 = BmobQuery();
+    query1.addWhereEqualTo("content", "内容");
+
+    BmobQuery<Blog> query2 = BmobQuery();
+    query2.addWhereEqualTo("title", "标题");
+
+    BmobQuery<Blog> query = BmobQuery();
+    List<BmobQuery<Blog>> list = new List();
+    list.add(query1);
+    list.add(query2);
+    query.and(list);
+    query.queryObjects().then((data) {
+      showSuccess(context, data.toString());
+      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      for (Blog blog in blogs) {
+        if (blog != null) {
+          print(blog.objectId);
+          print(blog.title);
+          print(blog.content);
+        }
+      }
     }).catchError((e) {
       showError(context, BmobError.convert(e).error);
     });

@@ -1236,3 +1236,70 @@ query.queryInstallations().then((data) {
 
 ```
 
+## 复合查询
+
+### 或查询
+```
+void _queryOr(BuildContext context){
+  BmobQuery<Blog> query1 = BmobQuery();
+  query1.addWhereEqualTo("content", "内容");
+
+  BmobQuery<Blog> query2 = BmobQuery();
+  query2.addWhereEqualTo("title", "标题");
+
+  BmobQuery<Blog> query = BmobQuery();
+  List<BmobQuery<Blog>> list = new List();
+  list.add(query1);
+  list.add(query2);
+  query.or(list);
+  query.queryObjects().then((data) {
+    showSuccess(context, data.toString());
+    List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+    for (Blog blog in blogs) {
+      if (blog != null) {
+        print(blog.objectId);
+        print(blog.title);
+        print(blog.content);
+      }
+    }
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+
+
+
+### 与查询
+
+
+```
+
+void _queryAnd(BuildContext context){
+  BmobQuery<Blog> query1 = BmobQuery();
+  query1.addWhereEqualTo("content", "内容");
+
+  BmobQuery<Blog> query2 = BmobQuery();
+  query2.addWhereEqualTo("title", "标题");
+
+  BmobQuery<Blog> query = BmobQuery();
+  List<BmobQuery<Blog>> list = new List();
+  list.add(query1);
+  list.add(query2);
+  query.and(list);
+  query.queryObjects().then((data) {
+    showSuccess(context, data.toString());
+    List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+    for (Blog blog in blogs) {
+      if (blog != null) {
+        print(blog.objectId);
+        print(blog.title);
+        print(blog.content);
+      }
+    }
+  }).catchError((e) {
+    showError(context, BmobError.convert(e).error);
+  });
+}
+```
+
