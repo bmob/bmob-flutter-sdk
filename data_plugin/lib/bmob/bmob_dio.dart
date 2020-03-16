@@ -1,8 +1,18 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'bmob.dart';
 
+import 'dart:convert';
+import 'package:convert/convert.dart';
+import 'package:crypto/crypto.dart';
+
+//    post or put:
+//		md5(url + timeStamp + safeToken + noncestr+ body + sdkVersion)
+//
+//		get or delete:
+//		md5(url + timeStamp + safeToken + noncestr+ sdkVersion)
 class BmobDio {
   ///网络请求框架
   Dio dio;
@@ -28,14 +38,53 @@ class BmobDio {
       receiveTimeout: 3000,
       //请求头部
       headers: {
-        "X-Bmob-Application-Id": Bmob.bmobAppId,
-        "X-Bmob-REST-API-Key": Bmob.bmobRestApiKey,
-        "X-Bmob-Master-Key": Bmob.bmobMasterKey,
         "Content-Type": "application/json",
       },
     );
 
     dio = new Dio(options);
+  }
+
+  ///获取16位随机字符串
+  getNoncestrKey() {
+    String alphabet = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+    int length = 16;
+
+    /// 生成的字符串固定长度
+    String left = '';
+    for (var i = 0; i < length; i++) {
+      left = left + alphabet[Random().nextInt(alphabet.length)];
+    }
+    print(left);
+    return left;
+  }
+
+  ///md5(url(域名之外的url) + timeStamp + safeToken(后台设置) + noncestr(随机值)+ body(body json) + sdkVersion)
+  getSafeSign(path, nonceStrKey, safeTimeStamp, data) {
+    var origin = path +
+        safeTimeStamp +
+        Bmob.bmobApiSafe +
+        nonceStrKey +
+        data.toString() +
+        Bmob.bmobSDKVersion;
+    print(origin);
+    var md5 = generateMd5(origin);
+    print(md5);
+    return md5;
+  }
+
+  ///md5编码
+  String generateMd5(String origin) {
+    var content = new Utf8Encoder().convert(origin);
+    var digest = md5.convert(content);
+    return hex.encode(digest.bytes);
+  }
+
+  ///获取时间戳 秒
+  getSafeTimestamp() {
+    int second = (new DateTime.now().millisecondsSinceEpoch)~/1000;
+    print(second);
+    return second.toString();
   }
 
   ///单例模式
@@ -48,6 +97,8 @@ class BmobDio {
 
   ///GET请求
   Future<dynamic> get(path, {data, cancelToken}) async {
+    options.headers.addAll(getHeaders(path, ""));
+
     var requestUrl = options.baseUrl + path;
     var headers = options.headers.toString();
     print('Get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
@@ -57,16 +108,14 @@ class BmobDio {
       cancelToken: cancelToken,
     );
 
-
-
-
     print('Get请求结果：' + response.toString());
     return response.data;
   }
 
-
   ///POST请求
   Future<dynamic> upload(path, {Future<List<int>> data, cancelToken}) async {
+    options.headers.addAll(getHeaders(path, data));
+
     var requestUrl = options.baseUrl + path;
     var headers = options.headers.toString();
     print('Post请求启动! url：$requestUrl ,body: $data ,headers:$headers');
@@ -76,12 +125,14 @@ class BmobDio {
       cancelToken: cancelToken,
     );
     print('Post请求结果：' + response.toString());
+
     return response.data;
   }
 
-
   ///POST请求
   Future<dynamic> post(path, {data, cancelToken}) async {
+    options.headers.addAll(getHeaders(path, data));
+
     var requestUrl = options.baseUrl + path;
     var headers = options.headers.toString();
     print('Post请求启动! url：$requestUrl ,body: $data ,headers:$headers');
@@ -100,6 +151,8 @@ class BmobDio {
     data,
     cancelToken,
   }) async {
+    options.headers.addAll(getHeaders(path, ""));
+
     var requestUrl = options.baseUrl + path;
     print('Delete请求启动! url：$requestUrl ,body: $data');
     Response response =
@@ -110,6 +163,8 @@ class BmobDio {
 
   ///Put请求
   Future<dynamic> put(path, {data, cancelToken}) async {
+    options.headers.addAll(getHeaders(path, data));
+
     var requestUrl = options.baseUrl + path;
     print('Put请求启动! url：$requestUrl ,body: $data');
     Response response =
@@ -118,8 +173,10 @@ class BmobDio {
     return response.data;
   }
 
-  ///GET请求，自带请求路径
+  ///GET请求，自带请求路径，数据监听
   Future<dynamic> getByUrl(requestUrl, {data, cancelToken}) async {
+    options.headers.addAll(getHeaders(requestUrl,data));
+
     var headers = options.headers.toString();
     print('Get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
     Response response = await dio.get(
@@ -129,5 +186,38 @@ class BmobDio {
     );
     print('Get请求结果：' + response.toString());
     return response.data;
+  }
+
+  ///获取请求头
+  getHeaders(path, data) {
+    int indexQuestion = path.indexOf("?");
+
+    if (indexQuestion != -1) {
+      path = path.substring(0, indexQuestion);
+    }
+    var nonceStrKey = getNoncestrKey();
+    var safeTimeStamp = getSafeTimestamp();
+    Map<String, dynamic> map = Map();
+
+    if (Bmob.bmobAppId.isNotEmpty) {
+      //没有加密
+      map["X-Bmob-Application-Id"] = Bmob.bmobAppId;
+      map["X-Bmob-REST-API-Key"] = Bmob.bmobRestApiKey;
+    } else {
+      //加密
+      map["X-Bmob-SDK-Type"] = Bmob.bmobSDKType;
+      map["X-Bmob-SDK-Version"] = Bmob.bmobSDKVersion;
+      map["X-Bmob-Secret-Key"] = Bmob.bmobSecretKey;
+      map["X-Bmob-Safe-Timestamp"] = safeTimeStamp;
+      map["X-Bmob-Noncestr-Key"] = nonceStrKey;
+      map["X-Bmob-Safe-Sign"] =
+          getSafeSign(path, nonceStrKey, safeTimeStamp, data);
+    }
+
+    if (Bmob.bmobMasterKey.isNotEmpty) {
+      map["X-Bmob-Master-Key"] = Bmob.bmobMasterKey;
+    }
+
+    return map;
   }
 }

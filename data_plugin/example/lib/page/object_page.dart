@@ -92,8 +92,8 @@ class _ObjectPageState extends State<ObjectPage> {
     BmobUser bmobUser = BmobUser();
     bmobUser.objectId = "7c7fd3afe1";
     Blog blog = Blog();
-    blog.title = "博客标题";
-    blog.content = "博客内容";
+    blog.title = "blogtitle";
+    blog.content = "blogcontent";
     blog.author = bmobUser;
     blog.like = 77;
     blog.save().then((BmobSaved bmobSaved) {

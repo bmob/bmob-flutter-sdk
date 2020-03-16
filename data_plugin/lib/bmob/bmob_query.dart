@@ -347,8 +347,8 @@ class BmobQuery<T> {
 //      tableName = "_Installation";
 //    }
     String url = Bmob.BMOB_API_CLASSES + tableName;
-    url = url + "?";
     if (where.isNotEmpty) {
+      url = url + "?";
       url = url + "where=" + json.encode(where);
     }
     url = url + getStatistics();

@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Bmob.initMasterKey("12784168944a56ae41c4575686b7b332",
+    Bmob.initMasterKey("","12784168944a56ae41c4575686b7b332",
         "9e8ffb8e0945092d1a6b3562741ae564", "0db392c02287a18bf05592d6d5221a6e");
 
 

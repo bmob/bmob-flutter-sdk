@@ -53,8 +53,29 @@ https://github.com/bmob/bmob-flutter-sdk/tree/master/data_demo
 
 在runApp中进行一下初始化操作：
 ```
-//SDK初始化，masterkey为管理权限密钥，建议在客户端使用时置空
-static void initMasterKey(appId, apiKey, masterKey);
+/**
+ * 非加密方式初始化
+ */
+Bmob.init("你的自定义API域名, "appId", "apiKey");
+```
+```
+/**
+ * 超级权限非加密方式初始化
+ */
+Bmob.initMasterKey("你的自定义API域名", "appId","apiKey","masterKey");
+```
+```
+/**
+ * 加密方式初始化
+ */
+Bmob.initEncryption("你的自定义API域名", "secretKey", "apiSafe");
+```
+```
+/**
+ * 超级权限加密方式初始化
+ */
+Bmob.initEncryptionMasterKey("你的自定义API域名","secretKey","apiSafe","masterKey");
+
 ```
 2、导入源码
 
