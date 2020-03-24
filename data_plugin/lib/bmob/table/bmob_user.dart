@@ -162,14 +162,29 @@ class BmobUser extends BmobObject {
     return bmobHandled;
   }
 
+  ///发送验证邮箱
+  static Future<BmobHandled> requestEmailVerify(String email) async {
+    Map<String, dynamic> data = new Map();
+
+    data["email"] = email;
+
+    //Map转String
+    //发送请求
+    Map result = await BmobDio.getInstance()
+        .post(Bmob.BMOB_API_REQUEST_REQUEST_EMAIL_VERIFY, data: data);
+    print(result);
+    BmobHandled bmobHandled = BmobHandled.fromJson(result);
+    return bmobHandled;
+  }
+
   ///旧密码重置密码
-  Future<BmobHandled> updateUserPassword(String oldPassword,String  newPassword) async {
+  Future<BmobHandled> updateUserPassword(
+      String oldPassword, String newPassword) async {
     Map<String, dynamic> map = toJson();
     Map<String, dynamic> data = new Map();
 
-
-    data["oldPassword"]=oldPassword;
-    data["newPassword"]=newPassword;
+    data["oldPassword"] = oldPassword;
+    data["newPassword"] = newPassword;
     //去除由服务器生成的字段值
     map.remove("objectId");
     map.remove("createdAt");
@@ -184,8 +199,7 @@ class BmobUser extends BmobObject {
     //Map转String
     //发送请求
     Map result = await BmobDio.getInstance().put(
-        Bmob.BMOB_API_REQUEST_UPDATE_USER_PASSWORD +
-            objectId,
+        Bmob.BMOB_API_REQUEST_UPDATE_USER_PASSWORD + objectId,
         data: getParamsJsonFromParamsMap(data));
     print(result);
     BmobHandled bmobHandled = BmobHandled.fromJson(result);

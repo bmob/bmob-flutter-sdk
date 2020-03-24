@@ -1181,7 +1181,7 @@ void _queryHaving(BuildContext context) {
 
 ```
 
-## 个数查询
+## 2.1.7、个数查询
 
 ```
 ///查询数据个数
@@ -1196,7 +1196,7 @@ void _queryCount(BuildContext context) {
 ```
 
 
-## 查询用户
+## 2.1.8、查询用户
 
 查询单个用户
 ```
@@ -1224,7 +1224,7 @@ query.queryUsers().then((data) {
   showError(context, BmobError.convert(e).error);
 });
 ```
-## 查询设备
+## 2.1.9、查询设备
 
 查询单个设备
 ```
@@ -1255,7 +1255,7 @@ query.queryInstallations().then((data) {
 
 ```
 
-## 复合查询
+## 2.1.10、复合查询
 
 ### 或查询
 ```
@@ -1320,5 +1320,19 @@ void _queryAnd(BuildContext context){
     showError(context, BmobError.convert(e).error);
   });
 }
+```
+
+## 2.1.11、发送验证邮箱
+
+开启：设置--邮件设置--验证邮箱。
+```
+BmobUser.requestEmailVerify("邮箱").then((BmobHandled handled){
+
+  showSuccess(context, handled.toJson().toString());
+}).catchError((e){
+
+  showError(context, BmobError.convert(e).error);
+});
+
 ```
 

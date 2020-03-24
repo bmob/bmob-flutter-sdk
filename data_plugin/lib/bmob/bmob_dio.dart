@@ -37,9 +37,9 @@ class BmobDio {
       //响应流上前后两次接受到数据的间隔，单位为毫秒。如果两次间隔超过[receiveTimeout]，将会抛出一个[DioErrorType.RECEIVE_TIMEOUT]的异常。
       receiveTimeout: 3000,
       //请求头部
-      headers: {
-        "Content-Type": "application/json",
-      },
+//      headers: {
+//        "Content-Type": "application/json",
+//      },
     );
 
     dio = new Dio(options);
@@ -82,7 +82,7 @@ class BmobDio {
 
   ///获取时间戳 秒
   getSafeTimestamp() {
-    int second = (new DateTime.now().millisecondsSinceEpoch)~/1000;
+    int second = (new DateTime.now().millisecondsSinceEpoch) ~/ 1000;
     print(second);
     return second.toString();
   }
@@ -175,7 +175,7 @@ class BmobDio {
 
   ///GET请求，自带请求路径，数据监听
   Future<dynamic> getByUrl(requestUrl, {data, cancelToken}) async {
-    options.headers.addAll(getHeaders(requestUrl,data));
+    options.headers.addAll(getHeaders(requestUrl, data));
 
     var headers = options.headers.toString();
     print('Get请求启动! url：$requestUrl ,body: $data ,headers:$headers');
@@ -213,6 +213,8 @@ class BmobDio {
       map["X-Bmob-Safe-Sign"] =
           getSafeSign(path, nonceStrKey, safeTimeStamp, data);
     }
+
+    map["Content-Type"] = "application/json";
 
     if (Bmob.bmobMasterKey.isNotEmpty) {
       map["X-Bmob-Master-Key"] = Bmob.bmobMasterKey;

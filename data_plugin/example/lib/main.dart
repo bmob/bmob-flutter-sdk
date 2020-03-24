@@ -33,25 +33,25 @@ class MyApp extends StatelessWidget {
     Bmob.init("https://api2.bmob.cn", "12784168944a56ae41c4575686b7b332",
         "9e8ffb8e0945092d1a6b3562741ae564");
 
-    /**
-     * 超级权限非加密方式初始化
-     */
-    Bmob.initMasterKey(
-        "https://api2.bmob.cn",
-        "12784168944a56ae41c4575686b7b332",
-        "9e8ffb8e0945092d1a6b3562741ae564",
-        "0db392c02287a18bf05592d6d5221a6e");
-
-    /**
-     * 加密方式初始化
-     */
-    Bmob.initEncryption("https://api2.bmob.cn", "3d53e458e911733e", "imdata");
-
-    /**
-     * 超级权限加密方式初始化
-     */
-    Bmob.initEncryptionMasterKey("https://api2.bmob.cn", "3d53e458e911733e",
-        "imdata", "0db392c02287a18bf05592d6d5221a6e");
+//    /**
+//     * 超级权限非加密方式初始化
+//     */
+//    Bmob.initMasterKey(
+//        "https://api2.bmob.cn",
+//        "12784168944a56ae41c4575686b7b332",
+//        "9e8ffb8e0945092d1a6b3562741ae564",
+//        "0db392c02287a18bf05592d6d5221a6e");
+//
+//    /**
+//     * 加密方式初始化
+//     */
+//    Bmob.initEncryption("https://api2.bmob.cn", "3d53e458e911733e", "imdata");
+//
+//    /**
+//     * 超级权限加密方式初始化
+//     */
+//    Bmob.initEncryptionMasterKey("https://api2.bmob.cn", "3d53e458e911733e",
+//        "imdata", "0db392c02287a18bf05592d6d5221a6e");
 
     return MaterialApp(
       title: 'Flutter Bmob',

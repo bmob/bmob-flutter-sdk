@@ -45,6 +45,11 @@ class Bmob {
   static const String BMOB_API_REQUEST_UPDATE_USER_PASSWORD =
       BMOB_API_VERSION + "/updateUserPassword";
 
+
+  static const String BMOB_API_REQUEST_REQUEST_EMAIL_VERIFY =
+      BMOB_API_VERSION + "/requestEmailVerify";
+
+
   static const String BMOB_API_LOGIN = BMOB_API_VERSION + "/login";
   static const String BMOB_API_SLASH = "/";
   static const String BMOB_API_SEND_SMS_CODE =

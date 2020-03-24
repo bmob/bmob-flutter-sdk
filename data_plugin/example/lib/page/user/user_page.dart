@@ -129,6 +129,19 @@ class _UserPageState extends State<UserPage> {
                 color: Colors.blue[400],
                 child: new Text('更新用户',
                     style: new TextStyle(color: Colors.white))),
+            RaisedButton(
+                onPressed: () {
+                  BmobUser.requestEmailVerify("13760289294@139.com").then((BmobHandled handled){
+
+                    showSuccess(context, handled.toJson().toString());
+                  }).catchError((e){
+
+                    showError(context, BmobError.convert(e).error);
+                  });
+                },
+                color: Colors.blue[400],
+                child: new Text('发送验证邮箱',
+                    style: new TextStyle(color: Colors.white))),
           ],
         ),
       ),
