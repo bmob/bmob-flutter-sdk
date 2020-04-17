@@ -190,21 +190,22 @@ class BmobDio {
 
   ///获取请求头
   getHeaders(path, data) {
-    int indexQuestion = path.indexOf("?");
-
-    if (indexQuestion != -1) {
-      path = path.substring(0, indexQuestion);
-    }
-    var nonceStrKey = getNoncestrKey();
-    var safeTimeStamp = getSafeTimestamp();
     Map<String, dynamic> map = Map();
 
     if (Bmob.bmobAppId.isNotEmpty) {
       //没有加密
       map["X-Bmob-Application-Id"] = Bmob.bmobAppId;
       map["X-Bmob-REST-API-Key"] = Bmob.bmobRestApiKey;
-    } else {
+    } else if(Bmob.bmobSecretKey.isNotEmpty){
       //加密
+      int indexQuestion = path.indexOf("?");
+
+      if (indexQuestion != -1) {
+        path = path.substring(0, indexQuestion);
+      }
+      var nonceStrKey = getNoncestrKey();
+      var safeTimeStamp = getSafeTimestamp();
+
       map["X-Bmob-SDK-Type"] = Bmob.bmobSDKType;
       map["X-Bmob-SDK-Version"] = Bmob.bmobSDKVersion;
       map["X-Bmob-Secret-Key"] = Bmob.bmobSecretKey;
@@ -212,6 +213,9 @@ class BmobDio {
       map["X-Bmob-Noncestr-Key"] = nonceStrKey;
       map["X-Bmob-Safe-Sign"] =
           getSafeSign(path, nonceStrKey, safeTimeStamp, data);
+    }else{
+      //没有初始化
+      print("请先进行SDK的初始化，再进行网络请求。");
     }
 
     map["Content-Type"] = "application/json";

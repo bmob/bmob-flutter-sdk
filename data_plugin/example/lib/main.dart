@@ -27,20 +27,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    /**
-     * 非加密方式初始化
-     */
-    Bmob.init("https://api2.bmob.cn", "12784168944a56ae41c4575686b7b332",
-        "9e8ffb8e0945092d1a6b3562741ae564");
-
 //    /**
-//     * 超级权限非加密方式初始化
+//     * 非加密方式初始化
 //     */
-//    Bmob.initMasterKey(
-//        "https://api2.bmob.cn",
-//        "12784168944a56ae41c4575686b7b332",
-//        "9e8ffb8e0945092d1a6b3562741ae564",
-//        "0db392c02287a18bf05592d6d5221a6e");
+//    Bmob.init("https://api2.bmob.cn", "80c24431e79606ad4cac39e4b50d0ec9",
+//        "1ffdda4ed16323500457d700d9d70065");
+
+    /**
+     * 超级权限非加密方式初始化
+     */
+    Bmob.initMasterKey(
+        "https://api2.bmob.cn",
+        "12784168944a56ae41c4575686b7b332",
+        "9e8ffb8e0945092d1a6b3562741ae564",
+        "0db392c02287a18bf05592d6d5221a6e");
 //
 //    /**
 //     * 加密方式初始化

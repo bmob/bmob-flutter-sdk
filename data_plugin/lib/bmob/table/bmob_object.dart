@@ -152,6 +152,9 @@ abstract class BmobObject {
   String getParamsJsonFromParamsMap(map) {
     Map<String, dynamic> data = new Map();
     //去除由服务器生成的字段值
+    if(map==null){
+      print("请先在继承类中实现BmobObject中的Map getParams()方法！");
+    }
     map.remove(Bmob.BMOB_PROPERTY_OBJECT_ID);
     map.remove(Bmob.BMOB_PROPERTY_CREATED_AT);
     map.remove(Bmob.BMOB_PROPERTY_UPDATED_AT);

@@ -42,6 +42,13 @@ class _OtherState extends State<TimePage> {
                 color: Colors.blue[400],
                 child: new Text('添加时间类型',
                     style: new TextStyle(color: Colors.white))),
+            RaisedButton(
+                onPressed: () {
+                  _queryDate();
+                },
+                color: Colors.blue[400],
+                child: new Text('查询某个时间段数据',
+                    style: new TextStyle(color: Colors.white))),
           ],
         ),
       ),
@@ -71,5 +78,9 @@ class _OtherState extends State<TimePage> {
     }).catchError((e) {
       showError(context, BmobError.convert(e).error);
     });
+  }
+
+  void _queryDate() {
+
   }
 }

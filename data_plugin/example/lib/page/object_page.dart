@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:data_plugin/bmob/table/bmob_user.dart';
 import 'package:data_plugin/bmob/response/bmob_error.dart';
@@ -7,6 +9,9 @@ import 'package:data_plugin/bmob/response/bmob_handled.dart';
 import 'package:data_plugin/bmob/response/bmob_updated.dart';
 import 'package:data_plugin/bmob/bmob_query.dart';
 import '../bean/blog.dart';
+import 'package:data_plugin/bmob/bmob_batch.dart';
+
+import 'package:data_plugin/bmob/table/bmob_object.dart';
 
 class ObjectPage extends StatefulWidget {
   ObjectPage({Key key, this.title}) : super(key: key);
@@ -80,6 +85,13 @@ class _ObjectPageState extends State<ObjectPage> {
                   color: Colors.blue[400],
                   child: new Text('其他查询操作',
                       style: new TextStyle(color: Colors.white))),
+              RaisedButton(
+                  onPressed: () {
+                    _bmobBatch(context);
+                  },
+                  color: Colors.blue[400],
+                  child: new Text('批量操作',
+                      style: new TextStyle(color: Colors.white))),
             ],
           ),
         ),
@@ -122,8 +134,6 @@ class _ObjectPageState extends State<ObjectPage> {
       showError(context, "请先新增一条数据");
     }
   }
-
-
 
   ///查询多条数据
 //  _queryMulti(BuildContext context) {
@@ -208,5 +218,30 @@ class _ObjectPageState extends State<ObjectPage> {
     } else {
       showError(context, "请先新增一条数据");
     }
+  }
+
+  void _bmobBatch(BuildContext context) {
+    Blog blog1 = Blog();
+    blog1.content = "批量1";
+
+    Blog blog2 = Blog();
+    blog2.content = "批量2";
+
+    Blog blog3 = Blog();
+    blog3.content = "批量3";
+
+    List<BmobObject> bmobObjects = List();
+    bmobObjects.add(blog1);
+    bmobObjects.add(blog2);
+    bmobObjects.add(blog3);
+
+    BmobBatch batch = BmobBatch();
+    batch.insertBatch(bmobObjects).then((List list) {
+      for (var item in list) {
+        print(item);
+      }
+    }).catchError((e) {
+      showError(context, e.toString());
+    });
   }
 }

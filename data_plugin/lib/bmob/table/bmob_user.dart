@@ -77,7 +77,8 @@ class BmobUser extends BmobObject {
     BmobUser bmobUser = BmobUser.fromJson(result);
     // obtain shared preferences
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("user", result.toString());
+//    prefs.setString("user", result.toString());
+    prefs.setString("user", json.encode(bmobUser));
     print(result.toString());
 
     BmobDio.getInstance().setSessionToken(bmobUser.sessionToken);

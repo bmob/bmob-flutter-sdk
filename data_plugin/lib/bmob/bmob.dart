@@ -1,6 +1,7 @@
 class Bmob {
   //Bmob REST API 地址
   static String bmobHost = "https://api2.bmob.cn";
+
   //Bmob 应用ID，不可泄漏
   static String bmobAppId = "";
 
@@ -17,7 +18,7 @@ class Bmob {
   static String bmobApiSafe = "";
 
   //固定
-  static final String bmobSDKType = "wechatApp";
+  static final String bmobSDKType = "Flutter";
 
   //固定
   static final String bmobSDKVersion = "10";
@@ -45,10 +46,10 @@ class Bmob {
   static const String BMOB_API_REQUEST_UPDATE_USER_PASSWORD =
       BMOB_API_VERSION + "/updateUserPassword";
 
+  static const String BMOB_API_BATCH = BMOB_API_VERSION + "/batch";
 
   static const String BMOB_API_REQUEST_REQUEST_EMAIL_VERIFY =
       BMOB_API_VERSION + "/requestEmailVerify";
-
 
   static const String BMOB_API_LOGIN = BMOB_API_VERSION + "/login";
   static const String BMOB_API_SLASH = "/";
@@ -76,7 +77,7 @@ class Bmob {
   static const String BMOB_TABLE_TOLE = "_Role";
 
   //SDK初始化
-  static void init(appHost,appId, apiKey) {
+  static void init(appHost, appId, apiKey) {
     bmobHost = appHost;
     bmobAppId = appId;
     bmobRestApiKey = apiKey;
@@ -84,20 +85,20 @@ class Bmob {
 
   //SDK初始化，包含master key，允许操作其他用户
   static void initMasterKey(appHost, appId, apiKey, masterKey) {
-    init(appHost,appId, apiKey);
+    init(appHost, appId, apiKey);
     bmobMasterKey = masterKey;
   }
 
   //SDK初始化，加密请求格式
-  static void initEncryption(appHost,secretKey, apiSafe) {
+  static void initEncryption(appHost, secretKey, apiSafe) {
     bmobHost = appHost;
-    bmobApiSafe = apiSafe;
     bmobSecretKey = secretKey;
+    bmobApiSafe = apiSafe;
   }
 
   //SDK初始化，加密请求格式，包含master key，允许操作其他用户
-  static void initEncryptionMasterKey(appHost,secretKey, apiSafe, masterKey) {
-    initEncryption(appHost,secretKey, apiSafe);
+  static void initEncryptionMasterKey(appHost, secretKey, apiSafe, masterKey) {
+    initEncryption(appHost, secretKey, apiSafe);
     bmobMasterKey = masterKey;
   }
 }
