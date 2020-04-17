@@ -1336,3 +1336,47 @@ BmobUser.requestEmailVerify("邮箱").then((BmobHandled handled){
 
 ```
 
+# 2.1.12、批量操作
+
+批量添加：
+
+```
+void _bmobBatch(BuildContext context) {
+  Blog blog1 = Blog();
+  blog1.content = "批量1";
+
+  Blog blog2 = Blog();
+  blog2.content = "批量2";
+
+  Blog blog3 = Blog();
+  blog3.content = "批量3";
+
+  List<BmobObject> bmobObjects = List();
+  bmobObjects.add(blog1);
+  bmobObjects.add(blog2);
+  bmobObjects.add(blog3);
+
+  BmobBatch batch = BmobBatch();
+  //deleteBatch
+  batch.insertBatch(bmobObjects).then((List list) {
+    for (var item in list) {
+      print(item);
+    }
+  }).catchError((e) {
+    showError(context, e.toString());
+  });
+}
+```
+
+
+批量删除：
+```
+deleteBatch
+```
+
+批量修改：
+```
+updateBatch
+```
+
+
