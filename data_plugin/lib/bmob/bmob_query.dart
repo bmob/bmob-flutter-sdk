@@ -262,9 +262,13 @@ class BmobQuery<T> {
         map1[condition] = map;
         where[key] = map1;
       } else {
-        Map<String, dynamic> map = new Map();
-        map[condition] = value;
-        where[key] = map;
+        if (where[key] == null) {
+          where[key] = Map();
+        }
+        where[key][condition] = value;
+//        Map<String, dynamic> map = new Map();
+//        map[condition] = value;
+//        where[key] = map;
       }
     }
   }

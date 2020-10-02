@@ -74,6 +74,7 @@ class BmobUser extends BmobObject {
     //发送请求
     Map result = await BmobDio.getInstance()
         .get(Bmob.BMOB_API_LOGIN + getUrlParams(data));
+    print('12345'+result.toString());
     if (result.containsKey('emailVerified') && (result['emailVerified'] as String).isEmpty) {
       result['emailVerified'] = false;
     }
