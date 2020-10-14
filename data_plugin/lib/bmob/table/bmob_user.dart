@@ -16,7 +16,7 @@ class BmobUser extends BmobObject {
   String username;
   String password;
   String email;
-  bool emailVerified;
+  bool emailVerified = false;
   String mobilePhoneNumber;
   bool mobilePhoneNumberVerified;
   String sessionToken;
@@ -74,6 +74,14 @@ class BmobUser extends BmobObject {
     //发送请求
     Map result = await BmobDio.getInstance()
         .get(Bmob.BMOB_API_LOGIN + getUrlParams(data));
+    print('12345'+result.toString());
+    if (result.containsKey('emailVerified') && (result['emailVerified'] as String).isEmpty) {
+      result['emailVerified'] = false;
+    }
+    if (result.containsKey('mobilePhoneNumberVerified') && (result['mobilePhoneNumberVerified'] as String)
+        .isEmpty) {
+      result['mobilePhoneNumberVerified'] = false;
+    }
     BmobUser bmobUser = BmobUser.fromJson(result);
     // obtain shared preferences
     SharedPreferences prefs = await SharedPreferences.getInstance();
