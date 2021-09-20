@@ -6,8 +6,8 @@ part 'bmob_error.g.dart';
 
 @JsonSerializable()
 class BmobError extends Error {
-  int code;
-  String error;
+  int? code;
+  String? error;
 
   BmobError(this.code, this.error);
 
@@ -18,34 +18,34 @@ class BmobError extends Error {
   //此处与类名一致，由指令自动生成代码
   Map<String, dynamic> toJson() => _$BmobErrorToJson(this);
 
-  String toString() => "BmobError [$code]:" + error;
+  String toString() => "BmobError [$code]:" + error!;
 
   //转化DioError错误为BmobError类型
-  static BmobError convert(e) {
-    BmobError bmobError;
+  static BmobError? convert(e) {
+    BmobError? bmobError;
 
     if (e is BmobError) {
       bmobError = e;
     } else if (e is DioError) {
       DioError dioError = e;
       switch (dioError.type) {
-        case DioErrorType.SEND_TIMEOUT:
+        case DioErrorType.sendTimeout:
           bmobError = BmobError(9015, dioError.message);
           break;
-        case DioErrorType.DEFAULT:
+        case DioErrorType.other:
           bmobError = BmobError(9015, dioError.message);
           break;
-        case DioErrorType.CANCEL:
+        case DioErrorType.cancel:
           bmobError = BmobError(9015, dioError.message);
           break;
-        case DioErrorType.RECEIVE_TIMEOUT:
+        case DioErrorType.receiveTimeout:
           bmobError = BmobError(9015, dioError.message);
           break;
-        case DioErrorType.RESPONSE:
+        case DioErrorType.response:
           bmobError = BmobError(
-              dioError.response.data['code'], dioError.response.data['error']);
+              dioError.response!.data['code'], dioError.response!.data['error']);
           break;
-        case DioErrorType.CONNECT_TIMEOUT:
+        case DioErrorType.connectTimeout:
           bmobError = BmobError(9015, dioError.message);
           break;
       }

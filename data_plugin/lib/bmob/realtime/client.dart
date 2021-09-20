@@ -47,7 +47,7 @@ class Client {
     return BmobDio.getInstance().getByUrl(DEFAULT_REAL_TIME_DATA_HOST_HTTP);
   }
 
-  WebSocket webSocket;
+  WebSocket? webSocket;
 
   ///监听
   Future listen(
@@ -127,7 +127,7 @@ class Client {
 
 
     webSocket = await WebSocket.connect(requestUrl, headers: map);
-    webSocket.listen((event) {
+    webSocket!.listen((event) {
       String data = event.toString();
 
       List<String> parts = data.split(":");
@@ -139,17 +139,17 @@ class Client {
           // disconnect
           onDisconnected(this);
 
-          webSocket.add("0::");
+          webSocket!.add("0::");
           break;
         case 1:
           // connect
           onConnected(this);
 
-          webSocket.add("1::");
+          webSocket!.add("1::");
           break;
         case 2:
           // heartbeat
-          webSocket.add("2::");
+          webSocket!.add("2::");
           break;
         case 3:
           {
@@ -189,8 +189,8 @@ class Client {
             Message message = Message.fromJson(map);
             ///{"appKey":"12784168944a56ae41c4575686b7b332","tableName":"Blog","objectId":"","action":"updateTable","data":{"author":"7c7fd3afe1","content":"博客内容","createdAt":"2019-04-26 15:55:12","like":77,"objectId":"8913e0b65f","title":"博客标题","updatedAt":"2019-04-26 15:55:12"}}
             ///服务端发送消息给客户端，数据变化
-            if (message.name.isNotEmpty && message.name == "server_pub") {
-              String arg = message.args[0];
+            if (message.name!.isNotEmpty && message.name == "server_pub") {
+              String arg = message.args![0];
               Map<String, dynamic> map = json.decode(arg);
               Change change = Change.fromJson(map);
               onDataChanged(change);
@@ -200,7 +200,7 @@ class Client {
         case 6:
           // ack
           final List<String> ackParts = parts[3].split("\\+");
-          List<String> arguments = List();
+          List<String> arguments = <String>[];
           if (ackParts.length == 2) {
             arguments[1] = ackParts[1];
           }
@@ -210,7 +210,7 @@ class Client {
           }
           String part = parts[1];
           String ack = "6::$part$data";
-          webSocket.add(ack);
+          webSocket!.add(ack);
           break;
         case 7:
           // error
@@ -223,8 +223,8 @@ class Client {
           throw new Exception("unknown code");
       }
     }, onDone: () {
-      webSocket.add("1::");
-      webSocket.add("2::");
+      webSocket!.add("1::");
+      webSocket!.add("2::");
     }, onError: (error) {
       onError(new BmobError(9015, error.toString()));
     }, cancelOnError: true);
@@ -233,7 +233,7 @@ class Client {
   /// 关闭连接
   void close() {
     if (webSocket != null) {
-      webSocket.close();
+      webSocket!.close();
     }
   }
 
@@ -241,7 +241,7 @@ class Client {
   ///
   /// @param tableName 监听的表名
   Future subTableUpdate(String tableName) async {
-    List<String> args = List();
+    List<String> args = <String>[];
     args.add(getArgs(tableName, "", ACTION_UPDATE_TABLE));
     emit("client_sub", args);
   }
@@ -250,7 +250,7 @@ class Client {
   ///
   /// @param tableName 取消监听的表名
   Future unsubTableUpdate(String tableName) async {
-    List<String> args = List();
+    List<String> args = <String>[];
     args.add(getArgs(tableName, "", "unsub_updateTable"));
     emit("client_unsub", args);
   }
@@ -259,7 +259,7 @@ class Client {
   ///
   /// @param tableName 监听的表名
   Future subTableDelete(String tableName) async {
-    List<String> args = List();
+    List<String> args = <String>[];
     args.add(getArgs(tableName, "", ACTION_DELETE_TABLE));
     emit("client_sub", args);
   }
@@ -268,7 +268,7 @@ class Client {
   ///
   /// @param tableName 取消监听的表名
   Future unsubTableDelete(String tableName) async {
-    List<String> args = List();
+    List<String> args = <String>[];
     args.add(getArgs(tableName, "", "unsub_deleteTable"));
     emit("client_unsub", args);
   }
@@ -278,7 +278,7 @@ class Client {
   /// @param tableName 监听的表名
   /// @param objectId  监听的行Id
   Future subRowUpdate(String tableName, String objectId) async {
-    List<String> args = List();
+    List<String> args = <String>[];
     args.add(getArgs(tableName, objectId, ACTION_UPDATE_ROW));
     emit("client_sub", args);
   }
@@ -288,7 +288,7 @@ class Client {
   /// @param tableName 取消监听的表名
   /// @param objectId  取消监听的行Id
   Future unsubRowUpdate(String tableName, String objectId) async {
-    List<String> args = List();
+    List<String> args = <String>[];
     args.add(getArgs(tableName, objectId, "unsub_updateRow"));
     emit("client_unsub", args);
   }
@@ -298,7 +298,7 @@ class Client {
   /// @param tableName 监听的表名
   /// @param objectId  监听的行Id
   Future subRowDelete(String tableName, String objectId) async {
-    List<String> args = List();
+    List<String> args = <String>[];
     args.add(getArgs(tableName, objectId, ACTION_DELETE_ROW));
     emit("client_sub", args);
   }
@@ -308,7 +308,7 @@ class Client {
   /// @param tableName 取消监听的表名
   /// @param objectId  取消监听的行Id
   Future unsubRowDelete(String tableName, String objectId) async {
-    List<String> args = List();
+    List<String> args = <String>[];
     args.add(getArgs(tableName, objectId, "unsub_deleteRow"));
     emit("client_unsub", args);
   }
@@ -339,7 +339,7 @@ class Client {
     String ack = id + "+";
     String data = "$type:$ack::$message";
     //5:0+::{"name":"client_sub","args":["{\"appKey\":\"d59c62906f447317e41cea2fe47ef856\",\"tableName\":\"Category\",\"objectId\":\"\",\"action\":\"updateTable\"}"]}
-    webSocket.add(data);
+    webSocket!.add(data);
     ackCount++;
   }
 }

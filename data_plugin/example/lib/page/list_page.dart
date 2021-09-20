@@ -35,8 +35,8 @@ class Page extends State<ListPage> {
     query.setInclude("author");
     query.setLimit(10);
     query.setSkip(10);
-    query.queryObjects().then((List<dynamic> data) {
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+    query.queryObjects().then((List<dynamic>? data) {
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
 
       setState(() {
         _items = blogs;
@@ -50,19 +50,19 @@ class Page extends State<ListPage> {
           print(blog.title);
           print(blog.content);
           if (blog.author != null) {
-            print(blog.author.objectId);
-            print(blog.author.username);
+            print(blog.author!.objectId);
+            print(blog.author!.username);
           }
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
   Widget layout(BuildContext context) {
     return new Scaffold(
-      appBar: buildAppBar(context),
+      appBar: buildAppBar(context) as PreferredSizeWidget?,
       body:
           new ListView.builder(itemCount: _items.length, itemBuilder: itemView),
     );

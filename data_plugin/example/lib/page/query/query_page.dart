@@ -256,7 +256,7 @@ class _QueryPageState extends State<QueryPage> {
     author.objectId = "objectId";
     query.addWhereEqualTo("author", author);
     query.queryObjects().then((data) {
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       showSuccess(context, data.toString());
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -264,13 +264,13 @@ class _QueryPageState extends State<QueryPage> {
           print(blog.title);
           print(blog.content);
           if (blog.author != null) {
-            print(blog.author.objectId);
-            print(blog.author.username);
+            print(blog.author!.objectId);
+            print(blog.author!.username);
           }
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -281,7 +281,7 @@ class _QueryPageState extends State<QueryPage> {
     query.addWhereEqualTo("title", "博客标题");
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -290,7 +290,7 @@ class _QueryPageState extends State<QueryPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -300,7 +300,7 @@ class _QueryPageState extends State<QueryPage> {
     query.addWhereNotEqualTo("title", "博客标题");
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -309,7 +309,7 @@ class _QueryPageState extends State<QueryPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -319,7 +319,7 @@ class _QueryPageState extends State<QueryPage> {
     query.addWhereLessThan("like", 80);
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -328,7 +328,7 @@ class _QueryPageState extends State<QueryPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -338,7 +338,7 @@ class _QueryPageState extends State<QueryPage> {
     query.addWhereLessThanOrEqualTo("like", 77);
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -347,7 +347,7 @@ class _QueryPageState extends State<QueryPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -357,7 +357,7 @@ class _QueryPageState extends State<QueryPage> {
     query.addWhereGreaterThan("like", 70);
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -366,7 +366,7 @@ class _QueryPageState extends State<QueryPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -376,7 +376,7 @@ class _QueryPageState extends State<QueryPage> {
     query.addWhereGreaterThanOrEqualTo("like", 77);
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -385,7 +385,7 @@ class _QueryPageState extends State<QueryPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -396,7 +396,7 @@ class _QueryPageState extends State<QueryPage> {
     query.addWhereContains("title", "标题");
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -405,7 +405,7 @@ class _QueryPageState extends State<QueryPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -415,7 +415,7 @@ class _QueryPageState extends State<QueryPage> {
     query.addWhereExists("title");
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -424,7 +424,7 @@ class _QueryPageState extends State<QueryPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -433,7 +433,7 @@ class _QueryPageState extends State<QueryPage> {
     query.addWhereDoesNotExists("title");
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -442,7 +442,7 @@ class _QueryPageState extends State<QueryPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -456,10 +456,10 @@ class _QueryPageState extends State<QueryPage> {
   ///查询数据个数
   void _queryCount(BuildContext context) {
     BmobQuery<Blog> query = BmobQuery();
-    query.queryCount().then((int count) {
+    query.queryCount().then((int? count) {
       showSuccess(context, "个数： $count");
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -472,13 +472,13 @@ class _QueryPageState extends State<QueryPage> {
     query2.addWhereEqualTo("title", "标题");
 
     BmobQuery<Blog> query = BmobQuery();
-    List<BmobQuery<Blog>> list = new List();
+    List<BmobQuery<Blog>> list = <BmobQuery<Blog>>[];
     list.add(query1);
     list.add(query2);
     query.or(list);
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -487,7 +487,7 @@ class _QueryPageState extends State<QueryPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -500,13 +500,13 @@ class _QueryPageState extends State<QueryPage> {
     query2.addWhereEqualTo("title", "标题");
 
     BmobQuery<Blog> query = BmobQuery();
-    List<BmobQuery<Blog>> list = new List();
+    List<BmobQuery<Blog>> list = <BmobQuery<Blog>>[];
     list.add(query1);
     list.add(query2);
     query.and(list);
     query.queryObjects().then((data) {
       showSuccess(context, data.toString());
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
@@ -515,7 +515,7 @@ class _QueryPageState extends State<QueryPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 }

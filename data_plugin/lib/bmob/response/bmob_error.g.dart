@@ -7,7 +7,7 @@ part of 'bmob_error.dart';
 // **************************************************************************
 
 BmobError _$BmobErrorFromJson(Map<String, dynamic> json) {
-  return BmobError(json['code'] as int, json['error'] as String);
+  return BmobError(json['code'] as int?, json['error'] as String?);
 }
 
 Map<String, dynamic> _$BmobErrorToJson(BmobError instance) =>

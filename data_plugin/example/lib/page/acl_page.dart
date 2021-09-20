@@ -96,9 +96,9 @@ class _AclPageState extends State<AclPage> {
     bmobAcl.setPublicReadAccess(true);
     blog.setAcl(bmobAcl);
     blog.save().then((BmobSaved bmobSaved) {
-      DataPlugin.toast(bmobSaved.objectId);
+      DataPlugin.toast(bmobSaved.objectId!);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -111,12 +111,12 @@ class _AclPageState extends State<AclPage> {
     blog.author = user;
     blog.content = "帖子内容";
     BmobAcl bmobAcl = BmobAcl();
-    bmobAcl.addRoleReadAccess(user.getObjectId(), true);
+    bmobAcl.addRoleReadAccess(user.getObjectId()!, true);
     blog.setAcl(bmobAcl);
     blog.save().then((BmobSaved bmobSaved) {
-      DataPlugin.toast(bmobSaved.objectId);
+      DataPlugin.toast(bmobSaved.objectId!);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -132,9 +132,9 @@ class _AclPageState extends State<AclPage> {
     bmobAcl.addRoleReadAccess("teacher", true);
     blog.setAcl(bmobAcl);
     blog.save().then((BmobSaved bmobSaved) {
-      DataPlugin.toast(bmobSaved.objectId);
+      DataPlugin.toast(bmobSaved.objectId!);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -150,9 +150,9 @@ class _AclPageState extends State<AclPage> {
     bmobRole.setUsers(bmobRelation);
     bmobRole.save().then((BmobSaved bmobSaved) {
       currentBmobRole = bmobRole;
-      DataPlugin.toast(bmobSaved.objectId);
+      DataPlugin.toast(bmobSaved.objectId!);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -166,13 +166,13 @@ class _AclPageState extends State<AclPage> {
     bmobRelation.add(user);
     bmobRole.setUsers(bmobRelation);
     bmobRole.save().then((BmobSaved bmobSaved) {
-      DataPlugin.toast(bmobSaved.objectId);
+      DataPlugin.toast(bmobSaved.objectId!);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
-  BmobRole currentBmobRole;
+  BmobRole? currentBmobRole;
 
   ///添加用户到已存在的角色中
   _addUserToSavedRole() {
@@ -184,11 +184,11 @@ class _AclPageState extends State<AclPage> {
     user.setObjectId("f06590e3c2");
     BmobRelation bmobRelation = BmobRelation();
     bmobRelation.add(user);
-    currentBmobRole.setUsers(bmobRelation);
-    currentBmobRole.update().then((BmobUpdated bmobUpdated) {
-      DataPlugin.toast(bmobUpdated.updatedAt);
+    currentBmobRole!.setUsers(bmobRelation);
+    currentBmobRole!.update().then((BmobUpdated bmobUpdated) {
+      DataPlugin.toast(bmobUpdated.updatedAt!);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 }

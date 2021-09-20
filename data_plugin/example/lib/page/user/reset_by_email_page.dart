@@ -15,7 +15,7 @@ class EmailResetPage extends StatefulWidget {
 
 class _EmailResetPageState extends State<EmailResetPage> {
   final _formKey = GlobalKey<FormState>();
-  String _email;
+  String? _email;
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +41,9 @@ class _EmailResetPageState extends State<EmailResetPage> {
 
   TextFormField buildVerifyTextField(BuildContext context) {
     return TextFormField(
-      onSaved: (String value) => _email = value,
-      validator: (String value) {
-        if (value.isEmpty) {
+      onSaved: (String? value) => _email = value,
+      validator: (String? value) {
+        if (value!.isEmpty) {
           return '请输入邮箱';
         }
       },
@@ -54,7 +54,7 @@ class _EmailResetPageState extends State<EmailResetPage> {
                 Icons.send,
               ),
               onPressed: () {
-                _formKey.currentState.save();
+                _formKey.currentState!.save();
                 _sendEmail(context);
               })),
     );
@@ -94,7 +94,7 @@ class _EmailResetPageState extends State<EmailResetPage> {
         .requestPasswordResetByEmail()
         .then((BmobHandled bmobHandled) {})
         .catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 

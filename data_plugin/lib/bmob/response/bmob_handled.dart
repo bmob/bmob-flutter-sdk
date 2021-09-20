@@ -7,7 +7,7 @@ part 'bmob_handled.g.dart';
 
 @JsonSerializable()
 class BmobHandled{
-  String msg;
+  String? msg;
 
   BmobHandled();
 

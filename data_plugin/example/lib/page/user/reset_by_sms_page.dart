@@ -17,7 +17,7 @@ class SmsResetPage extends StatefulWidget {
 
 class _SmsResetPageState extends State<SmsResetPage> {
   final _formKey = GlobalKey<FormState>();
-  String _phoneNumber, _smsCode;
+  String? _phoneNumber, _smsCode;
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +51,11 @@ class _SmsResetPageState extends State<SmsResetPage> {
         child: RaisedButton(
           child: Text(
             '短信验证重置密码',
-            style: Theme.of(context).primaryTextTheme.headline,
+            style: Theme.of(context).primaryTextTheme.headline1,
           ),
           color: Colors.black,
           onPressed: () {
-            _formKey.currentState.save();
+            _formKey.currentState!.save();
             //TODO 执行登录方法
             print('phone number:$_phoneNumber , sms code:$_smsCode');
             _resetBySms(context);
@@ -68,9 +68,9 @@ class _SmsResetPageState extends State<SmsResetPage> {
 
   TextFormField buildVerifyTextField(BuildContext context) {
     return TextFormField(
-      onSaved: (String value) => _smsCode = value,
-      validator: (String value) {
-        if (value.isEmpty) {
+      onSaved: (String? value) => _smsCode = value,
+      validator: (String? value) {
+        if (value!.isEmpty) {
           return '请输入验证码';
         }
       },
@@ -81,7 +81,7 @@ class _SmsResetPageState extends State<SmsResetPage> {
                 Icons.send,
               ),
               onPressed: () {
-                _formKey.currentState.save();
+                _formKey.currentState!.save();
                 _sendSms(context);
               })),
     );
@@ -92,9 +92,9 @@ class _SmsResetPageState extends State<SmsResetPage> {
       decoration: InputDecoration(
         labelText: '手机号码',
       ),
-      onSaved: (String value) => _phoneNumber = value,
-      validator: (String value) {
-        if (value.isEmpty) {
+      onSaved: (String? value) => _phoneNumber = value,
+      validator: (String? value) {
+        if (value!.isEmpty) {
           return '请输入密码';
         }
       },
@@ -133,7 +133,7 @@ class _SmsResetPageState extends State<SmsResetPage> {
     bmobSms.sendSms().then((BmobSent bmobSent) {
       showSuccess(context, "发送成功:" + bmobSent.smsId.toString());
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -142,10 +142,10 @@ class _SmsResetPageState extends State<SmsResetPage> {
     BmobUser bmobUser = BmobUser();
     bmobUser.mobilePhoneNumber = _phoneNumber;
     bmobUser
-        .requestPasswordResetBySmsCode(_smsCode)
+        .requestPasswordResetBySmsCode(_smsCode!)
         .then((BmobHandled bmobHandled) {})
         .catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 }

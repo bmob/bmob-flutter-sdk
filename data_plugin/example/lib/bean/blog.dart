@@ -14,15 +14,15 @@ part 'blog.g.dart';
 class Blog extends BmobObject{
 
   //博客标题
-  String title;
+  String? title;
   //博客内容
-  String content;
+  String? content;
   //博客作者
-  BmobUser author;
-  int like;
-  BmobGeoPoint addr;
-  BmobDate time;
-  BmobFile pic;
+  BmobUser? author;
+  int? like;
+  BmobGeoPoint? addr;
+  BmobDate? time;
+  BmobFile? pic;
   Blog();
 
   //此处与类名一致，由指令自动生成代码

@@ -9,9 +9,9 @@ class User extends BmobUser {
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
-  int age;
-  int gender;
-  String nickname;
+  int? age;
+  int? gender;
+  String? nickname;
 
   User();
 

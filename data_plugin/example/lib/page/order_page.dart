@@ -44,7 +44,7 @@ class _OrderPageState extends State<OrderPage> {
     query.setLimit(10);
     query.setSkip(10);
     query.queryObjects().then((data) {
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       Navigator.pushNamed(context, "listRoute");
 
       for (Blog blog in blogs) {
@@ -55,7 +55,7 @@ class _OrderPageState extends State<OrderPage> {
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 }

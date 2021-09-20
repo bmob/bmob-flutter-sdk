@@ -60,7 +60,7 @@ class _OtherState extends State<TimePage> {
     BmobDateManager.getServerTimestamp().then((ServerTime serverTime) {
       showSuccess(context, "${serverTime.timestamp}\n${serverTime.datetime}");
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -74,9 +74,9 @@ class _OtherState extends State<TimePage> {
     blog.title = "添加时间类型";
     blog.content = "测试时间类型的请求";
     blog.save().then((BmobSaved bmobSaved) {
-      showSuccess(context, bmobSaved.objectId);
+      showSuccess(context, bmobSaved.objectId!);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 

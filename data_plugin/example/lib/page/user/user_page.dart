@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import '../../bean/user.dart';
 
 class UserPage extends StatefulWidget {
-  UserPage({Key key, this.title}) : super(key: key);
+  UserPage({Key? key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -24,7 +24,7 @@ class UserPage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+  final String? title;
 
   @override
   _UserPageState createState() => _UserPageState();
@@ -43,7 +43,7 @@ class _UserPageState extends State<UserPage> {
       appBar: AppBar(
         // Here we take the value from the MyUserPage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       body: new Container(
         margin: new EdgeInsets.all(10.0),
@@ -90,14 +90,14 @@ class _UserPageState extends State<UserPage> {
                   query.queryUsers().then((data) {
                     showSuccess(context, data.toString());
                     List<User> users =
-                        data.map((i) => User.fromJson(i)).toList();
+                        data!.map((i) => User.fromJson(i)).toList();
                     for (User user in users) {
                       if (user != null) {
                         print(user.objectId);
                       }
                     }
                   }).catchError((e) {
-                    showError(context, BmobError.convert(e).error);
+                    showError(context, BmobError.convert(e)!.error!);
                   });
                 },
                 color: Colors.blue[400],
@@ -107,9 +107,9 @@ class _UserPageState extends State<UserPage> {
                 onPressed: () {
                   BmobQuery<User> query = BmobQuery();
                   query.queryUser("8e64dd60d2").then((data) {
-                    showSuccess(context, User.fromJson(data).username);
+                    showSuccess(context, User.fromJson(data).username!);
                   }).catchError((e) {
-                    showError(context, BmobError.convert(e).error);
+                    showError(context, BmobError.convert(e)!.error!);
                   });
                 },
                 color: Colors.blue[400],
@@ -123,7 +123,7 @@ class _UserPageState extends State<UserPage> {
                   user.update().then((BmobUpdated updatedAt) {
                     showSuccess(context, updatedAt.toJson().toString());
                   }).catchError((e) {
-                    showError(context, BmobError.convert(e).error);
+                    showError(context, BmobError.convert(e)!.error!);
                   });
                 },
                 color: Colors.blue[400],
@@ -136,7 +136,7 @@ class _UserPageState extends State<UserPage> {
                     showSuccess(context, handled.toJson().toString());
                   }).catchError((e){
 
-                    showError(context, BmobError.convert(e).error);
+                    showError(context, BmobError.convert(e)!.error!);
                   });
                 },
                 color: Colors.blue[400],
