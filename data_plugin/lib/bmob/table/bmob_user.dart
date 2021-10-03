@@ -75,7 +75,7 @@ class BmobUser extends BmobObject {
     Map result = await (BmobDio.getInstance()
         .get(Bmob.BMOB_API_LOGIN + getUrlParams(data)) );
     print('12345'+result.toString());
-    if (result.containsKey('emailVerified') && (result['emailVerified'] as String).isEmpty) {
+    if (result.containsKey('emailVerified') && (result['emailVerified'] !is bool)) {
       result['emailVerified'] = false;
     }
     if (result.containsKey('mobilePhoneNumberVerified') && (result['mobilePhoneNumberVerified'] as String)

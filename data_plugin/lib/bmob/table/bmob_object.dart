@@ -91,8 +91,8 @@ abstract class BmobObject {
   ///修改一条数据
   Future<BmobUpdated> update() async {
     Map<String, dynamic> map = getParams() as Map<String, dynamic>;
-    String objectId = map[Bmob.BMOB_PROPERTY_OBJECT_ID];
-    if (objectId.isEmpty || objectId == null) {
+    String? objectId = map[Bmob.BMOB_PROPERTY_OBJECT_ID];
+    if (objectId == null || objectId.isEmpty) {
       BmobError bmobError =
           new BmobError(Bmob.BMOB_ERROR_CODE_LOCAL, Bmob.BMOB_ERROR_OBJECT_ID);
       throw bmobError;
