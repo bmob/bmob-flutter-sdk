@@ -43,7 +43,7 @@ class BmobError extends Error {
           break;
         case DioErrorType.response:
           bmobError = BmobError(
-              dioError.response!.data['code'], dioError.response!.data['error']);
+              dioError.response?.data['code'], dioError.response?.data['error']);
           break;
         case DioErrorType.connectTimeout:
           bmobError = BmobError(9015, dioError.message);
