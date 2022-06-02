@@ -7,8 +7,8 @@ part 'bmob_saved.g.dart';
 
 @JsonSerializable()
 class BmobSaved{
-  String createdAt;
-  String objectId;
+  String? createdAt;
+  String? objectId;
   
 
   BmobSaved();

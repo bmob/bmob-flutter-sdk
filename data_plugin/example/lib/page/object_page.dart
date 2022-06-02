@@ -14,22 +14,22 @@ import 'package:data_plugin/bmob/bmob_batch.dart';
 import 'package:data_plugin/bmob/table/bmob_object.dart';
 
 class ObjectPage extends StatefulWidget {
-  ObjectPage({Key key, this.title}) : super(key: key);
+  ObjectPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _ObjectPageState createState() => _ObjectPageState();
 }
 
 class _ObjectPageState extends State<ObjectPage> {
-  String currentObjectId;
+  String? currentObjectId;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       body: new Container(
         margin: new EdgeInsets.all(10.0),
@@ -114,7 +114,7 @@ class _ObjectPageState extends State<ObjectPage> {
       currentObjectId = bmobSaved.objectId;
       showSuccess(context, message);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -126,9 +126,9 @@ class _ObjectPageState extends State<ObjectPage> {
       bmobQuery.queryObject(currentObjectId).then((data) {
         Blog blog = Blog.fromJson(data);
         showSuccess(context,
-            "查询一条数据成功：${blog.title} - ${blog.content} - ${blog.author.username}");
+            "查询一条数据成功：${blog.title} - ${blog.content} - ${blog.author!.username}");
       }).catchError((e) {
-        showError(context, BmobError.convert(e).error);
+        showError(context, BmobError.convert(e)!.error!);
       });
     } else {
       showError(context, "请先新增一条数据");
@@ -158,17 +158,17 @@ class _ObjectPageState extends State<ObjectPage> {
   _queryMulti(BuildContext context) {
     BmobQuery<BmobUser> query = BmobQuery();
     query.setLimit(5);
-    query.queryUsers().then((List<dynamic> data) {
+    query.queryUsers().then((List<dynamic>? data) {
       print(data);
       showSuccess(context, data.toString());
-      List<BmobUser> blogs = data.map((i) => BmobUser.fromJson(i)).toList();
+      List<BmobUser> blogs = data!.map((i) => BmobUser.fromJson(i)).toList();
       for (BmobUser blog in blogs) {
         if (blog != null) {
           print(blog.objectId);
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -181,7 +181,7 @@ class _ObjectPageState extends State<ObjectPage> {
         currentObjectId = null;
         showSuccess(context, "删除一条数据成功：${bmobHandled.msg}");
       }).catchError((e) {
-        showError(context, BmobError.convert(e).error);
+        showError(context, BmobError.convert(e)!.error!);
       });
     } else {
       showError(context, "请先新增一条数据");
@@ -198,7 +198,7 @@ class _ObjectPageState extends State<ObjectPage> {
       blog.update().then((BmobUpdated bmobUpdated) {
         showSuccess(context, "修改一条数据成功：${bmobUpdated.updatedAt}");
       }).catchError((e) {
-        showError(context, BmobError.convert(e).error);
+        showError(context, BmobError.convert(e)!.error!);
       });
     } else {
       showError(context, "请先新增一条数据");
@@ -213,7 +213,7 @@ class _ObjectPageState extends State<ObjectPage> {
       blog.deleteFieldValue("content").then((BmobUpdated bmobUpdated) {
         showSuccess(context, "删除发布内容成功：${bmobUpdated.updatedAt}");
       }).catchError((e) {
-        showError(context, "删除发布内容失败" + BmobError.convert(e).error);
+        showError(context, "删除发布内容失败" + BmobError.convert(e)!.error!);
       });
     } else {
       showError(context, "请先新增一条数据");
@@ -230,7 +230,7 @@ class _ObjectPageState extends State<ObjectPage> {
     Blog blog3 = Blog();
     blog3.content = "批量3";
 
-    List<BmobObject> bmobObjects = List();
+    List<BmobObject> bmobObjects = <BmobObject>[];
     bmobObjects.add(blog1);
     bmobObjects.add(blog2);
     bmobObjects.add(blog3);

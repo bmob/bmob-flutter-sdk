@@ -7,7 +7,7 @@ part 'bmob_sent.g.dart';
 
 @JsonSerializable()
 class BmobSent{
-  int smsId;
+  int? smsId;
 
   BmobSent();
 

@@ -13,13 +13,13 @@ class BmobRelation {
   Map<String, dynamic> toJson() => _$BmobRelationToJson(this);
 
   @JsonKey(name: "__op")
-  String op;
+  String? op;
 
   //关联关系列表
-  List<Map<String, dynamic>> objects;
+  List<Map<String, dynamic>>? objects;
 
   BmobRelation() {
-    objects = List();
+    objects = List.empty(growable: true);
   }
 
   //添加某个关联关系
@@ -28,7 +28,7 @@ class BmobRelation {
     BmobPointer bmobPointer = BmobPointer();
     bmobPointer.className = BmobUtils.getTableName(value);
     bmobPointer.objectId = value.objectId;
-    objects.add(bmobPointer.toJson());
+    objects!.add(bmobPointer.toJson());
   }
 
   //移除某个关联关系
@@ -37,6 +37,6 @@ class BmobRelation {
     BmobPointer bmobPointer = BmobPointer();
     bmobPointer.className = BmobUtils.getTableName(value);
     bmobPointer.objectId = value.objectId;
-    objects.add(bmobPointer.toJson());
+    objects!.add(bmobPointer.toJson());
   }
 }

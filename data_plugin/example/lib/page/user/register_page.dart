@@ -14,9 +14,9 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  String _username, _password;
+  String? _username, _password;
   bool _isObscure = true;
-  Color _eyeColor;
+  Color? _eyeColor;
   List _loginMethod = [
     {
       "title": "facebook",
@@ -128,13 +128,13 @@ class _RegisterPageState extends State<RegisterPage> {
         child: RaisedButton(
           child: Text(
             'Register',
-            style: Theme.of(context).primaryTextTheme.headline,
+            style: Theme.of(context).primaryTextTheme.headline1,
           ),
           color: Colors.black,
           onPressed: () {
 //            if (_formKey.currentState.validate()) {
             ///只有输入的内容符合要求通过才会到达此处
-            _formKey.currentState.save();
+            _formKey.currentState!.save();
             //TODO 执行登录方法
             print('username:$_username , password:$_password');
             _register();
@@ -166,10 +166,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
   TextFormField buildPasswordTextField(BuildContext context) {
     return TextFormField(
-      onSaved: (String value) => _password = value,
+      onSaved: (String? value) => _password = value,
       obscureText: _isObscure,
-      validator: (String value) {
-        if (value.isEmpty) {
+      validator: (String? value) {
+        if (value!.isEmpty) {
           return '请输入密码';
         }
       },
@@ -196,7 +196,7 @@ class _RegisterPageState extends State<RegisterPage> {
       decoration: InputDecoration(
         labelText: 'Username',
       ),
-      onSaved: (String value) => _username = value,
+      onSaved: (String? value) => _username = value,
     );
   }
 
@@ -230,9 +230,9 @@ class _RegisterPageState extends State<RegisterPage> {
     bmobUserRegister.username = _username;
     bmobUserRegister.password = _password;
     bmobUserRegister.register().then((BmobRegistered data) {
-      showSuccess(context, data.objectId);
+      showSuccess(context, data.objectId!);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 }

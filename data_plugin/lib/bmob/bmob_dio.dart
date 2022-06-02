@@ -15,13 +15,13 @@ import 'package:crypto/crypto.dart';
 //		md5(url + timeStamp + safeToken + noncestr+ sdkVersion)
 class BmobDio {
   ///网络请求框架
-  Dio dio;
+  late Dio dio;
 
   ///网络请求元素
-  BaseOptions options;
+  late BaseOptions options;
 
   ///单例
-  static BmobDio instance;
+  static BmobDio? instance;
 
   void setSessionToken(bmobSessionToken) {
     options.headers["X-Bmob-Session-Token"] = bmobSessionToken;
@@ -92,11 +92,11 @@ class BmobDio {
     if (instance == null) {
       instance = BmobDio();
     }
-    return instance;
+    return instance!;
   }
 
   ///GET请求
-  Future<dynamic> get(path, {data, cancelToken}) async {
+  Future<Map<String, dynamic>> get(path, {data, cancelToken}) async {
     options.headers.addAll(getHeaders(path, ""));
 
     var requestUrl = options.baseUrl + path;
@@ -113,7 +113,7 @@ class BmobDio {
   }
 
   ///POST请求
-  Future<dynamic> upload(path, {Future<List<int>> data, cancelToken}) async {
+  Future<Map<String, dynamic>> upload(path, {required Future<List<int>> data, cancelToken}) async {
     options.headers.addAll(getHeaders(path, data));
 
     var requestUrl = options.baseUrl + path;
@@ -198,7 +198,7 @@ class BmobDio {
       map["X-Bmob-REST-API-Key"] = Bmob.bmobRestApiKey;
     } else if(Bmob.bmobSecretKey.isNotEmpty){
       //加密
-      int indexQuestion = path.indexOf("?");
+      int? indexQuestion = path.indexOf("?");
 
       if (indexQuestion != -1) {
         path = path.substring(0, indexQuestion);

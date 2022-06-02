@@ -90,7 +90,7 @@ class _PointerPageState extends State<PointerPage> {
       print(bmobSaved.objectId);
       DataPlugin.toast("添加成功：\n${bmobSaved.objectId}\n${bmobSaved.createdAt}");
     }).catchError((e) {
-      DataPlugin.toast(BmobError.convert(e).error);
+      DataPlugin.toast(BmobError.convert(e)!.error!);
     });
   }
 
@@ -103,9 +103,9 @@ class _PointerPageState extends State<PointerPage> {
     Blog blog = Blog();
     blog.objectId = currentObjectId;
     blog.deleteFieldValue("author").then((BmobUpdated bmobUpdated) {
-      DataPlugin.toast(bmobUpdated.updatedAt);
+      DataPlugin.toast(bmobUpdated.updatedAt!);
     }).catchError((e) {
-      DataPlugin.toast(BmobError.convert(e).error);
+      DataPlugin.toast(BmobError.convert(e)!.error!);
     });
   }
 
@@ -121,9 +121,9 @@ class _PointerPageState extends State<PointerPage> {
     user.objectId = "358f092cb1";
     blog.author = user;
     blog.update().then((BmobUpdated bmobUpdated) {
-      DataPlugin.toast(bmobUpdated.updatedAt);
+      DataPlugin.toast(bmobUpdated.updatedAt!);
     }).catchError((e) {
-      DataPlugin.toast(BmobError.convert(e).error);
+      DataPlugin.toast(BmobError.convert(e)!.error!);
     });
   }
 
@@ -132,7 +132,7 @@ class _PointerPageState extends State<PointerPage> {
     BmobQuery<Blog> query = BmobQuery();
     query.setInclude("author");
     query.queryObjects().then((data) {
-      DataPlugin.toast("查询成功${data.length}");
+      DataPlugin.toast("查询成功${data!.length}");
 
       List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
       for (Blog blog in blogs) {
@@ -141,13 +141,13 @@ class _PointerPageState extends State<PointerPage> {
           print(blog.title);
           print(blog.content);
           if (blog.author != null) {
-            print(blog.author.objectId);
-            print(blog.author.username);
+            print(blog.author!.objectId);
+            print(blog.author!.username);
           }
         }
       }
     }).catchError((e) {
-      DataPlugin.toast(BmobError.convert(e).error);
+      DataPlugin.toast(BmobError.convert(e)!.error!);
     });
   }
 }

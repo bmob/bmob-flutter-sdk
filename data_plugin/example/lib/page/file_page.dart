@@ -18,15 +18,15 @@ class FilePage extends StatefulWidget {
 }
 
 class _FilePageState extends State<FilePage> {
-  String _fileName;
-  String _path;
-  String _url;
-  BmobFile _bmobFile;
-  Map<String, String> _paths;
-  String _extension;
+  String? _fileName;
+  String? _path;
+  String? _url;
+  BmobFile? _bmobFile;
+  Map<String, String>? _paths;
+  String? _extension;
   bool _multiPick = false;
   bool _hasValidMime = false;
-  FileType _pickingType;
+  FileType? _pickingType;
   TextEditingController _controller = new TextEditingController();
 
   @override
@@ -41,11 +41,11 @@ class _FilePageState extends State<FilePage> {
         if (_multiPick) {
           _path = null;
           _paths = await FilePicker.getMultiFilePath(
-              type: _pickingType, fileExtension: _extension);
+              type: _pickingType!, fileExtension: _extension);
         } else {
           _paths = null;
           _path = await FilePicker.getFilePath(
-              type: _pickingType, fileExtension: _extension);
+              type: _pickingType!, fileExtension: _extension);
         }
       } on PlatformException catch (e) {
         print("Unsupported operation" + e.toString());
@@ -54,8 +54,8 @@ class _FilePageState extends State<FilePage> {
 
       setState(() {
         _fileName = _path != null
-            ? _path.split('/').last
-            : _paths != null ? _paths.keys.toString() : '...';
+            ? _path!.split('/').last
+            : _paths != null ? _paths!.keys.toString() : '...';
         DataPlugin.toast("所选文件：$_fileName");
       });
     }
@@ -138,22 +138,22 @@ class _FilePageState extends State<FilePage> {
                         child: new Scrollbar(
                           child: _path != null || _paths != null
                               ? new ListView.separated(
-                                  itemCount: _paths != null && _paths.isNotEmpty
-                                      ? _paths.length
+                                  itemCount: _paths != null && _paths!.isNotEmpty
+                                      ? _paths!.length
                                       : 1,
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     final bool isMultiPath =
-                                        _paths != null && _paths.isNotEmpty;
+                                        _paths != null && _paths!.isNotEmpty;
                                     final String name = 'File $index: ' +
                                         (isMultiPath
-                                            ? _paths.keys.toList()[index]
+                                            ? _paths!.keys.toList()[index]
                                             : _fileName ?? '...');
                                     final path = isMultiPath
-                                        ? _paths.values
+                                        ? _paths!.values
                                             .toList()[index]
                                             .toString()
-                                        : _path;
+                                        : _path!;
 
                                     return new ListTile(
                                       title: new Text(
@@ -179,7 +179,7 @@ class _FilePageState extends State<FilePage> {
   }
 
   ///上传文件，上传文件涉及到android的文件访问权限，调用此方法前需要开发者们先适配好应用在各个android版本的权限管理。
-  _uploadFile(String path) {
+  _uploadFile(String? path) {
     if (path == null) {
       DataPlugin.toast("请先选择文件");
       return;
@@ -193,12 +193,12 @@ class _FilePageState extends State<FilePage> {
       DataPlugin.toast(
           "上传成功：${bmobFile.cdn}\n${bmobFile.url}\n${bmobFile.filename}");
     }).catchError((e) {
-      DataPlugin.toast(BmobError.convert(e).error);
+      DataPlugin.toast(BmobError.convert(e)!.error!);
     });
   }
 
   ///添加文件到表中
-  _addFile(BmobFile bmobFile) {
+  _addFile(BmobFile? bmobFile) {
     if (bmobFile == null) {
       DataPlugin.toast("请先上传文件");
       return;
@@ -206,14 +206,14 @@ class _FilePageState extends State<FilePage> {
     Blog blog = Blog();
     blog.pic = bmobFile;
     blog.save().then((BmobSaved bmobSaved) {
-      DataPlugin.toast("添加成功：" + bmobSaved.objectId);
+      DataPlugin.toast("添加成功：" + bmobSaved.objectId!);
     }).catchError((e) {
-      DataPlugin.toast(BmobError.convert(e).error);
+      DataPlugin.toast(BmobError.convert(e)!.error!);
     });
   }
 
   ///下载文件，直接使用dio下载，下载文件涉及到android的文件访问权限，调用此方法前需要开发者们先适配好应用在各个android版本的权限管理。
-  _downloadFile(String url, String path) async {
+  _downloadFile(String? url, String path) async {
     if (url == null) {
       DataPlugin.toast("请先上传文件");
       return;
@@ -226,15 +226,15 @@ class _FilePageState extends State<FilePage> {
   }
 
   ///删除文件
-  _deleteFile(String url) {
+  _deleteFile(String? url) {
     if (url == null) {
       DataPlugin.toast("请先上传文件");
       return;
     }
     BmobFileManager.delete(url).then((BmobHandled bmobHandled) {
-      DataPlugin.toast("删除成功：" + bmobHandled.msg);
+      DataPlugin.toast("删除成功：" + bmobHandled.msg!);
     }).catchError((e) {
-      DataPlugin.toast(BmobError.convert(e).error);
+      DataPlugin.toast(BmobError.convert(e)!.error!);
     });
   }
 }

@@ -53,7 +53,7 @@ class _GeoPointPageState extends State<GeoPointPage> {
           "创建一条数据成功：${bmobSaved.objectId} - ${bmobSaved.createdAt}";
       showSuccess(context, message);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 }

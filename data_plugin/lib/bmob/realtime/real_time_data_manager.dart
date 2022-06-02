@@ -5,12 +5,12 @@ import 'package:data_plugin/bmob/response/bmob_error.dart';
 import 'package:data_plugin/bmob/realtime/change.dart';
 
 class RealTimeDataManager {
-  static RealTimeDataManager instance;
+  static RealTimeDataManager? instance;
 
   RealTimeDataManager();
 
   ///单例
-  static RealTimeDataManager getInstance() {
+  static RealTimeDataManager? getInstance() {
     if (instance == null) {
       instance = new RealTimeDataManager();
     }

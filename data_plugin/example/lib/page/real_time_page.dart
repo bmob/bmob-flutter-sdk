@@ -51,14 +51,14 @@ class _RealTimeState extends State<RealTimePage> {
 
   ///数据监听
   _listen() {
-    RealTimeDataManager.getInstance().listen(onConnected: (Client client) {
+    RealTimeDataManager.getInstance()!.listen(onConnected: (Client client) {
       showSuccess(context, "监听数据连接成功，开始订阅消息！");
       client.subTableUpdate("Blog");
     }, onDisconnected: () {
       showError(context, "监听数据断开连接");
     }, onDataChanged: (Change data) {
       ///注意：此处返回的data.data类型与Blog类型不一致，需要使用map来获取具体属性值而不是使用Blog
-      Map map = data.data;
+      Map? map = data.data;
       showSuccess(context, "监听到数据变化：" + map.toString());
     }, onError: (error) {
       showError(context, error.toString());
@@ -80,7 +80,7 @@ class _RealTimeState extends State<RealTimePage> {
           "创建一条数据成功：${bmobSaved.objectId} - ${bmobSaved.createdAt}";
       showSuccess(context, message);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 }

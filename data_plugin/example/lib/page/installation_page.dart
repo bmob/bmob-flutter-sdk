@@ -10,7 +10,7 @@ import 'package:data_plugin/bmob/table/bmob_installation.dart';
 import 'package:data_plugin/bmob/response/bmob_error.dart';
 
 class InstallationPage extends StatefulWidget {
-  InstallationPage({Key key, this.title}) : super(key: key);
+  InstallationPage({Key? key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -21,7 +21,7 @@ class InstallationPage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+  final String? title;
 
   @override
   _InstallationPageState createState() => _InstallationPageState();
@@ -40,7 +40,7 @@ class _InstallationPageState extends State<InstallationPage> {
       appBar: AppBar(
         // Here we take the value from the MyInstallationPage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       body: new Container(
         margin: new EdgeInsets.all(10.0),
@@ -74,7 +74,7 @@ class _InstallationPageState extends State<InstallationPage> {
                       }
                     }
                   }).catchError((e) {
-                    showError(context, BmobError.convert(e).error);
+                    showError(context, BmobError.convert(e)!.error!);
                   });
                 },
                 color: Colors.blue[400],
@@ -84,9 +84,9 @@ class _InstallationPageState extends State<InstallationPage> {
                 onPressed: () {
                   BmobQuery<BmobInstallation> query = BmobQuery();
                   query.queryInstallation("3795adbcad").then((data) {
-                    showSuccess(context, BmobInstallation.fromJson(data).installationId);
+                    showSuccess(context, BmobInstallation.fromJson(data).installationId!);
                   }).catchError((e) {
-                    showError(context, BmobError.convert(e).error);
+                    showError(context, BmobError.convert(e)!.error!);
                   });
                 },
                 color: Colors.blue[400],
@@ -100,7 +100,7 @@ class _InstallationPageState extends State<InstallationPage> {
 
   ///获取设备ID
   _getInstallationId(BuildContext context) async {
-    String installationId = await BmobInstallationManager.getInstallationId();
+    String installationId = await BmobInstallationManager.getInstallationId() ?? DateTime.now().toString();
     showSuccess(context, installationId);
   }
 
@@ -109,7 +109,7 @@ class _InstallationPageState extends State<InstallationPage> {
     BmobInstallationManager.init().then((BmobInstallation bmobInstallation) {
       showSuccess(context, bmobInstallation.toJson().toString());
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 }

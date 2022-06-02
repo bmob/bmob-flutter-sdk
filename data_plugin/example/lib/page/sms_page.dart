@@ -15,7 +15,7 @@ class SmsPage extends StatefulWidget {
 
 class _SmsPageState extends State<SmsPage> {
   final _formKey = GlobalKey<FormState>();
-  String _phoneNumber, _smsCode;
+  String? _phoneNumber, _smsCode;
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +49,11 @@ class _SmsPageState extends State<SmsPage> {
         child: RaisedButton(
           child: Text(
             '验证',
-            style: Theme.of(context).primaryTextTheme.headline,
+            style: Theme.of(context).primaryTextTheme.headline1,
           ),
           color: Colors.black,
           onPressed: () {
-            _formKey.currentState.save();
+            _formKey.currentState!.save();
             //TODO 执行登录方法
             print('phone number:$_phoneNumber , sms code:$_smsCode');
             _verifySmsCode(context);
@@ -66,9 +66,9 @@ class _SmsPageState extends State<SmsPage> {
 
   TextFormField buildVerifyTextField(BuildContext context) {
     return TextFormField(
-      onSaved: (String value) => _smsCode = value,
-      validator: (String value) {
-        if (value.isEmpty) {
+      onSaved: (String? value) => _smsCode = value,
+      validator: (String? value) {
+        if (value!.isEmpty) {
           return '请输入验证码';
         }
       },
@@ -80,7 +80,7 @@ class _SmsPageState extends State<SmsPage> {
               ),
               onPressed: () {
                 ///只有输入的内容符合要求通过才会到达此处
-                _formKey.currentState.save();
+                _formKey.currentState!.save();
                 _sendSms(context);
               })),
     );
@@ -91,9 +91,9 @@ class _SmsPageState extends State<SmsPage> {
       decoration: InputDecoration(
         labelText: '手机号码',
       ),
-      onSaved: (String value) => _phoneNumber = value,
-      validator: (String value) {
-        if (value.isEmpty) {
+      onSaved: (String? value) => _phoneNumber = value,
+      validator: (String? value) {
+        if (value!.isEmpty) {
           return '请输入密码';
         }
       },
@@ -132,7 +132,7 @@ class _SmsPageState extends State<SmsPage> {
     bmobSms.sendSms().then((BmobSent bmobSent) {
       showSuccess(context, "发送成功:" + bmobSent.smsId.toString());
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -141,9 +141,9 @@ class _SmsPageState extends State<SmsPage> {
     BmobSms bmobSms = BmobSms();
     bmobSms.mobilePhoneNumber = _phoneNumber;
     bmobSms.verifySmsCode(_smsCode).then((BmobHandled bmobHandled) {
-      showSuccess(context, "验证成功：" + bmobHandled.msg);
+      showSuccess(context, "验证成功：" + bmobHandled.msg!);
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 }

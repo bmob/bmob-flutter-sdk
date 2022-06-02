@@ -89,7 +89,7 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
     BmobQuery<Blog> query = BmobQuery();
     query.groupByKeys("title,content,like");
     query.queryObjects().then((data) {
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       showSuccess(context, data.toString());
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -97,13 +97,13 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
           print(blog.title);
           print(blog.content);
           if (blog.author != null) {
-            print(blog.author.objectId);
-            print(blog.author.username);
+            print(blog.author!.objectId);
+            print(blog.author!.username);
           }
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -113,7 +113,7 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
     query.hasGroupCount(true);
     query.groupByKeys("title,content,like");
     query.queryObjects().then((data) {
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       showSuccess(context, data.toString());
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -121,13 +121,13 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
           print(blog.title);
           print(blog.content);
           if (blog.author != null) {
-            print(blog.author.objectId);
-            print(blog.author.username);
+            print(blog.author!.objectId);
+            print(blog.author!.username);
           }
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -136,7 +136,7 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
     BmobQuery<Blog> query = BmobQuery();
     query.sumKeys("like");
     query.queryObjects().then((data) {
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       showSuccess(context, data.toString());
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -144,13 +144,13 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
           print(blog.title);
           print(blog.content);
           if (blog.author != null) {
-            print(blog.author.objectId);
-            print(blog.author.username);
+            print(blog.author!.objectId);
+            print(blog.author!.username);
           }
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -159,7 +159,7 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
     BmobQuery<Blog> query = BmobQuery();
     query.averageKeys("like");
     query.queryObjects().then((data) {
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       showSuccess(context, data.toString());
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -167,13 +167,13 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
           print(blog.title);
           print(blog.content);
           if (blog.author != null) {
-            print(blog.author.objectId);
-            print(blog.author.username);
+            print(blog.author!.objectId);
+            print(blog.author!.username);
           }
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -183,7 +183,7 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
     BmobQuery<Blog> query = BmobQuery();
     query.maxKeys("like");
     query.queryObjects().then((data) {
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       showSuccess(context, data.toString());
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -191,13 +191,13 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
           print(blog.title);
           print(blog.content);
           if (blog.author != null) {
-            print(blog.author.objectId);
-            print(blog.author.username);
+            print(blog.author!.objectId);
+            print(blog.author!.username);
           }
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -206,7 +206,7 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
     BmobQuery<Blog> query = BmobQuery();
     query.minKeys("like");
     query.queryObjects().then((data) {
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       showSuccess(context, data.toString());
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -214,13 +214,13 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
           print(blog.title);
           print(blog.content);
           if (blog.author != null) {
-            print(blog.author.objectId);
-            print(blog.author.username);
+            print(blog.author!.objectId);
+            print(blog.author!.username);
           }
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 
@@ -232,7 +232,7 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
     filter["title"]="博客标题";
     query.havingFilter(filter);
     query.queryObjects().then((data) {
-      List<Blog> blogs = data.map((i) => Blog.fromJson(i)).toList();
+      List<Blog> blogs = data!.map((i) => Blog.fromJson(i)).toList();
       showSuccess(context, data.toString());
       for (Blog blog in blogs) {
         if (blog != null) {
@@ -240,13 +240,13 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
           print(blog.title);
           print(blog.content);
           if (blog.author != null) {
-            print(blog.author.objectId);
-            print(blog.author.username);
+            print(blog.author!.objectId);
+            print(blog.author!.username);
           }
         }
       }
     }).catchError((e) {
-      showError(context, BmobError.convert(e).error);
+      showError(context, BmobError.convert(e)!.error!);
     });
   }
 }
