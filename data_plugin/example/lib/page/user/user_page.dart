@@ -49,42 +49,37 @@ class _UserPageState extends State<UserPage> {
         margin: new EdgeInsets.all(10.0),
         child: new Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "loginRoute");
                 },
-                color: Colors.blue[400],
                 child:
                     new Text('登录', style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "registerRoute");
                 },
-                color: Colors.blue[400],
                 child:
                     new Text('注册', style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "smsLoginRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('手机验证码登录',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "emailResetRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('发送重置密码邮箱',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "smsResetRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('短信重置密码',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   BmobQuery<User> query = BmobQuery();
                   query.queryUsers().then((data) {
@@ -100,10 +95,9 @@ class _UserPageState extends State<UserPage> {
                     showError(context, BmobError.convert(e)!.error!);
                   });
                 },
-                color: Colors.blue[400],
                 child: new Text('查询多个用户',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   BmobQuery<User> query = BmobQuery();
                   query.queryUser("8e64dd60d2").then((data) {
@@ -112,10 +106,9 @@ class _UserPageState extends State<UserPage> {
                     showError(context, BmobError.convert(e)!.error!);
                   });
                 },
-                color: Colors.blue[400],
                 child: new Text('查询单个用户',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   User user = User();
                   user.objectId = "8e64dd60d2";
@@ -126,10 +119,9 @@ class _UserPageState extends State<UserPage> {
                     showError(context, BmobError.convert(e)!.error!);
                   });
                 },
-                color: Colors.blue[400],
                 child: new Text('更新用户',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   BmobUser.requestEmailVerify("13760289294@139.com").then((BmobHandled handled){
 
@@ -139,7 +131,6 @@ class _UserPageState extends State<UserPage> {
                     showError(context, BmobError.convert(e)!.error!);
                   });
                 },
-                color: Colors.blue[400],
                 child: new Text('发送验证邮箱',
                     style: new TextStyle(color: Colors.white))),
           ],

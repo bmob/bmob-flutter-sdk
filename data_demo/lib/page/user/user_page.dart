@@ -45,39 +45,34 @@ class _UserPageState extends State<UserPage> {
         margin: new EdgeInsets.all(10.0),
         child: new Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "loginRoute");
                 },
-                color: Colors.blue[400],
                 child:
                     new Text('登录', style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "registerRoute");
                 },
-                color: Colors.blue[400],
                 child:
                     new Text('注册', style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "smsLoginRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('手机验证码登录',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "emailResetRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('发送重置密码邮箱',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "smsResetRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('短信重置密码',
                     style: new TextStyle(color: Colors.white))),
 

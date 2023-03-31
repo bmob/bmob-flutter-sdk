@@ -30,41 +30,37 @@ class _PointerPageState extends State<PointerPage> {
           margin: new EdgeInsets.all(10.0),
           child: new Column(
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   _addPointer();
                 },
-                color: Colors.blue[400],
                 child: Text(
                   '添加关联关系',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   _queryPointer();
                 },
-                color: Colors.blue[400],
                 child: Text(
                   '查询关联关系',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   _modifyPointer();
                 },
-                color: Colors.blue[400],
                 child: Text(
                   '修改关联关系',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   _deletePointer();
                 },
-                color: Colors.blue[400],
                 child: Text(
                   '解除关联关系',
                   style: TextStyle(color: Colors.white),

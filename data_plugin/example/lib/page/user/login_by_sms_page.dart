@@ -47,19 +47,17 @@ class _SmsLoginPageState extends State<SmsLoginPage> {
       child: SizedBox(
         height: 45.0,
         width: 270.0,
-        child: RaisedButton(
+        child: ElevatedButton(
           child: Text(
             '短信验证登录',
             style: Theme.of(context).primaryTextTheme.headline1,
           ),
-          color: Colors.black,
           onPressed: () {
             _formKey.currentState!.save();
             //TODO 执行登录方法
             print('phone number:$_phoneNumber , sms code:$_smsCode');
             _loginBySms(context);
           },
-          shape: StadiumBorder(side: BorderSide()),
         ),
       ),
     );

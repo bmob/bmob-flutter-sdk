@@ -28,25 +28,22 @@ class _OtherState extends State<TimePage> {
         margin: new EdgeInsets.all(10.0),
         child: new Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _getServerTime();
                 },
-                color: Colors.blue[400],
                 child: new Text('获取服务器时间',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _addDate();
                 },
-                color: Colors.blue[400],
                 child: new Text('添加时间类型',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _queryDate();
                 },
-                color: Colors.blue[400],
                 child: new Text('查询某个时间段数据',
                     style: new TextStyle(color: Colors.white))),
           ],

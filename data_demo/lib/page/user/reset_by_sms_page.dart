@@ -48,19 +48,17 @@ class _SmsResetPageState extends State<SmsResetPage> {
       child: SizedBox(
         height: 45.0,
         width: 270.0,
-        child: RaisedButton(
+        child: ElevatedButton(
           child: Text(
             '短信验证重置密码',
-            style: Theme.of(context).primaryTextTheme.headline,
+            style: Theme.of(context).primaryTextTheme.headlineMedium,
           ),
-          color: Colors.black,
           onPressed: () {
             _formKey.currentState.save();
             //TODO 执行登录方法
             print('phone number:$_phoneNumber , sms code:$_smsCode');
             _resetBySms(context);
           },
-          shape: StadiumBorder(side: BorderSide()),
         ),
       ),
     );

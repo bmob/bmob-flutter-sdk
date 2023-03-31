@@ -20,7 +20,7 @@ void showResult(BuildContext context, String title, String message) {
           ),
         ),
         actions: <Widget>[
-          new FlatButton(
+          new ElevatedButton(
             child: new Text('确定'),
             onPressed: () {
               Navigator.of(context).pop();

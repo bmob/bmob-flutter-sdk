@@ -24,11 +24,10 @@ class _OrderPageState extends State<OrderPage> {
       body: new Container(
         child: new Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _queryOrder(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('排序查询',
                     style: new TextStyle(color: Colors.white))),
           ],

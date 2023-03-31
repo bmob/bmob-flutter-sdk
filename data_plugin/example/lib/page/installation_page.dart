@@ -46,21 +46,19 @@ class _InstallationPageState extends State<InstallationPage> {
         margin: new EdgeInsets.all(10.0),
         child: new Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _getInstallationId(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('获取设备ID',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _initInstallation(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('初始化设备',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   BmobQuery<BmobInstallation> query = BmobQuery();
                   query.queryInstallations().then((data) {
@@ -77,10 +75,9 @@ class _InstallationPageState extends State<InstallationPage> {
                     showError(context, BmobError.convert(e)!.error!);
                   });
                 },
-                color: Colors.blue[400],
                 child: new Text('查询多个设备',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   BmobQuery<BmobInstallation> query = BmobQuery();
                   query.queryInstallation("3795adbcad").then((data) {
@@ -89,7 +86,6 @@ class _InstallationPageState extends State<InstallationPage> {
                     showError(context, BmobError.convert(e)!.error!);
                   });
                 },
-                color: Colors.blue[400],
                 child: new Text('查询单个设备',
                     style: new TextStyle(color: Colors.white))),
           ],

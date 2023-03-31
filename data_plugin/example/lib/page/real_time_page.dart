@@ -29,18 +29,16 @@ class _RealTimeState extends State<RealTimePage> {
         margin: new EdgeInsets.all(10.0),
         child: new Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _listen();
                 },
-                color: Colors.blue[400],
                 child: new Text('开始监听',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _change(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('修改数据',
                     style: new TextStyle(color: Colors.white))),
           ],

@@ -45,18 +45,16 @@ class _InstallationPageState extends State<InstallationPage> {
         margin: new EdgeInsets.all(10.0),
         child: new Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _getInstallationId(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('获取设备ID',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _initInstallation(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('初始化设备',
                     style: new TextStyle(color: Colors.white))),
           ],

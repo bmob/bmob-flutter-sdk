@@ -77,9 +77,8 @@ class _FilePageState extends State<FilePage> {
               children: <Widget>[
                 new Padding(
                   padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                  child: new RaisedButton(
+                  child: new ElevatedButton(
                     onPressed: () => _openFileExplorer(),
-                    color: Colors.blue[400],
                     child: new Text(
                       "选择文件",
                       style: TextStyle(color: Colors.white),
@@ -88,9 +87,8 @@ class _FilePageState extends State<FilePage> {
                 ),
                 new Padding(
                   padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                  child: new RaisedButton(
+                  child: new ElevatedButton(
                     onPressed: () => _uploadFile(_path),
-                    color: Colors.blue[400],
                     child: new Text(
                       "上传文件",
                       style: TextStyle(color: Colors.white),
@@ -99,9 +97,8 @@ class _FilePageState extends State<FilePage> {
                 ),
                 new Padding(
                   padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                  child: new RaisedButton(
+                  child: new ElevatedButton(
                     onPressed: () => _addFile(_bmobFile),
-                    color: Colors.blue[400],
                     child: new Text(
                       "添加文件到表中",
                       style: TextStyle(color: Colors.white),
@@ -110,10 +107,9 @@ class _FilePageState extends State<FilePage> {
                 ),
                 new Padding(
                   padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                  child: new RaisedButton(
+                  child: new ElevatedButton(
                     onPressed: () => _downloadFile(_url,
                         "/storage/emulated/0/Pictures/Screenshots/download-${DateTime.now().toString()}.png"),
-                    color: Colors.blue[400],
                     child: new Text(
                       "下载文件",
                       style: TextStyle(color: Colors.white),
@@ -122,9 +118,8 @@ class _FilePageState extends State<FilePage> {
                 ),
                 new Padding(
                   padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                  child: new RaisedButton(
+                  child: new ElevatedButton(
                     onPressed: () => _deleteFile(_url),
-                    color: Colors.blue[400],
                     child: new Text(
                       "删除文件",
                       style: TextStyle(color: Colors.white),

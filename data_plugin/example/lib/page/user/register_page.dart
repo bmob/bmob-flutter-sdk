@@ -97,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           color: Theme.of(context).iconTheme.color),
                       onPressed: () {
                         //TODO : 第三方登录方法
-                        Scaffold.of(context).showSnackBar(new SnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
                           content: new Text("${item['title']}登录"),
                           action: new SnackBarAction(
                             label: "取消",
@@ -125,12 +125,11 @@ class _RegisterPageState extends State<RegisterPage> {
       child: SizedBox(
         height: 45.0,
         width: 270.0,
-        child: RaisedButton(
+        child: ElevatedButton(
           child: Text(
             'Register',
             style: Theme.of(context).primaryTextTheme.headline1,
           ),
-          color: Colors.black,
           onPressed: () {
 //            if (_formKey.currentState.validate()) {
             ///只有输入的内容符合要求通过才会到达此处
@@ -140,7 +139,6 @@ class _RegisterPageState extends State<RegisterPage> {
             _register();
 //            }
           },
-          shape: StadiumBorder(side: BorderSide()),
         ),
       ),
     );
@@ -151,7 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
       padding: const EdgeInsets.only(top: 8.0),
       child: Align(
         alignment: Alignment.centerRight,
-        child: FlatButton(
+        child: TextButton(
           child: Text(
             '忘记密码？',
             style: TextStyle(fontSize: 14.0, color: Colors.grey),

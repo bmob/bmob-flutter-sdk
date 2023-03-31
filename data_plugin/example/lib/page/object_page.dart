@@ -36,60 +36,52 @@ class _ObjectPageState extends State<ObjectPage> {
         child: new SingleChildScrollView(
           child: new Column(
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     _saveSingle(context);
                   },
-                  color: Colors.blue[400],
                   child: new Text('添加一条数据',
                       style: new TextStyle(color: Colors.white))),
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     _querySingle(context);
                   },
-                  color: Colors.blue[400],
                   child: new Text('查询一条数据',
                       style: new TextStyle(color: Colors.white))),
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     _updateSingle(context);
                   },
-                  color: Colors.blue[400],
                   child: new Text('修改一条数据',
                       style: new TextStyle(color: Colors.white))),
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     _deleteSingle(context);
                   },
-                  color: Colors.blue[400],
                   child: new Text('删除一条数据',
                       style: new TextStyle(color: Colors.white))),
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     _deleteFieldValue(context);
                   },
-                  color: Colors.blue[400],
                   child: new Text('删除某条数据某个字段的值',
                       style: new TextStyle(color: Colors.white))),
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     _queryMulti(context);
                   },
-                  color: Colors.blue[400],
                   child: new Text('查询多条数据',
                       style: new TextStyle(color: Colors.white))),
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, 'queryRoute');
                   },
-                  color: Colors.blue[400],
                   child: new Text('其他查询操作',
                       style: new TextStyle(color: Colors.white))),
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     _bmobBatch(context);
                   },
-                  color: Colors.blue[400],
                   child: new Text('批量操作',
                       style: new TextStyle(color: Colors.white))),
             ],

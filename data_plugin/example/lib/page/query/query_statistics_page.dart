@@ -23,57 +23,50 @@ class _QueryStatisticsPageState extends State<QueryStatisticsPage> {
       body: new Container(
         child: new Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _queryGroupBy(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('分组操作',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _queryGroupCount(context);
 
                 },
-                color: Colors.blue[400],
                 child: new Text('返回每个分组的总记录',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _querySum(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('计算总和',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   _queryAverage(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('计算平均值',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
 
                   _queryMax(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('计算最大值',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
 
                   _queryMin(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('计算最小值',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
 
                   _queryHaving(context);
                 },
-                color: Colors.blue[400],
                 child: new Text('分组中的过滤条件',
                     style: new TextStyle(color: Colors.white))),
           ],

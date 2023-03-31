@@ -40,79 +40,69 @@ class _HomePageState extends State<HomePage> {
         margin: new EdgeInsets.all(10.0),
         child: new Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "userRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('用户操作',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "installationRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('设备操作',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "objectRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('基本数据类型操作',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "smsRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('短信操作',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "timeRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('时间操作',
                     style: new TextStyle(color: Colors.white))),
 
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "geoPointRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('地理位置类型操作',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "fileRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('文件操作',
                     style: new TextStyle(color: Colors.white))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "pointerRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('数据关联',
                     style: new TextStyle(color: Colors.white))),
 
 
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "aclRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('数据访问权限',
                     style: new TextStyle(color: Colors.white))),
 
 
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "realtimeRoute");
                 },
-                color: Colors.blue[400],
                 child: new Text('实时数据监听',
                     style: new TextStyle(color: Colors.white))),
           ],

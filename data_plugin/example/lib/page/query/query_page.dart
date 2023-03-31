@@ -34,119 +34,103 @@ class _QueryPageState extends State<QueryPage> {
                 delegate: new SliverChildListDelegate(
                   <Widget>[
 
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryInclude(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('查询关联字段',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryWhereEqual(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('等于条件查询',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryWhereNotEqual(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('不等条件查询',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryWhereLess(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('小于条件查询',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryWhereLessEqual(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('小于等于查询',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryWhereLarge(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('大于等于查询',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryContains(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('模糊查询',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryExist(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('存在/不为空',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryNotExist(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('不存在/为空',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryWhereArrayContain(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('数组包含查询',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryWhereContainIn(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('范围包含查询',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           Navigator.pushNamed(context, "orderRoute");
                         },
-                        color: Colors.blue[400],
                         child: new Text('数据排序',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           Navigator.pushNamed(context, "statisticsQQueryRoute");
                         },
-                        color: Colors.blue[400],
                         child: new Text('统计查询',
                             style: new TextStyle(color: Colors.white))),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryCount(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('查询个数',
                             style: new TextStyle(color: Colors.white))),
 
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryOr(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('复合查询：或查询',
                             style: new TextStyle(color: Colors.white))),
 
 
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           _queryAnd(context);
                         },
-                        color: Colors.blue[400],
                         child: new Text('复合查询：与查询',
                             style: new TextStyle(color: Colors.white))),
 
@@ -158,84 +142,84 @@ class _QueryPageState extends State<QueryPage> {
         )
 //        child: new Column(
 //          children: <Widget>[
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  _queryInclude(context);
 //                },
 //                color: Colors.blue[400],
 //                child: new Text('查询关联字段',
 //                    style: new TextStyle(color: Colors.white))),
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  _queryWhereEqual(context);
 //                },
 //                color: Colors.blue[400],
 //                child: new Text('等于条件查询',
 //                    style: new TextStyle(color: Colors.white))),
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  _queryWhereNotEqual(context);
 //                },
 //                color: Colors.blue[400],
 //                child: new Text('不等条件查询',
 //                    style: new TextStyle(color: Colors.white))),
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  _queryWhereLess(context);
 //                },
 //                color: Colors.blue[400],
 //                child: new Text('小于条件查询',
 //                    style: new TextStyle(color: Colors.white))),
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  _queryWhereLessEqual(context);
 //                },
 //                color: Colors.blue[400],
 //                child: new Text('小于等于查询',
 //                    style: new TextStyle(color: Colors.white))),
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  _queryWhereLarge(context);
 //                },
 //                color: Colors.blue[400],
 //                child: new Text('模糊查询',
 //                    style: new TextStyle(color: Colors.white))),
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  _queryContains(context);
 //                },
 //                color: Colors.blue[400],
 //                child: new Text('大于等于查询',
 //                    style: new TextStyle(color: Colors.white))),
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  _queryWhereArrayContain(context);
 //                },
 //                color: Colors.blue[400],
 //                child: new Text('数组包含查询',
 //                    style: new TextStyle(color: Colors.white))),
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  _queryWhereContainIn(context);
 //                },
 //                color: Colors.blue[400],
 //                child: new Text('范围包含查询',
 //                    style: new TextStyle(color: Colors.white))),
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  Navigator.pushNamed(context, "orderRoute");
 //                },
 //                color: Colors.blue[400],
 //                child: new Text('数据排序',
 //                    style: new TextStyle(color: Colors.white))),
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  Navigator.pushNamed(context, "statisticsQQueryRoute");
 //                },
 //                color: Colors.blue[400],
 //                child: new Text('统计查询',
 //                    style: new TextStyle(color: Colors.white))),
-//            RaisedButton(
+//            ElevatedButton(
 //                onPressed: () {
 //                  _queryCount(context);
 //                },

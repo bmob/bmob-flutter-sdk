@@ -31,50 +31,44 @@ class _AclPageState extends State<AclPage> {
         margin: EdgeInsets.all(10.0),
         child: new Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 _saveDataAndPublicAcl();
               },
-              color: Colors.blue[400],
               child: Text("添加数据的同时设置所有用户的ACL",
                   style: TextStyle(color: Colors.white)),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 _saveDataAndUserAcl();
               },
-              color: Colors.blue[400],
               child: Text("添加数据的同时设置某用户的ACL",
                   style: TextStyle(color: Colors.white)),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 _saveDataAndRoleAcl();
               },
-              color: Colors.blue[400],
               child: Text("添加数据的同时设置某角色的ACL",
                   style: TextStyle(color: Colors.white)),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 _saveRole();
               },
-              color: Colors.blue[400],
               child: Text("添加角色", style: TextStyle(color: Colors.white)),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 _addUserToRole();
               },
-              color: Colors.blue[400],
               child: Text("添加角色并添加某用户到该角色中",
                   style: TextStyle(color: Colors.white)),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 _addUserToSavedRole();
               },
-              color: Colors.blue[400],
               child:
                   Text("添加用户到已存在的角色中", style: TextStyle(color: Colors.white)),
             ),

@@ -25,11 +25,10 @@ class _GeoPointPageState extends State<GeoPointPage> {
       body: new Container(
         child: new Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 _addGeoPoint();
               },
-              color: Colors.blue[400],
               child: Text(
                 "添加地理位置数据",
                 style: TextStyle(color: Colors.white),
