@@ -1,6 +1,6 @@
 name: data_plugin
 description: Bmob Data Flutter plugin.
-version: 0.0.18
+version: 0.0.19
 author: chaozhouzhang <13760289294@139.com>
 homepage: https://github.com/chaozhouzhang
 
@@ -10,12 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-#  cupertino_icons: ^1.0.3
+  cupertino_icons: ^1.0.3
   dio: ^4.0.0
   flutter_spinkit: ^5.1.0
   json_annotation: ^4.1.0
   web_socket_channel: ^2.1.0
-  shared_preferences: ^2.0.8
+  shared_preferences: ^2.0.20
   crypto: ^3.0.1
   convert: ^3.0.1
 
