@@ -6,37 +6,28 @@ Flutter官方咨询QQ群：788254534
 
 # 1、集成
 
-## 1.1、依赖
-依赖配置：
+## 1.1、下载源码
+
+克隆Bmob Flutter SDK，下载地址：[下载Bmob Flutter SDK](./data_plugin/)，并把data_plugin文件夹放到和你的项目同一级的位置。
+
+## 1.2、修改配置
+
+修改项目的配置文件 pubspec.yaml文件，在依赖节点 dependencies 中新增项：
 ```
-dependencies:
-  data_plugin: ^0.0.16
+  data_plugin:
+    path: ../data_plugin
 ```
 
-## 1.2、安装
-安装指令：
-```
-$ flutter packages get
-```
 ## 1.3、导入
 导入语句：
 ```
 import 'package:data_plugin/data_plugin.dart';
 ```
-## 1.4、仓库
-可以在dart仓库搜索"data_plugin"查看具体信息：
-```
-https://pub.dartlang.org/
-```
-安装介绍：
 
-https://pub.dartlang.org/packages/data_plugin#-installing-tab-
-
-
-## 1.5、平台
+## 1.4、平台
 目前涉及到特定平台信息处理的方法只适配了Android外，其他方法均兼容Android、iOS。
 
-## 1.6、参考
+## 1.5、参考
 源码：
 ```
 https://github.com/bmob/bmob-flutter-sdk/tree/master/data_plugin
@@ -54,25 +45,25 @@ https://github.com/bmob/bmob-flutter-sdk/tree/master/data_demo
 /**
  * 非加密方式初始化
  */
-Bmob.init("https://api2.bmob.cn", "appId", "apiKey");
+Bmob.init("你的备案域名", "appId", "apiKey");
 ```
 ```
 /**
  * 超级权限非加密方式初始化
  */
-Bmob.initMasterKey("https://api2.bmob.cn", "appId","apiKey","masterKey");
+Bmob.initMasterKey("你的备案域名", "appId","apiKey","masterKey");
 ```
 ```
 /**
  * 加密方式初始化
  */
-Bmob.initEncryption("https://api2.bmob.cn", "secretKey", "apiSafe");
+Bmob.initEncryption("你的备案域名", "secretKey", "apiSafe");
 ```
 ```
 /**
  * 超级权限加密方式初始化
  */
-Bmob.initEncryptionMasterKey("https://api2.bmob.cn","secretKey","apiSafe","masterKey");
+Bmob.initEncryptionMasterKey("你的备案域名","secretKey","apiSafe","masterKey");
 
 ```
 2、导入源码
