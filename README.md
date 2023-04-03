@@ -8,7 +8,7 @@ Flutter官方咨询QQ群：788254534
 
 ## 1.1、下载源码
 
-克隆Bmob Flutter SDK，下载地址：[下载Bmob Flutter SDK](./data_plugin/)，并把data_plugin文件夹放到和 <font color="red">你的项目同一级 </font>的位置。
+克隆Bmob Flutter SDK，下载地址：[下载Bmob Flutter SDK](./data_plugin/)，并把data_plugin文件夹放到和 ```你的项目同一级 ```的位置。
 
 ## 1.2、修改配置
 
